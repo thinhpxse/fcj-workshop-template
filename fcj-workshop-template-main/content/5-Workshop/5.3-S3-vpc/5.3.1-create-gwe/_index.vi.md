@@ -1,6 +1,6 @@
 ---
 title : "Tạo Gateway Endpoint cho S3"
-date :  "`r Sys.Date()`" 
+date :  2025-12-06
 weight : 1
 chapter : false
 pre : " <b> 5.3.1 </b> "

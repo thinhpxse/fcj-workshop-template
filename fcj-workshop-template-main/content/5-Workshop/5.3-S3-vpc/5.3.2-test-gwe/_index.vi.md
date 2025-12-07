@@ -1,6 +1,6 @@
 ---
 title : "Kiểm Tra Kết Nối Gateway Endpoint"
-date :  "`r Sys.Date()`" 
+date :  2025-12-06
 weight : 2
 chapter : false
 pre : " <b> 5.3.2 </b> "

@@ -1,6 +1,6 @@
 ---
 title : "Workshop Overview"
-date : 2025-12-6
+date : 2025-12-06
 weight : 1 
 chapter : false
 pre : " <b> 5.1. </b> "
