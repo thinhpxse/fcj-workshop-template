@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Testing Gateway Endpoint Connectivity :: Internship Report</title>
+
+    
+    <link href="../../../css/nucleus.css?1765118996" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765118996" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765118996" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765118996" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765118996" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765118996" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765118996" rel="stylesheet">
+    <link href="../../../css/theme.css?1765118996" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765118996" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765118996" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765118996"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765118996"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765118996"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765118996"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.3-week3/">
+     <b> 1.x. </b> Week 3 Worklog – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.4-week4/">
+     <b> 1.x. </b> Week 4 Worklog – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated AWS Blogs"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/">
+     <b> 3. </b> Translated AWS Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Build Priority-Based Message Processing with Amazon MQ and AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Build Priority-Based Message Processing with Amazon MQ and AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Building an AI Gateway to Amazon Bedrock with Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Building an AI Gateway to Amazon Bedrock with Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Electronic Arts tối ưu hóa quy trình cập nhật game với AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Electronic Arts tối ưu hóa quy trình cập nhật game với AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Learn About Machine Learning on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Learn About Machine Learning on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Secure Amazon EVS with AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Secure Amazon EVS with AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.1-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.2-prerequiste/"
+  title="Prerequisites"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Prerequisites 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/"
+  title="Access S3 from VPC"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Access S3 from VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Creating Gateway Endpoint for S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Creating Gateway Endpoint for S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Testing Gateway Endpoint Connectivity"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Testing Gateway Endpoint Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/"
+  title="Access S3 from on-premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Access S3 from on-premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Environment Preparation for Hybrid Connectivity"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Environment Preparation for Hybrid Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Creating Interface VPC Endpoint for S3 Access"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Creating Interface VPC Endpoint for S3 Access 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Testing Interface Endpoint Connectivity from On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Testing Interface Endpoint Connectivity from On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Configuring Hybrid DNS for Private Endpoint Resolution"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Configuring Hybrid DNS for Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.5-policy/"
+  title="Implementing Fine-Grained Access Control with VPC Endpoint Policies"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.5-policy/">
+     <b> 5.5. </b> Implementing Fine-Grained Access Control with VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.6-cleanup/"
+  title="Resource Cleanup and Workshop Completion"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Resource Cleanup and Workshop Completion 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../'>Internship Report</a> > <a href='../../../5-workshop/'>Workshop</a> > <a href='../../../5-workshop/5.3-s3-vpc/'>Access S3 from VPC</a> > Testing Gateway Endpoint Connectivity
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Testing Gateway Endpoint Connectivity
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
+
+</div>
+
+<p>Now that you&rsquo;ve created the Gateway Endpoint, it&rsquo;s time to verify that it works correctly. In this section, you&rsquo;ll create an S3 bucket, connect to an EC2 instance in your VPC, and upload a test file to S3 - all without traffic leaving the AWS network.</p>
+<p><strong>Testing Objectives:</strong></p>
+<ul>
+<li>Verify private connectivity to S3 through the Gateway Endpoint</li>
+<li>Confirm that traffic does not traverse the public internet</li>
+<li>Demonstrate successful S3 operations from a private subnet</li>
+<li>Validate route table configuration</li>
+</ul>
+<hr>
+<h4 id="step-1-create-an-s3-bucket-for-testing">Step 1: Create an S3 Bucket for Testing</h4>
+<p>First, you need an S3 bucket to test uploads through the Gateway Endpoint.</p>
+<ol>
+<li><strong>Navigate to S3 Console:</strong>
+<ul>
+<li>Open the <a href="https://s3.console.aws.amazon.com/s3/buckets">S3 Management Console</a></li>
+<li>Click the <strong>Create bucket</strong> button</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/create-bucket.png" alt="S3 Create Bucket"></p>
+<ol start="2">
+<li>
+<p><strong>Configure Bucket Settings:</strong></p>
+<p><strong>Bucket Name:</strong></p>
+<ul>
+<li>Enter a globally unique name (S3 bucket names must be unique across all AWS accounts)</li>
+<li>Suggested format: <code>gateway-endpoint-test-&lt;your-initials&gt;-&lt;random-number&gt;</code></li>
+<li>Example: <code>gateway-endpoint-test-jd-20241207</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/bucket-name.png" alt="Bucket Naming"></p>
+<p><strong>AWS Region:</strong></p>
+<ul>
+<li>Ensure the region is <strong>US East (N. Virginia) us-east-1</strong></li>
+<li>This must match the region where your VPC and Gateway Endpoint are deployed</li>
+</ul>
+<p><strong>Object Ownership:</strong></p>
+<ul>
+<li>Leave as default (<strong>ACLs disabled</strong> - Recommended)</li>
+</ul>
+<p><strong>Block Public Access settings:</strong></p>
+<ul>
+<li>Leave all options checked (default)</li>
+<li>This ensures the bucket remains private</li>
+</ul>
+<p><strong>Bucket Versioning:</strong></p>
+<ul>
+<li>Leave as default (Disabled)</li>
+</ul>
+<p><strong>Default Encryption:</strong></p>
+<ul>
+<li>Leave as default (Server-side encryption with Amazon S3 managed keys - SSE-S3)</li>
+</ul>
+<ol start="3">
+<li><strong>Create the Bucket:</strong>
+<ul>
+<li>Scroll to the bottom</li>
+<li>Click <strong>Create bucket</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/create-button.png" alt="Create Button"></p>
+<ol start="4">
+<li><strong>Verify Creation:</strong>
+<ul>
+<li>You should see a success message</li>
+<li>Your new bucket appears in the buckets list</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/bucket-success.png" alt="Bucket Created Successfully"></p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Security Best Practice</strong>: Notice that the bucket is created with all public access blocked by default. This aligns with AWS security best practices. Access will only be possible through the VPC endpoint and with proper IAM permissions.</p>
+
+</div>
+
+<hr>
+<hr>
+<h4 id="step-2-connect-to-ec2-instance-using-session-manager">Step 2: Connect to EC2 Instance Using Session Manager</h4>
+<p>You&rsquo;ll use <strong>AWS Systems Manager Session Manager</strong> to securely connect to the EC2 instance without requiring SSH keys, bastion hosts, or open inbound ports.</p>
+<p><strong>What is AWS Session Manager?</strong>
+Session Manager is a fully managed Systems Manager capability that provides:</p>
+<ul>
+<li><strong>Secure Access</strong>: Browser-based shell access without opening inbound ports</li>
+<li><strong>Audit Trail</strong>: All sessions are logged in CloudWatch Logs</li>
+<li><strong>No SSH Keys</strong>: No need to manage or distribute SSH keys</li>
+<li><strong>Cross-Platform</strong>: Works with Linux and Windows instances</li>
+</ul>
+<p><strong>Architecture Context:</strong>
+The EC2 instance you&rsquo;ll connect to is running in a <strong>private subnet</strong> within &ldquo;VPC Cloud&rdquo;. It has no direct internet access - connectivity to AWS services (including Systems Manager) is provided through the SSM VPC Interface Endpoints that were created during CloudFormation deployment.</p>
+<ol>
+<li><strong>Open Systems Manager Console:</strong>
+<ul>
+<li>In the AWS Management Console search bar, type <code>Systems Manager</code></li>
+<li>Press <strong>Enter</strong> or click on the <strong>Systems Manager</strong> service</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/sm.png" alt="Systems Manager Search"></p>
+<ol start="2">
+<li><strong>Navigate to Session Manager:</strong>
+<ul>
+<li>In the left navigation pane, locate <strong>Node Management</strong> section</li>
+<li>Click on <strong>Session Manager</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/sm1.png" alt="Session Manager Navigation"></p>
+<ol start="3">
+<li><strong>Start a New Session:</strong>
+<ul>
+<li>Click the <strong>Start session</strong> button</li>
+<li>From the list of available instances, select the instance named <strong>Test-Gateway-Endpoint</strong></li>
+</ul>
+</li>
+</ol>
+
+<div
+  class="notices info"
+  
+>
+  <p><strong>Instance Details</strong>: This EC2 instance is deployed in a private subnet of &ldquo;VPC Cloud&rdquo; and is configured with an IAM instance profile that grants necessary permissions for Session Manager and S3 access. The instance will be used to verify that S3 traffic flows through the Gateway Endpoint you created, rather than the public internet.</p>
+
+</div>
+
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/start-session.png" alt="Start Session"></p>
+<ol start="4">
+<li><strong>Session Established:</strong>
+<ul>
+<li>Session Manager opens a new browser tab with a shell prompt</li>
+<li>You should see a prompt like: <code>sh-4.2$</code> or similar</li>
+<li>This indicates you&rsquo;re successfully connected to the EC2 instance</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/start-session-success.png" alt="Session Connected"></p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Connectivity Verification</strong>: The fact that Session Manager works confirms that the SSM Interface Endpoints are functioning correctly. If you couldn&rsquo;t connect, it would indicate an issue with the Interface Endpoints or IAM permissions.</p>
+
+</div>
+
+<hr>
+<h4 id="step-3-create-and-upload-test-file-to-s3">Step 3: Create and Upload Test File to S3</h4>
+<p>Now you&rsquo;ll create a test file on the EC2 instance and upload it to S3 through the Gateway Endpoint.</p>
+<ol>
+<li>
+<p><strong>Navigate to Home Directory:</strong></p>
+<p>Execute the following command to switch to the ssm-user&rsquo;s home directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
+</span></span></code></pre></div></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/cli1.png" alt="Change Directory"></p>
+<p><strong>Why this step?</strong> Working in the home directory ensures you have proper write permissions and a clean working environment.</p>
+<ol start="2">
+<li>
+<p><strong>Create a Test File:</strong></p>
+<p>Generate a 1GB test file using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fallocate -l 1G testfile.xyz
+</span></span></code></pre></div></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/cli-file.png" alt="Create Test File"></p>
+<p><strong>Command Explanation:</strong></p>
+<ul>
+<li><code>fallocate</code>: Efficiently allocates space for a file</li>
+<li><code>-l 1G</code>: Specifies file size of 1 gigabyte</li>
+<li><code>testfile.xyz</code>: The filename for our test file</li>
+</ul>
+<p>This creates a 1GB file almost instantly by allocating disk space without writing actual data. We use a large file to make the upload more observable and to demonstrate that the Gateway Endpoint can handle substantial data transfers.</p>
+<ol start="3">
+<li>
+<p><strong>Upload File to S3 Bucket:</strong></p>
+<p>Use the AWS CLI to upload the file to your S3 bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 cp testfile.xyz s3://YOUR-BUCKET-NAME/
+</span></span></code></pre></div><p><strong>Important</strong>: Replace <code>YOUR-BUCKET-NAME</code> with the actual name of the bucket you created in Step 1.</p>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/uploaded.png" alt="File Upload"></p>
+<p><strong>What&rsquo;s Happening Behind the Scenes:</strong></p>
+<ul>
+<li>The EC2 instance makes an API call to S3</li>
+<li>The VPC route table directs S3 traffic to the Gateway Endpoint (prefix list destination)</li>
+<li>Traffic flows through the Gateway Endpoint to S3, staying within the AWS network</li>
+<li><strong>No internet gateway or NAT gateway is used</strong></li>
+</ul>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Success Indicator</strong>: If the upload completes successfully, you&rsquo;ll see output showing the file transfer progress and completion. This confirms that:</p>
+<ul>
+<li>The Gateway Endpoint is configured correctly</li>
+<li>Route table entries are working as expected</li>
+<li>The EC2 instance has proper IAM permissions for S3</li>
+<li>Private connectivity to S3 is functioning</li>
+</ul>
+
+</div>
+
+<ol start="4">
+<li><strong>Terminate the Session:</strong>
+<ul>
+<li>Type <code>exit</code> or close the browser tab</li>
+<li>The session will be cleanly terminated</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="step-4-verify-object-in-s3-bucket">Step 4: Verify Object in S3 Bucket</h4>
+<p>Finally, confirm that the file was successfully uploaded by checking the S3 console.</p>
+<ol>
+<li>
+<p><strong>Return to S3 Console:</strong></p>
+<ul>
+<li>Navigate back to the <a href="https://s3.console.aws.amazon.com/s3/buckets">S3 Management Console</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Open Your Bucket:</strong></p>
+<ul>
+<li>Click on the name of the bucket you created earlier</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify File Presence:</strong></p>
+<ul>
+<li>You should see <code>testfile.xyz</code> listed in the Objects tab</li>
+<li>The file size should show approximately 1 GB</li>
+<li>Note the upload timestamp</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-S3-vpc/check-s3-bucket.png" alt="Verify S3 Object"></p>
+<p><strong>Verification Checklist:</strong></p>
+<ul>
+<li>✓ File <code>testfile.xyz</code> appears in bucket</li>
+<li>✓ File size matches (1 GB)</li>
+<li>✓ Upload timestamp is recent</li>
+<li>✓ No errors in S3 console</li>
+</ul>
+<hr>
+<h4 id="understanding-what-you-just-accomplished">Understanding What You Just Accomplished</h4>
+<p><strong>Network Path Verification:</strong>
+In this test, you successfully:</p>
+<ol>
+<li><strong>Created Private Connectivity</strong>: The Gateway Endpoint enabled private connectivity from your VPC to S3</li>
+<li><strong>Bypassed Public Internet</strong>: The upload did not traverse the public internet - it stayed entirely within AWS&rsquo;s network backbone</li>
+<li><strong>Used Route-Based Routing</strong>: The route table automatically directed S3 traffic to the Gateway Endpoint based on the S3 prefix list</li>
+<li><strong>Demonstrated Cost Savings</strong>: By using a Gateway Endpoint instead of a NAT Gateway, you avoided:
+<ul>
+<li>NAT Gateway hourly charges</li>
+<li>NAT Gateway data processing charges</li>
+<li>Potential internet gateway data transfer costs</li>
+</ul>
+</li>
+</ol>
+<p><strong>Traffic Flow Diagram:</strong></p>
+<pre tabindex="0"><code>EC2 Instance → VPC Route Table → Gateway Endpoint → S3 Service
+(Private Subnet)  (Routes S3 to vpce-xxx)  (No internet)  (AWS Network)
+</code></pre><p><strong>Key Differences from Internet-Based Access:</strong></p>
+<ul>
+<li><strong>Without Gateway Endpoint</strong>: EC2 → NAT Gateway → Internet Gateway → Public Internet → S3</li>
+<li><strong>With Gateway Endpoint</strong>: EC2 → Gateway Endpoint → S3 (all within AWS network)</li>
+</ul>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Performance Benefits</strong>: Gateway Endpoints not only save costs but also typically provide better performance than internet-based access due to:</p>
+<ul>
+<li>Lower latency (direct AWS network path)</li>
+<li>Higher available bandwidth</li>
+<li>No NAT Gateway bottleneck</li>
+<li>Dedicated AWS backbone infrastructure</li>
+</ul>
+
+</div>
+
+<hr>
+<h4 id="section-summary">Section Summary</h4>
+<p><strong>Congratulations!</strong> You&rsquo;ve successfully completed the Gateway Endpoint testing exercise.</p>
+<p><strong>What You Learned:</strong></p>
+<ul>
+<li>✓ How to create and configure S3 buckets with security best practices</li>
+<li>✓ Using AWS Systems Manager Session Manager for secure instance access</li>
+<li>✓ Uploading objects to S3 through a Gateway VPC Endpoint</li>
+<li>✓ Verifying private connectivity without internet gateway dependency</li>
+<li>✓ Understanding the traffic flow in a VPC with Gateway Endpoints</li>
+</ul>
+<p><strong>Key Takeaways:</strong></p>
+<ol>
+<li><strong>Gateway Endpoints provide cost-effective private connectivity</strong> to S3 and DynamoDB</li>
+<li><strong>No additional charges</strong> for using Gateway Endpoints - you only pay for S3 storage and requests</li>
+<li><strong>Traffic remains private</strong> - never exposed to the public internet</li>
+<li><strong>Automatic routing</strong> through route table entries - no complex configuration needed</li>
+<li><strong>Scalable and highly available</strong> - AWS manages the endpoint infrastructure</li>
+</ol>
+<p><strong>Next Steps:</strong>
+In the following sections, you&rsquo;ll explore:</p>
+<ul>
+<li>Creating Interface VPC Endpoints for other AWS services</li>
+<li>Implementing VPC Endpoint policies for fine-grained access control</li>
+<li>Testing connectivity from on-premises (simulated) environments</li>
+<li>Understanding the differences between Gateway and Interface Endpoints</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../5-workshop/5.3-s3-vpc/5.3.1-create-gwe/" title="Creating Gateway Endpoint for S3"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../5-workshop/5.4-s3-onprem/" title="Access S3 from on-premises" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765118996"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765118996"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765118996"></script>
+    <script src="../../../js/jquery.sticky.js?1765118996"></script>
+    <script src="../../../js/featherlight.min.js?1765118996"></script>
+    <script src="../../../js/highlight.pack.js?1765118996"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765118996"></script>
+    <script src="../../../js/learn.js?1765118996"></script>
+    <script src="../../../js/hugo-learn.js?1765118996"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765118996" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765118996"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

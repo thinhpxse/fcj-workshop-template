@@ -1,0 +1,2258 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1765118997" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765118997" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765118997" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765118997" rel="stylesheet">
+    <link href="../../../css/theme.css?1765118997" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765118997" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765118997" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765118997"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/5-workshop/5.5-policy/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765118997"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765118997"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765118997"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Worklog  5 – AWS Security"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.x. </b> Worklog  5 – AWS Security 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.x. </b> Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11– Container Services on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.x. </b> Worklog Tuần 11– Container Services on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Worklog Tuần 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Worklog Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Worklog Tuần 3 – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.x. </b> Worklog Tuần 3 – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Worklog Tuần 4 – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.x. </b> Worklog Tuần 4 – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Worklog Tuần 6– AWS Reliability"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.x. </b> Worklog Tuần 6– AWS Reliability 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Worklog Tuần 7 – AWS Performance"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.x. </b> Worklog Tuần 7 – AWS Performance 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Worklog Tuần 8– AWS Cost Optimization"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.x. </b> Worklog Tuần 8– AWS Cost Optimization 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9 – Application Modernization on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.x. </b> Worklog Tuần 9 – Application Modernization on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12 </b> Worklog Tuần 12 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Worklog Tuần 1 "
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1 - 1.2. </b> Worklog Tuần 1  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Bản đề xuất"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Bản đề xuất 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Các bài blogs đã dịch"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Các bài blogs đã dịch 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Bảo mật Amazon EVS với AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Bảo mật Amazon EVS với AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Tìm hiểu về Machine Learning trên AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Tìm hiểu về Machine Learning trên AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.1-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.2-prerequiste/"
+  title="Các bước chuẩn bị"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Các bước chuẩn bị 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/"
+  title="Truy cập S3 từ VPC"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Truy cập S3 từ VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Tạo Gateway Endpoint cho S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Tạo Gateway Endpoint cho S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Kiểm Tra Kết Nối Gateway Endpoint"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Kiểm Tra Kết Nối Gateway Endpoint 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/"
+  title="Truy cập S3 từ môi trường truyền thống"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Truy cập S3 từ môi trường truyền thống 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Chuẩn Bị Môi Trường cho Kết Nối Hybrid"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Chuẩn Bị Môi Trường cho Kết Nối Hybrid 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Tạo Interface VPC Endpoint cho Truy Cập S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Tạo Interface VPC Endpoint cho Truy Cập S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Kiểm Tra Kết Nối Interface Endpoint từ On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Kiểm Tra Kết Nối Interface Endpoint từ On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Cấu Hình Hybrid DNS cho Private Endpoint Resolution"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Cấu Hình Hybrid DNS cho Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.5-policy/"
+  title="Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.5-policy/">
+     <b> 5.5. </b> Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.6-cleanup/"
+  title="Dọn Dẹp Resources và Hoàn Thành Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Dọn Dẹp Resources và Hoàn Thành Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.5-policy/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.5-policy/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
+
+</div>
+
+<p>Trong phần này, bạn sẽ triển khai các best practices bảo mật bằng cách áp dụng các VPC endpoint policies hạn chế để kiểm soát S3 buckets nào có thể được truy cập thông qua Gateway VPC Endpoint của bạn. Điều này minh họa nguyên tắc least privilege trong kiến trúc cloud.</p>
+<p><strong>Hiểu Về VPC Endpoint Policies:</strong></p>
+<p>VPC endpoint policies là các IAM resource policies cung cấp kiểm soát truy cập chi tiết cho lưu lượng đi qua VPC endpoints. Chúng hoạt động như một lớp bảo mật bổ sung:</p>
+<ul>
+<li><strong>Default Behavior</strong>: Khi bạn tạo endpoint mà không có custom policy, AWS áp dụng default policy cho phép truy cập đầy đủ đến tất cả resources của dịch vụ đích</li>
+<li><strong>Policy Type</strong>: Các IAM resource policies dựa trên JSON được gắn trực tiếp vào endpoint</li>
+<li><strong>Enforcement Point</strong>: Được đánh giá khi lưu lượng đi qua endpoint (không phải phía AWS service)</li>
+<li><strong>Combined Evaluation</strong>: Hoạt động kết hợp với IAM user/role policies và S3 bucket policies (tất cả phải cho phép một action)</li>
+<li><strong>Scope</strong>: Có thể hạn chế truy cập theo resource (buckets cụ thể), principal (IAM identities cụ thể), hoặc action (S3 operations cụ thể)</li>
+</ul>
+<p><strong>Tại Sao Sử Dụng Endpoint Policies?</strong></p>
+<p>Endpoint policies rất quan trọng cho các kiến trúc bảo mật doanh nghiệp:</p>
+<ol>
+<li><strong>Defense in Depth</strong>: Lớp bảo mật bổ sung ngoài IAM và resource policies</li>
+<li><strong>Network-Level Control</strong>: Hạn chế những gì có thể được truy cập qua các network paths cụ thể</li>
+<li><strong>Compliance Requirements</strong>: Đáp ứng yêu cầu quy định về kiểm soát truy cập dữ liệu</li>
+<li><strong>Prevent Data Exfiltration</strong>: Giới hạn buckets nào có thể được truy cập từ VPC resources</li>
+<li><strong>Cost Optimization</strong>: Hạn chế truy cập chỉ đến các resources được ủy quyền, ngăn chặn lạm dụng</li>
+</ol>
+<p><strong>Kịch Bản Workshop:</strong></p>
+<p>Bạn sẽ tạo một endpoint policy hạn chế:</p>
+<ul>
+<li>Cho phép truy cập chỉ đến một S3 bucket cụ thể</li>
+<li>Chặn truy cập đến tất cả các S3 buckets khác</li>
+<li>Minh họa cách endpoint policies thực thi kiểm soát truy cập</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.5-Policy/s3-bucket-policy.png" alt="Kiến Trúc Endpoint Policy"></p>
+<hr>
+<h4 id="phần-1-thiết-lập-kết-nối-cơ-bản">Phần 1: Thiết Lập Kết Nối Cơ Bản</h4>
+<p>Trước khi áp dụng policy hạn chế, xác minh quyền truy cập hiện tại để minh họa so sánh trước/sau.</p>
+<p><strong>Bước 1: Kết Nối đến Test Instance</strong></p>
+<ol>
+<li>Mở <strong>AWS Systems Manager</strong> &gt; <strong>Session Manager</strong></li>
+<li>Click <strong>Start session</strong></li>
+<li>Chọn EC2 instance có tên <strong>Test-Gateway-Endpoint</strong>
+<ul>
+<li>Instance này nằm trong VPC với Gateway Endpoint</li>
+<li>Nó định tuyến lưu lượng S3 qua Gateway Endpoint thông qua cấu hình route table</li>
+</ul>
+</li>
+<li>Click <strong>Start session</strong></li>
+</ol>
+<p><strong>Bước 2: Xác Minh Truy Cập đến S3 Bucket Gốc</strong></p>
+<p>Trong Session Manager terminal, liệt kê nội dung của bucket bạn đã tạo trong phần 5.3:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 ls s3://&lt;your-bucket-name&gt;
+</span></span></code></pre></div><p>Thay thế <code>&lt;your-bucket-name&gt;</code> bằng tên bucket thực tế của bạn (ví dụ: <code>my-endpoint-test-bucket-123456</code>).</p>
+<p><img src="../../../images/5-Workshop/5.5-Policy/test1.png" alt="Xác Minh Truy Cập Bucket Gốc"></p>
+<p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Bạn sẽ thấy hai test files 1GB đã upload trong các phần trước:</p>
+<pre tabindex="0"><code>2024-12-07 10:30:15 1073741824 testfile.txt
+2024-12-07 11:45:22 1073741824 onprem-data.dat
+</code></pre>
+<div
+  class="notices info"
+  
+>
+  <p><strong>Quyền Truy Cập Hiện Tại</strong>: Điều này hoạt động vì Gateway Endpoint hiện tại có default policy cho phép truy cập đầy đủ (<code>&quot;*&quot;</code>) đến tất cả S3 resources. Bạn sắp thay đổi điều này để minh họa các hạn chế dựa trên policy.</p>
+
+</div>
+
+<hr>
+<h4 id="phần-2-tạo-s3-bucket-thứ-hai-để-kiểm-tra-policy">Phần 2: Tạo S3 Bucket Thứ Hai để Kiểm Tra Policy</h4>
+<p>Bạn sẽ tạo bucket thứ hai để minh họa kiểm soát truy cập có chọn lọc.</p>
+<p><strong>Bước 1: Điều Hướng đến S3 Console</strong></p>
+<ol>
+<li>Mở <a href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">Amazon S3 Console</a></li>
+<li>Click <strong>Create bucket</strong></li>
+</ol>
+<p><strong>Bước 2: Cấu Hình Bucket Mới</strong></p>
+<ol>
+<li>
+<p><strong>Bucket name</strong>:</p>
+<ul>
+<li>Theo mẫu đặt tên hiện tại của bạn, nhưng thêm <code>-restricted</code></li>
+<li>Ví dụ: Nếu bucket đầu tiên của bạn là <code>my-endpoint-test-bucket-123456</code>, đặt tên bucket này là <code>my-endpoint-test-bucket-123456-restricted</code></li>
+<li>Phải là duy nhất toàn cầu trên tất cả các tài khoản AWS</li>
+</ul>
+</li>
+<li>
+<p><strong>Region</strong>:</p>
+<ul>
+<li>Đảm bảo là <strong>US East (N. Virginia) us-east-1</strong> (giống VPC và bucket đầu tiên của bạn)</li>
+</ul>
+</li>
+<li>
+<p><strong>Các cài đặt khác</strong>:</p>
+<ul>
+<li>Để tất cả cài đặt khác ở giá trị mặc định</li>
+<li>Default encryption: Enabled (SSE-S3)</li>
+<li>Block Public Access: Enabled (khuyến nghị)</li>
+<li>Versioning: Disabled (để đơn giản cho workshop)</li>
+</ul>
+</li>
+<li>
+<p><strong>Create bucket</strong>:</p>
+<ul>
+<li>Cuộn xuống dưới và click <strong>Create bucket</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.5-Policy/create-bucket.png" alt="Tạo S3 Bucket Thứ Hai"></p>
+<p><strong>Bước 3: Xác Minh Việc Tạo Bucket</strong></p>
+<p>Bạn sẽ thấy thông báo thành công và bucket mới được liệt kê trong S3 console.</p>
+<p><img src="../../../images/5-Workshop/5.5-Policy/create-bucket-success.png" alt="Bucket Được Tạo Thành Công"></p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Chiến Lược Đặt Tên</strong>: Sử dụng mẫu đặt tên nhất quán (tên gốc + hậu tố) giúp dễ dàng xác định các resources liên quan và đơn giản hóa việc xây dựng policy ARN. Trong production, sử dụng quy ước đặt tên phản ánh môi trường, ứng dụng và mục đích.</p>
+
+</div>
+
+<hr>
+<h4 id="phần-3-áp-dụng-restrictive-endpoint-policy">Phần 3: Áp Dụng Restrictive Endpoint Policy</h4>
+<p>Bây giờ bạn sẽ sửa đổi Gateway Endpoint policy để cho phép truy cập chỉ đến bucket mới.</p>
+<p><strong>Bước 1: Điều Hướng đến VPC Endpoints</strong></p>
+<ol>
+<li>Mở <a href="https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:">VPC Console</a></li>
+<li>Click <strong>Endpoints</strong> trong thanh bên trái</li>
+<li>Tìm và chọn <strong>Gateway Endpoint</strong> bạn đã tạo trong phần 5.3
+<ul>
+<li>Type nên hiển thị &ldquo;Gateway&rdquo;</li>
+<li>Service name nên là <code>com.amazonaws.us-east-1.s3</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Bước 2: Truy Cập Endpoint Policy Editor</strong></p>
+<ol>
+<li>Với endpoint được chọn, click vào tab <strong>Policy</strong> trong ngăn chi tiết dưới</li>
+<li>Bạn sẽ thấy policy hiện tại (mặc định cho phép tất cả)</li>
+<li>Click nút <strong>Edit policy</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.5-Policy/policy1.png" alt="Edit Endpoint Policy"></p>
+<p><strong>Current Default Policy:</strong></p>
+<p>Policy hiện tại trông như thế này (cho phép truy cập không hạn chế):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Bước 3: Áp Dụng Restrictive Policy</strong></p>
+<ol>
+<li>
+<p><strong>Xóa policy hiện tại</strong> trong policy editor</p>
+</li>
+<li>
+<p><strong>Sao chép và dán</strong> restrictive policy sau:</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;RestrictToSpecificBucketPolicy&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;AllowAccessToRestrictedBucketOnly&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;arn:aws:s3:::YOUR-RESTRICTED-BUCKET-NAME&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;arn:aws:s3:::YOUR-RESTRICTED-BUCKET-NAME/*&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="3">
+<li>
+<p><strong>Thay thế các ARN placeholder</strong>:</p>
+<ul>
+<li>Tìm <code>YOUR-RESTRICTED-BUCKET-NAME</code> (xuất hiện hai lần)</li>
+<li>Thay thế bằng tên bucket thứ hai thực tế của bạn (bucket kết thúc bằng <code>-restricted</code>)</li>
+<li>Kết quả ví dụ:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Resource&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;arn:aws:s3:::my-endpoint-test-bucket-123456-restricted&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;arn:aws:s3:::my-endpoint-test-bucket-123456-restricted/*&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Lưu policy</strong>:</p>
+<ul>
+<li>Click nút <strong>Save</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.5-Policy/policy2.png" alt="Áp Dụng Custom Endpoint Policy"></p>
+<p><strong>Hiểu Policy:</strong></p>
+<p>Hãy phân tích từng thành phần:</p>
+<ul>
+<li><strong><code>Version</code></strong>: Phiên bản ngôn ngữ IAM policy (luôn sử dụng &ldquo;2012-10-17&rdquo;)</li>
+<li><strong><code>Id</code></strong>: Định danh tùy chọn cho policy</li>
+<li><strong><code>Statement</code></strong>: Mảng các policy statements (có thể có nhiều)
+<ul>
+<li><strong><code>Sid</code></strong>: Statement ID (nhãn mô tả)</li>
+<li><strong><code>Effect</code></strong>: <code>Allow</code> (cấp quyền) hoặc <code>Deny</code> (từ chối rõ ràng)</li>
+<li><strong><code>Principal</code></strong>: <code>&quot;*&quot;</code> có nghĩa là bất kỳ IAM identity nào (vẫn tuân theo IAM policies)</li>
+<li><strong><code>Action</code></strong>: <code>s3:*</code> cho phép tất cả S3 operations (GetObject, PutObject, ListBucket, v.v.)</li>
+<li><strong><code>Resource</code></strong>: Hai ARNs:
+<ul>
+<li>ARN đầu tiên: Chính bucket (cho các operations như ListBucket)</li>
+<li>ARN thứ hai với <code>/*</code>: Tất cả objects trong bucket (cho GetObject, PutObject, v.v.)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Policy Đã Được Áp Dụng!</strong> Gateway Endpoint bây giờ thực thi rằng chỉ restricted bucket có thể được truy cập thông qua nó. Tất cả các nỗ lực truy cập buckets khác (bao gồm bucket gốc của bạn) sẽ bị từ chối.</p>
+
+</div>
+
+<p><strong>Logic Đánh Giá Policy:</strong></p>
+<p>Khi một EC2 instance cố gắng truy cập S3 qua endpoint:</p>
+<pre tabindex="0"><code>1. IAM policy trên EC2 instance role: Phải Allow
+2. VPC Endpoint policy: Phải Allow ← Chúng ta vừa hạn chế điều này
+3. S3 bucket policy: Phải Allow (hoặc không Deny rõ ràng)
+4. S3 ACLs: Phải Allow (hoặc không Deny rõ ràng)
+
+Chỉ khi TẤT CẢ các kiểm tra pass → Quyền truy cập được cấp
+</code></pre><hr>
+<h4 id="phần-4-kiểm-tra-việc-thực-thi-policy">Phần 4: Kiểm Tra Việc Thực Thi Policy</h4>
+<p>Bây giờ xác thực rằng endpoint policy đang thực thi các hạn chế truy cập.</p>
+<p><strong>Bước 1: Kiểm Tra Truy Cập đến Bucket Gốc (Nên Fail)</strong></p>
+<p>Trong Session Manager terminal vẫn mở của bạn trên Test-Gateway-Endpoint, thử liệt kê bucket gốc:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 ls s3://&lt;your-original-bucket-name&gt;
+</span></span></code></pre></div><p><img src="../../../images/5-Workshop/5.5-Policy/error.png" alt="Access Denied to Original Bucket"></p>
+<p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Bạn sẽ nhận được lỗi <strong>Access Denied</strong>:</p>
+<pre tabindex="0"><code>An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Access Denied
+</code></pre>
+<div
+  class="notices note"
+  
+>
+  <p><strong>Tại Sao Access Denied?</strong> VPC endpoint policy không còn bao gồm bucket gốc trong các resources được phép của nó. Mặc dù EC2 instance IAM role của bạn có S3 permissions, network path (qua endpoint) chặn truy cập.</p>
+
+</div>
+
+<p><strong>Bước 2: Chuẩn Bị Dữ Liệu Test</strong></p>
+<p>Tạo một test file để upload lên restricted bucket:</p>
+<ol>
+<li>
+<p><strong>Điều hướng đến home directory</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Tạo test file 1GB</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fallocate -l 1G policy-test-file.dat
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>Bước 3: Kiểm Tra Truy Cập đến Restricted Bucket (Nên Succeed)</strong></p>
+<p>Upload file lên restricted bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 cp policy-test-file.dat s3://&lt;your-restricted-bucket-name&gt;
+</span></span></code></pre></div><p>Thay thế <code>&lt;your-restricted-bucket-name&gt;</code> bằng tên bucket thứ hai của bạn.</p>
+<p><img src="../../../images/5-Workshop/5.5-Policy/test2.png" alt="Successful Upload to Restricted Bucket"></p>
+<p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Upload nên thành công:</p>
+<pre tabindex="0"><code>upload: ./policy-test-file.dat to s3://my-bucket-restricted/policy-test-file.dat
+Completed 1.0 GiB/1.0 GiB
+</code></pre><p><strong>Bước 4: Xác Minh File Upload trong S3 Console</strong></p>
+<ol>
+<li>Quay lại <strong>S3 Console</strong></li>
+<li>Click vào <strong>restricted bucket</strong> của bạn</li>
+<li>Bạn sẽ thấy object <code>policy-test-file.dat</code></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.5-Policy/test2-success.png" alt="File Successfully Uploaded"></p>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Việc Thực Thi Policy Đã Được Xác Nhận!</strong> Endpoint policy đã thành công:</p>
+<ul>
+<li>✅ Cho phép truy cập đến restricted bucket</li>
+<li>❌ Chặn truy cập đến bucket gốc</li>
+</ul>
+<p>Điều này minh họa kiểm soát truy cập cấp mạng chi tiết.</p>
+
+</div>
+
+<p><strong>Bước 5: Xác Nhận Bucket Gốc Vẫn Bị Chặn</strong></p>
+<p>Như một test cuối cùng, thử upload lên bucket gốc (nên fail):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 cp policy-test-file.dat s3://&lt;your-original-bucket-name&gt;
+</span></span></code></pre></div><p><img src="../../../images/5-Workshop/5.5-Policy/test2-fail.png" alt="Access Denied to Original Bucket"></p>
+<p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Lỗi access denied:</p>
+<pre tabindex="0"><code>upload failed: ./policy-test-file.dat to s3://my-original-bucket/policy-test-file.dat
+An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+</code></pre><p>Điều này xác nhận endpoint policy đang thực thi hạn chế một cách nhất quán.</p>
+<hr>
+<h4 id="hiểu-hành-vi-policy">Hiểu Hành Vi Policy</h4>
+<p><strong>Tóm Tắt Các Mẫu Truy Cập:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Target</th>
+          <th>Kết Quả</th>
+          <th>Lý Do</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>List objects</td>
+          <td>Original bucket</td>
+          <td>❌ Denied</td>
+          <td>Không có trong danh sách Resource của endpoint policy</td>
+      </tr>
+      <tr>
+          <td>Upload file</td>
+          <td>Original bucket</td>
+          <td>❌ Denied</td>
+          <td>Không có trong danh sách Resource của endpoint policy</td>
+      </tr>
+      <tr>
+          <td>List objects</td>
+          <td>Restricted bucket</td>
+          <td>✅ Allowed</td>
+          <td>Được cho phép rõ ràng trong endpoint policy</td>
+      </tr>
+      <tr>
+          <td>Upload file</td>
+          <td>Restricted bucket</td>
+          <td>✅ Allowed</td>
+          <td>Được cho phép rõ ràng trong endpoint policy</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Cách Lưu Lượng Chảy:</strong></p>
+<p>Khi EC2 truy cập S3 qua Gateway Endpoint với restrictive policy:</p>
+<pre tabindex="0"><code>┌─────────────────────┐
+│  EC2 Instance       │
+│  Test-Gateway-EP    │
+└──────────┬──────────┘
+           │
+           │ S3 API Request
+           ▼
+┌─────────────────────┐
+│  Route Table        │
+│  Định tuyến S3      │
+│  traffic đến Gateway│
+│  Endpoint           │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────────────────┐
+│  Gateway VPC Endpoint           │
+│  Đánh giá Endpoint Policy       │
+│                                 │
+│  IF bucket IN allowed list:     │
+│    → Forward to S3              │
+│  ELSE:                          │
+│    → Return Access Denied       │
+└─────────────────────────────────┘
+           │
+           │ (Nếu allowed)
+           ▼
+┌─────────────────────┐
+│  Amazon S3 Service  │
+│  (Backend)          │
+└─────────────────────┘
+</code></pre><p><strong>Quan Sát Chính:</strong></p>
+<ol>
+<li><strong>Network-Level Enforcement</strong>: Endpoint policy chặn lưu lượng trước khi nó đến S3</li>
+<li><strong>Independent of IAM</strong>: Ngay cả khi IAM policies cho phép truy cập, endpoint policy có thể chặn nó</li>
+<li><strong>All-or-Nothing per Bucket</strong>: Bạn không thể chọn lọc cho phép chỉ các operations nhất định (ví dụ: read-only); policy áp dụng cho tất cả allowed actions</li>
+<li><strong>Principal Agnostic</strong>: Với <code>&quot;Principal&quot;: &quot;*&quot;</code>, hạn chế áp dụng cho tất cả identities sử dụng endpoint</li>
+</ol>
+<hr>
+<h4 id="các-use-cases-production-cho-endpoint-policies">Các Use Cases Production cho Endpoint Policies</h4>
+<p><strong>Kịch Bản Doanh Nghiệp:</strong></p>
+<ol>
+<li>
+<p><strong>Data Residency Compliance</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::eu-compliant-data-bucket/*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;s3:ExistingObjectTag/DataClassification&#34;</span>: <span style="color:#e6db74">&#34;EUPersonalData&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Prevent Data Exfiltration</strong>:</p>
+<ul>
+<li>Whitelist chỉ các corporate buckets được phê duyệt</li>
+<li>Chặn truy cập đến personal hoặc external buckets</li>
+<li>Audit endpoint policy changes với CloudTrail</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-Tenant Environments</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::tenant-a-data/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::shared-resources/*&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Development vs Production Isolation</strong>:</p>
+<ul>
+<li>Dev VPC endpoint: Truy cập chỉ đến dev/test buckets</li>
+<li>Prod VPC endpoint: Truy cập chỉ đến production buckets</li>
+<li>Ngăn chặn cross-environment access ngẫu nhiên</li>
+</ul>
+</li>
+</ol>
+<p><strong>Các Mẫu Policy Nâng Cao:</strong></p>
+<p><strong>Condition-Based Access:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: [<span style="color:#e6db74">&#34;s3:GetObject&#34;</span>, <span style="color:#e6db74">&#34;s3:PutObject&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::sensitive-bucket/*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;aws:SourceVpce&#34;</span>: <span style="color:#e6db74">&#34;vpce-xxxxxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Read-Only Access:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;s3:ListBucket&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::readonly-bucket&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::readonly-bucket/*&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h4 id="những-điểm-chính-cần-nhớ">Những Điểm Chính Cần Nhớ</h4>
+<p><strong>Những Gì Bạn Đã Hoàn Thành:</strong></p>
+<p>✅ <strong>Baseline Testing</strong>: Xác minh truy cập không hạn chế với default endpoint policy<br>
+✅ <strong>Bucket Creation</strong>: Tạo S3 bucket thứ hai để kiểm tra policy<br>
+✅ <strong>Policy Application</strong>: Áp dụng restrictive endpoint policy giới hạn truy cập đến bucket cụ thể<br>
+✅ <strong>Enforcement Validation</strong>: Xác nhận policy chặn unauthorized buckets và cho phép authorized bucket<br>
+✅ <strong>Security Best Practice</strong>: Minh họa nguyên tắc least privilege ở cấp mạng</p>
+<p><strong>Các Nguyên Tắc Bảo Mật Được Minh Họa:</strong></p>
+<ol>
+<li><strong>Defense in Depth</strong>: Endpoint policies thêm lớp kiểm soát cấp mạng</li>
+<li><strong>Least Privilege</strong>: Chỉ cấp quyền truy cập cần thiết, không phải quyền rộng</li>
+<li><strong>Explicit Allow</strong>: Phương pháp whitelist (chỉ định những gì được phép, chặn mọi thứ khác)</li>
+<li><strong>Network Segmentation</strong>: Kiểm soát luồng dữ liệu ở cấp VPC endpoint</li>
+<li><strong>Auditability</strong>: Thay đổi policy được ghi log trong CloudTrail để tuân thủ</li>
+</ol>
+<p><strong>Khuyến Nghị Production:</strong></p>
+<ul>
+<li><strong>Version Control</strong>: Lưu endpoint policies trong Git với quy trình code review</li>
+<li><strong>Policy Testing</strong>: Kiểm tra policies trong dev/staging trước khi triển khai production</li>
+<li><strong>Monitoring</strong>: Thiết lập CloudWatch alarms cho AccessDenied errors cho biết vi phạm policy</li>
+<li><strong>Documentation</strong>: Duy trì tài liệu rõ ràng về buckets nào có thể truy cập qua endpoints nào</li>
+<li><strong>Regular Review</strong>: Audit endpoint policies hàng quý để loại bỏ quyền truy cập không cần thiết</li>
+<li><strong>Condition Keys</strong>: Sử dụng IAM condition keys nâng cao cho hạn chế dựa trên thời gian, IP, hoặc tag</li>
+<li><strong>Deny Statements</strong>: Cân nhắc explicit Deny statements cho yêu cầu bảo mật cao</li>
+</ul>
+<p>Phần này đã minh họa cách VPC endpoint policies cung cấp kiểm soát truy cập quan trọng cho các kiến trúc cloud doanh nghiệp, cho phép bạn thực thi các chính sách bảo mật tổ chức ở cấp cơ sở hạ tầng mạng!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/" title="Cấu Hình Hybrid DNS cho Private Endpoint Resolution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/5-workshop/5.6-cleanup/" title="Dọn Dẹp Resources và Hoàn Thành Workshop" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765118997"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765118997"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765118997"></script>
+    <script src="../../../js/jquery.sticky.js?1765118997"></script>
+    <script src="../../../js/featherlight.min.js?1765118997"></script>
+    <script src="../../../js/highlight.pack.js?1765118997"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765118997"></script>
+    <script src="../../../js/learn.js?1765118997"></script>
+    <script src="../../../js/hugo-learn.js?1765118997"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765118997" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765118997"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

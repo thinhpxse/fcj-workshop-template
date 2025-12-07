@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Các bước chuẩn bị :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1765118997" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765118997" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765118997" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765118997" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765118997" rel="stylesheet">
+    <link href="../../../css/theme.css?1765118997" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765118997" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765118997" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765118997"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/5-workshop/5.2-prerequiste/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765118997"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765118997"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765118997"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Worklog  5 – AWS Security"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.x. </b> Worklog  5 – AWS Security 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.x. </b> Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11– Container Services on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.x. </b> Worklog Tuần 11– Container Services on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Worklog Tuần 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Worklog Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Worklog Tuần 3 – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.x. </b> Worklog Tuần 3 – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Worklog Tuần 4 – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.x. </b> Worklog Tuần 4 – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Worklog Tuần 6– AWS Reliability"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.x. </b> Worklog Tuần 6– AWS Reliability 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Worklog Tuần 7 – AWS Performance"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.x. </b> Worklog Tuần 7 – AWS Performance 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Worklog Tuần 8– AWS Cost Optimization"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.x. </b> Worklog Tuần 8– AWS Cost Optimization 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9 – Application Modernization on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.x. </b> Worklog Tuần 9 – Application Modernization on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12 </b> Worklog Tuần 12 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Worklog Tuần 1 "
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1 - 1.2. </b> Worklog Tuần 1  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Bản đề xuất"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Bản đề xuất 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Các bài blogs đã dịch"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Các bài blogs đã dịch 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Bảo mật Amazon EVS với AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Bảo mật Amazon EVS với AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Tìm hiểu về Machine Learning trên AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Tìm hiểu về Machine Learning trên AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.1-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.2-prerequiste/"
+  title="Các bước chuẩn bị"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Các bước chuẩn bị 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/"
+  title="Truy cập S3 từ VPC"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Truy cập S3 từ VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Tạo Gateway Endpoint cho S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Tạo Gateway Endpoint cho S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Kiểm Tra Kết Nối Gateway Endpoint"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Kiểm Tra Kết Nối Gateway Endpoint 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/"
+  title="Truy cập S3 từ môi trường truyền thống"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Truy cập S3 từ môi trường truyền thống 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Chuẩn Bị Môi Trường cho Kết Nối Hybrid"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Chuẩn Bị Môi Trường cho Kết Nối Hybrid 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Tạo Interface VPC Endpoint cho Truy Cập S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Tạo Interface VPC Endpoint cho Truy Cập S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Kiểm Tra Kết Nối Interface Endpoint từ On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Kiểm Tra Kết Nối Interface Endpoint từ On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Cấu Hình Hybrid DNS cho Private Endpoint Resolution"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Cấu Hình Hybrid DNS cho Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.5-policy/"
+  title="Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.5-policy/">
+     <b> 5.5. </b> Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.6-cleanup/"
+  title="Dọn Dẹp Resources và Hoàn Thành Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Dọn Dẹp Resources và Hoàn Thành Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.2-prerequiste/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.2-prerequiste/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Các bước chuẩn bị
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Các bước chuẩn bị
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
+
+</div>
+
+<h4 id="quyền-iam-bắt-buộc">Quyền IAM Bắt Buộc</h4>
+<p>Trước khi bắt đầu workshop này, bạn phải đảm bảo AWS IAM user hoặc role của bạn có đủ quyền để tạo và quản lý các tài nguyên cần thiết. Gắn IAM policy tùy chỉnh sau vào tài khoản người dùng của bạn hoặc assume một role với các quyền này.</p>
+<p><strong>Lưu Ý Bảo Mật Quan Trọng:</strong></p>
+<ul>
+<li>Xem xét tất cả các quyền trước khi áp dụng để hiểu rõ tài nguyên nào sẽ được tạo</li>
+<li>Các quyền này cần thiết cho việc triển khai và dọn dẹp workshop</li>
+<li>Sau khi hoàn thành workshop, hãy cân nhắc xóa các quyền này nếu không còn cần thiết nữa</li>
+<li>Đối với môi trường production, luôn tuân theo nguyên tắc cấp quyền tối thiểu (principle of least privilege)</li>
+</ul>
+<pre tabindex="0"><code>{
+    &#34;Version&#34;: &#34;2012-10-17&#34;,
+    &#34;Statement&#34;: [
+        {
+            &#34;Sid&#34;: &#34;VisualEditor0&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;cloudformation:*&#34;,
+                &#34;cloudwatch:*&#34;,
+                &#34;ec2:AcceptTransitGatewayPeeringAttachment&#34;,
+                &#34;ec2:AcceptTransitGatewayVpcAttachment&#34;,
+                &#34;ec2:AllocateAddress&#34;,
+                &#34;ec2:AssociateAddress&#34;,
+                &#34;ec2:AssociateIamInstanceProfile&#34;,
+                &#34;ec2:AssociateRouteTable&#34;,
+                &#34;ec2:AssociateSubnetCidrBlock&#34;,
+                &#34;ec2:AssociateTransitGatewayRouteTable&#34;,
+                &#34;ec2:AssociateVpcCidrBlock&#34;,
+                &#34;ec2:AttachInternetGateway&#34;,
+                &#34;ec2:AttachNetworkInterface&#34;,
+                &#34;ec2:AttachVolume&#34;,
+                &#34;ec2:AttachVpnGateway&#34;,
+                &#34;ec2:AuthorizeSecurityGroupEgress&#34;,
+                &#34;ec2:AuthorizeSecurityGroupIngress&#34;,
+                &#34;ec2:CreateClientVpnEndpoint&#34;,
+                &#34;ec2:CreateClientVpnRoute&#34;,
+                &#34;ec2:CreateCustomerGateway&#34;,
+                &#34;ec2:CreateDhcpOptions&#34;,
+                &#34;ec2:CreateFlowLogs&#34;,
+                &#34;ec2:CreateInternetGateway&#34;,
+                &#34;ec2:CreateLaunchTemplate&#34;,
+                &#34;ec2:CreateNetworkAcl&#34;,
+                &#34;ec2:CreateNetworkInterface&#34;,
+                &#34;ec2:CreateNetworkInterfacePermission&#34;,
+                &#34;ec2:CreateRoute&#34;,
+                &#34;ec2:CreateRouteTable&#34;,
+                &#34;ec2:CreateSecurityGroup&#34;,
+                &#34;ec2:CreateSubnet&#34;,
+                &#34;ec2:CreateSubnetCidrReservation&#34;,
+                &#34;ec2:CreateTags&#34;,
+                &#34;ec2:CreateTransitGateway&#34;,
+                &#34;ec2:CreateTransitGatewayPeeringAttachment&#34;,
+                &#34;ec2:CreateTransitGatewayPrefixListReference&#34;,
+                &#34;ec2:CreateTransitGatewayRoute&#34;,
+                &#34;ec2:CreateTransitGatewayRouteTable&#34;,
+                &#34;ec2:CreateTransitGatewayVpcAttachment&#34;,
+                &#34;ec2:CreateVpc&#34;,
+                &#34;ec2:CreateVpcEndpoint&#34;,
+                &#34;ec2:CreateVpcEndpointConnectionNotification&#34;,
+                &#34;ec2:CreateVpcEndpointServiceConfiguration&#34;,
+                &#34;ec2:CreateVpnConnection&#34;,
+                &#34;ec2:CreateVpnConnectionRoute&#34;,
+                &#34;ec2:CreateVpnGateway&#34;,
+                &#34;ec2:DeleteCustomerGateway&#34;,
+                &#34;ec2:DeleteFlowLogs&#34;,
+                &#34;ec2:DeleteInternetGateway&#34;,
+                &#34;ec2:DeleteNetworkInterface&#34;,
+                &#34;ec2:DeleteNetworkInterfacePermission&#34;,
+                &#34;ec2:DeleteRoute&#34;,
+                &#34;ec2:DeleteRouteTable&#34;,
+                &#34;ec2:DeleteSecurityGroup&#34;,
+                &#34;ec2:DeleteSubnet&#34;,
+                &#34;ec2:DeleteSubnetCidrReservation&#34;,
+                &#34;ec2:DeleteTags&#34;,
+                &#34;ec2:DeleteTransitGateway&#34;,
+                &#34;ec2:DeleteTransitGatewayPeeringAttachment&#34;,
+                &#34;ec2:DeleteTransitGatewayPrefixListReference&#34;,
+                &#34;ec2:DeleteTransitGatewayRoute&#34;,
+                &#34;ec2:DeleteTransitGatewayRouteTable&#34;,
+                &#34;ec2:DeleteTransitGatewayVpcAttachment&#34;,
+                &#34;ec2:DeleteVpc&#34;,
+                &#34;ec2:DeleteVpcEndpoints&#34;,
+                &#34;ec2:DeleteVpcEndpointServiceConfigurations&#34;,
+                &#34;ec2:DeleteVpnConnection&#34;,
+                &#34;ec2:DeleteVpnConnectionRoute&#34;,
+                &#34;ec2:Describe*&#34;,
+                &#34;ec2:DetachInternetGateway&#34;,
+                &#34;ec2:DisassociateAddress&#34;,
+                &#34;ec2:DisassociateRouteTable&#34;,
+                &#34;ec2:GetLaunchTemplateData&#34;,
+                &#34;ec2:GetTransitGatewayAttachmentPropagations&#34;,
+                &#34;ec2:ModifyInstanceAttribute&#34;,
+                &#34;ec2:ModifySecurityGroupRules&#34;,
+                &#34;ec2:ModifyTransitGatewayVpcAttachment&#34;,
+                &#34;ec2:ModifyVpcAttribute&#34;,
+                &#34;ec2:ModifyVpcEndpoint&#34;,
+                &#34;ec2:ReleaseAddress&#34;,
+                &#34;ec2:ReplaceRoute&#34;,
+                &#34;ec2:RevokeSecurityGroupEgress&#34;,
+                &#34;ec2:RevokeSecurityGroupIngress&#34;,
+                &#34;ec2:RunInstances&#34;,
+                &#34;ec2:StartInstances&#34;,
+                &#34;ec2:StopInstances&#34;,
+                &#34;ec2:UpdateSecurityGroupRuleDescriptionsEgress&#34;,
+                &#34;ec2:UpdateSecurityGroupRuleDescriptionsIngress&#34;,
+                &#34;iam:AddRoleToInstanceProfile&#34;,
+                &#34;iam:AttachRolePolicy&#34;,
+                &#34;iam:CreateInstanceProfile&#34;,
+                &#34;iam:CreatePolicy&#34;,
+                &#34;iam:CreateRole&#34;,
+                &#34;iam:DeleteInstanceProfile&#34;,
+                &#34;iam:DeletePolicy&#34;,
+                &#34;iam:DeleteRole&#34;,
+                &#34;iam:DeleteRolePolicy&#34;,
+                &#34;iam:DetachRolePolicy&#34;,
+                &#34;iam:GetInstanceProfile&#34;,
+                &#34;iam:GetPolicy&#34;,
+                &#34;iam:GetRole&#34;,
+                &#34;iam:GetRolePolicy&#34;,
+                &#34;iam:ListPolicyVersions&#34;,
+                &#34;iam:ListRoles&#34;,
+                &#34;iam:PassRole&#34;,
+                &#34;iam:PutRolePolicy&#34;,
+                &#34;iam:RemoveRoleFromInstanceProfile&#34;,
+                &#34;lambda:CreateFunction&#34;,
+                &#34;lambda:DeleteFunction&#34;,
+                &#34;lambda:DeleteLayerVersion&#34;,
+                &#34;lambda:GetFunction&#34;,
+                &#34;lambda:GetLayerVersion&#34;,
+                &#34;lambda:InvokeFunction&#34;,
+                &#34;lambda:PublishLayerVersion&#34;,
+                &#34;logs:CreateLogGroup&#34;,
+                &#34;logs:DeleteLogGroup&#34;,
+                &#34;logs:DescribeLogGroups&#34;,
+                &#34;logs:PutRetentionPolicy&#34;,
+                &#34;route53:ChangeTagsForResource&#34;,
+                &#34;route53:CreateHealthCheck&#34;,
+                &#34;route53:CreateHostedZone&#34;,
+                &#34;route53:CreateTrafficPolicy&#34;,
+                &#34;route53:DeleteHostedZone&#34;,
+                &#34;route53:DisassociateVPCFromHostedZone&#34;,
+                &#34;route53:GetHostedZone&#34;,
+                &#34;route53:ListHostedZones&#34;,
+                &#34;route53domains:ListDomains&#34;,
+                &#34;route53domains:ListOperations&#34;,
+                &#34;route53domains:ListTagsForDomain&#34;,
+                &#34;route53resolver:AssociateResolverEndpointIpAddress&#34;,
+                &#34;route53resolver:AssociateResolverRule&#34;,
+                &#34;route53resolver:CreateResolverEndpoint&#34;,
+                &#34;route53resolver:CreateResolverRule&#34;,
+                &#34;route53resolver:DeleteResolverEndpoint&#34;,
+                &#34;route53resolver:DeleteResolverRule&#34;,
+                &#34;route53resolver:DisassociateResolverEndpointIpAddress&#34;,
+                &#34;route53resolver:DisassociateResolverRule&#34;,
+                &#34;route53resolver:GetResolverEndpoint&#34;,
+                &#34;route53resolver:GetResolverRule&#34;,
+                &#34;route53resolver:ListResolverEndpointIpAddresses&#34;,
+                &#34;route53resolver:ListResolverEndpoints&#34;,
+                &#34;route53resolver:ListResolverRuleAssociations&#34;,
+                &#34;route53resolver:ListResolverRules&#34;,
+                &#34;route53resolver:ListTagsForResource&#34;,
+                &#34;route53resolver:UpdateResolverEndpoint&#34;,
+                &#34;route53resolver:UpdateResolverRule&#34;,
+                &#34;s3:AbortMultipartUpload&#34;,
+                &#34;s3:CreateBucket&#34;,
+                &#34;s3:DeleteBucket&#34;,
+                &#34;s3:DeleteObject&#34;,
+                &#34;s3:GetAccountPublicAccessBlock&#34;,
+                &#34;s3:GetBucketAcl&#34;,
+                &#34;s3:GetBucketOwnershipControls&#34;,
+                &#34;s3:GetBucketPolicy&#34;,
+                &#34;s3:GetBucketPolicyStatus&#34;,
+                &#34;s3:GetBucketPublicAccessBlock&#34;,
+                &#34;s3:GetObject&#34;,
+                &#34;s3:GetObjectVersion&#34;,
+                &#34;s3:GetBucketVersioning&#34;,
+                &#34;s3:ListAccessPoints&#34;,
+                &#34;s3:ListAccessPointsForObjectLambda&#34;,
+                &#34;s3:ListAllMyBuckets&#34;,
+                &#34;s3:ListBucket&#34;,
+                &#34;s3:ListBucketMultipartUploads&#34;,
+                &#34;s3:ListBucketVersions&#34;,
+                &#34;s3:ListJobs&#34;,
+                &#34;s3:ListMultipartUploadParts&#34;,
+                &#34;s3:ListMultiRegionAccessPoints&#34;,
+                &#34;s3:ListStorageLensConfigurations&#34;,
+                &#34;s3:PutAccountPublicAccessBlock&#34;,
+                &#34;s3:PutBucketAcl&#34;,
+                &#34;s3:PutBucketPolicy&#34;,
+                &#34;s3:PutBucketPublicAccessBlock&#34;,
+                &#34;s3:PutObject&#34;,
+                &#34;secretsmanager:CreateSecret&#34;,
+                &#34;secretsmanager:DeleteSecret&#34;,
+                &#34;secretsmanager:DescribeSecret&#34;,
+                &#34;secretsmanager:GetSecretValue&#34;,
+                &#34;secretsmanager:ListSecrets&#34;,
+                &#34;secretsmanager:ListSecretVersionIds&#34;,
+                &#34;secretsmanager:PutResourcePolicy&#34;,
+                &#34;secretsmanager:TagResource&#34;,
+                &#34;secretsmanager:UpdateSecret&#34;,
+                &#34;sns:ListTopics&#34;,
+                &#34;ssm:DescribeInstanceProperties&#34;,
+                &#34;ssm:DescribeSessions&#34;,
+                &#34;ssm:GetConnectionStatus&#34;,
+                &#34;ssm:GetParameters&#34;,
+                &#34;ssm:ListAssociations&#34;,
+                &#34;ssm:ResumeSession&#34;,
+                &#34;ssm:StartSession&#34;,
+                &#34;ssm:TerminateSession&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        }
+    ]
+}
+</code></pre><p><strong>Phạm Vi Policy:</strong>
+IAM policy này cấp quyền trên nhiều dịch vụ AWS cần thiết cho workshop:</p>
+<ul>
+<li><strong>EC2 &amp; VPC Networking</strong>: Tạo và quản lý VPCs, subnets, route tables, security groups, Transit Gateway, VPN connections, và VPC endpoints</li>
+<li><strong>CloudFormation</strong>: Triển khai và quản lý các stack infrastructure as code</li>
+<li><strong>IAM</strong>: Tạo roles và instance profiles cho EC2 instances</li>
+<li><strong>S3</strong>: Tạo buckets và quản lý objects cho tài nguyên workshop</li>
+<li><strong>Lambda &amp; CloudWatch</strong>: Triển khai serverless functions và giám sát tài nguyên</li>
+<li><strong>Route53</strong>: Cấu hình DNS và resolver endpoints</li>
+<li><strong>SSM (Systems Manager)</strong>: Cho phép truy cập instance an toàn qua Session Manager</li>
+<li><strong>Secrets Manager</strong>: Lưu trữ và truy xuất dữ liệu cấu hình nhạy cảm</li>
+</ul>
+<h4 id="thiết-lập-môi-trường-sử-dụng-infrastructure-as-code">Thiết Lập Môi Trường Sử Dụng Infrastructure as Code</h4>
+<p><strong>Region Workshop:</strong> Lab này được thiết kế cho region <strong>US East (N. Virginia)</strong> (<code>us-east-1</code>). Đảm bảo bạn chọn region này trước khi tiếp tục.</p>
+<p><strong>Tổng Quan Triển Khai Tự Động:</strong>
+Thay vì tạo từng tài nguyên thủ công, chúng ta sẽ sử dụng AWS CloudFormation để tự động hóa toàn bộ quá trình thiết lập cơ sở hạ tầng. Cách tiếp cận Infrastructure as Code (IaC) này cung cấp:</p>
+<ul>
+<li><strong>Tính nhất quán</strong>: Tất cả người tham gia làm việc với cấu hình giống hệt nhau</li>
+<li><strong>Tốc độ</strong>: Triển khai môi trường phức tạp với nhiều tài nguyên trong vài phút</li>
+<li><strong>Khả năng lặp lại</strong>: Dễ dàng tạo lại hoặc dọn dẹp môi trường</li>
+<li><strong>Best Practices</strong>: Được cấu hình sẵn với các thiết lập được AWS khuyến nghị</li>
+</ul>
+<p><strong>Các Bước Triển Khai:</strong></p>
+<ol>
+<li>
+<p><strong>Khởi Chạy CloudFormation Stack:</strong></p>
+<ul>
+<li>Click vào link này để mở CloudFormation quick-create console: <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&amp;stackName=PLCloudSetup">Triển Khai Cơ Sở Hạ Tầng Workshop</a></li>
+<li>Template URL đã được điền sẵn với cấu hình workshop</li>
+<li>Tên stack tự động được đặt là <code>PLCloudSetup</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Xem Lại Các Tham Số Stack:</strong>
+Xem lại các tham số đã được cấu hình sẵn (tất cả các giá trị mặc định đều được tối ưu cho workshop này):</p>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.2-Prerequisite/create-stack1.png" alt="Cấu Hình CloudFormation Stack"></p>
+<ol start="3">
+<li><strong>Xác Nhận Tạo Tài Nguyên IAM:</strong>
+<ul>
+<li>Cuộn xuống cuối trang</li>
+<li>Đánh dấu vào cả hai ô xác nhận:
+<ul>
+<li>✓ &ldquo;I acknowledge that AWS CloudFormation might create IAM resources.&rdquo;</li>
+<li>✓ &ldquo;I acknowledge that AWS CloudFormation might create IAM resources with custom names.&rdquo;</li>
+</ul>
+</li>
+<li>Click <strong>Create stack</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.2-Prerequisite/create-stack2.png" alt="Xác Nhận và Tạo Stack"></p>
+<ol start="4">
+<li><strong>Theo Dõi Tiến Trình Triển Khai:</strong>
+<ul>
+<li>CloudFormation sẽ bắt đầu cung cấp tài nguyên</li>
+<li>Thời gian triển khai dự kiến: <strong>khoảng 15-20 phút</strong></li>
+<li>Bạn có thể theo dõi tiến trình trong CloudFormation console dưới tab &ldquo;Events&rdquo;</li>
+<li>Stack sử dụng nested stacks để tổ chức việc tạo tài nguyên một cách logic</li>
+</ul>
+</li>
+</ol>
+<p><strong>Những Gì Được Tạo:</strong>
+CloudFormation template tự động cung cấp:</p>
+<ul>
+<li><strong>2 Virtual Private Clouds (VPCs)</strong>: Một mô phỏng môi trường cloud, một mô phỏng on-premises</li>
+<li><strong>Nhiều Subnets</strong>: Public và private subnets trên các availability zones</li>
+<li><strong>AWS Transit Gateway</strong>: Hub trung tâm cho kết nối VPC</li>
+<li><strong>Site-to-Site VPN</strong>: Kết nối VPN được cấu hình sẵn giữa các VPCs</li>
+<li><strong>3 EC2 Instances</strong>: Test instances trong các phân đoạn mạng khác nhau</li>
+<li><strong>Security Groups</strong>: Được cấu hình sẵn cho lưu lượng workshop</li>
+<li><strong>IAM Roles</strong>: Instance profiles cho EC2 instances</li>
+<li><strong>Route Tables</strong>: Routing được cấu hình đúng giữa các môi trường</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.2-Prerequisite/complete.png" alt="Triển Khai Hoàn Tất"></p>
+<p><strong>Xác Minh Triển Khai:</strong></p>
+<p>Khi trạng thái stack hiển thị <code>CREATE_COMPLETE</code>, hãy xác minh các tài nguyên:</p>
+<ol>
+<li><strong>Kiểm Tra VPCs Đã Tạo:</strong>
+Di chuyển đến VPC Dashboard và xác nhận hai VPCs đã được tạo:
+<ul>
+<li>Cloud VPC (cho tài nguyên AWS cloud)</li>
+<li>On-Premises VPC (mô phỏng datacenter)</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.2-Prerequisite/vpcs.png" alt="VPCs Đã Tạo"></p>
+<ol start="2">
+<li><strong>Kiểm Tra EC2 Instances:</strong>
+Di chuyển đến EC2 Dashboard và xác minh ba instances đang chạy:
+<ul>
+<li>Cloud Test Instance (trong Cloud VPC)</li>
+<li>On-Prem Test Instance (trong On-Prem VPC)</li>
+<li>VPN Gateway Instance (cho Site-to-Site connectivity)</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.2-Prerequisite/ec2.png" alt="EC2 Instances Đã Tạo"></p>
+<p><strong>Khắc Phục Sự Cố:</strong></p>
+<ul>
+<li>Nếu việc tạo stack thất bại, kiểm tra tab &ldquo;Events&rdquo; để xem thông báo lỗi</li>
+<li>Đảm bảo IAM user của bạn có tất cả các quyền cần thiết từ policy ở trên</li>
+<li>Xác minh bạn đang ở region us-east-1</li>
+<li>Kiểm tra AWS service quotas cho EC2, VPC, và CloudFormation nếu bạn gặp giới hạn</li>
+</ul>
+<p>Bạn đã sẵn sàng để tiếp tục với các bài tập workshop!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.1-workshop-overview/" title="Tổng quan Workshop"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/5-workshop/5.3-s3-vpc/" title="Truy cập S3 từ VPC" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765118997"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765118997"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765118997"></script>
+    <script src="../../../js/jquery.sticky.js?1765118997"></script>
+    <script src="../../../js/featherlight.min.js?1765118997"></script>
+    <script src="../../../js/highlight.pack.js?1765118997"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765118997"></script>
+    <script src="../../../js/learn.js?1765118997"></script>
+    <script src="../../../js/hugo-learn.js?1765118997"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765118997" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765118997"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

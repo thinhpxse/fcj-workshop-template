@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../images/favicon.png" type="image/png">
+
+    <title>Resource Cleanup and Workshop Completion :: Internship Report</title>
+
+    
+    <link href="../../css/nucleus.css?1765118996" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765118996" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765118996" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765118996" rel="stylesheet">
+    <link href="../../css/theme.css?1765118996" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765118996" rel="stylesheet">
+    
+    <link href="../../css/theme-workshop.css?1765118996" rel="stylesheet">
+    
+    
+
+    <script src="../../js/jquery-3.3.1.min.js?1765118996"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../5-workshop/5.6-cleanup/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../js/lunr.min.js?1765118996"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765118996"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../js/search.js?1765118996"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.3-week3/">
+     <b> 1.x. </b> Week 3 Worklog – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.4-week4/">
+     <b> 1.x. </b> Week 4 Worklog – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated AWS Blogs"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/">
+     <b> 3. </b> Translated AWS Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Build Priority-Based Message Processing with Amazon MQ and AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Build Priority-Based Message Processing with Amazon MQ and AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Building an AI Gateway to Amazon Bedrock with Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Building an AI Gateway to Amazon Bedrock with Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Electronic Arts tối ưu hóa quy trình cập nhật game với AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Electronic Arts tối ưu hóa quy trình cập nhật game với AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Learn About Machine Learning on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Learn About Machine Learning on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Secure Amazon EVS with AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Secure Amazon EVS with AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.1-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.2-prerequiste/"
+  title="Prerequisites"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Prerequisites 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/"
+  title="Access S3 from VPC"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Access S3 from VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Creating Gateway Endpoint for S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Creating Gateway Endpoint for S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Testing Gateway Endpoint Connectivity"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Testing Gateway Endpoint Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/"
+  title="Access S3 from on-premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Access S3 from on-premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Environment Preparation for Hybrid Connectivity"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Environment Preparation for Hybrid Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Creating Interface VPC Endpoint for S3 Access"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Creating Interface VPC Endpoint for S3 Access 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Testing Interface Endpoint Connectivity from On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Testing Interface Endpoint Connectivity from On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Configuring Hybrid DNS for Private Endpoint Resolution"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Configuring Hybrid DNS for Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.5-policy/"
+  title="Implementing Fine-Grained Access Control with VPC Endpoint Policies"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.5-policy/">
+     <b> 5.5. </b> Implementing Fine-Grained Access Control with VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.6-cleanup/"
+  title="Resource Cleanup and Workshop Completion"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Resource Cleanup and Workshop Completion 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.6-cleanup/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.6-cleanup/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../'>Internship Report</a> > <a href='../../5-workshop/'>Workshop</a> > Resource Cleanup and Workshop Completion
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Resource Cleanup and Workshop Completion
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Important:</strong> The information provided here is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report including this warning message.</p>
+
+</div>
+
+<p>Congratulations on completing this comprehensive VPC Endpoints workshop! You&rsquo;ve successfully explored enterprise-grade architectures for private AWS service connectivity.</p>
+<p><strong>What You&rsquo;ve Accomplished:</strong></p>
+<p>Throughout this workshop, you implemented multiple AWS networking best practices:</p>
+<p>✅ <strong>Gateway VPC Endpoint Architecture</strong>:</p>
+<ul>
+<li>Created a Gateway Endpoint for S3 access from VPC resources</li>
+<li>Configured route table entries for private S3 connectivity</li>
+<li>Eliminated Internet Gateway dependencies for S3 traffic</li>
+<li>Implemented network-level access controls with endpoint policies</li>
+</ul>
+<p>✅ <strong>Interface VPC Endpoint with Hybrid Connectivity</strong>:</p>
+<ul>
+<li>Deployed Interface Endpoints with multi-AZ redundancy</li>
+<li>Configured Route 53 Resolver for hybrid DNS resolution</li>
+<li>Established VPN-based connectivity simulating on-premises access</li>
+<li>Created Private Hosted Zones for endpoint DNS resolution</li>
+<li>Implemented conditional DNS forwarding rules</li>
+</ul>
+<p>✅ <strong>Security Best Practices</strong>:</p>
+<ul>
+<li>Applied restrictive VPC endpoint policies for least privilege access</li>
+<li>Configured security groups for endpoint traffic control</li>
+<li>Demonstrated defense-in-depth with multiple policy layers</li>
+<li>Validated policy enforcement through practical testing</li>
+</ul>
+<p>✅ <strong>Production-Ready Skills</strong>:</p>
+<ul>
+<li>Multi-AZ deployment patterns for high availability</li>
+<li>Hybrid cloud DNS architecture design</li>
+<li>Private connectivity without internet exposure</li>
+<li>Cost optimization through VPC endpoint usage</li>
+</ul>
+<hr>
+<h4 id="why-resource-cleanup-is-critical">Why Resource Cleanup Is Critical</h4>
+<p>Proper resource cleanup is essential for:</p>
+<ul>
+<li><strong>Cost Avoidance</strong>: Prevent ongoing charges for unused resources (VPC endpoints, Route 53 Resolver endpoints, CloudFormation stacks)</li>
+<li><strong>Account Hygiene</strong>: Maintain a clean AWS environment for future projects</li>
+<li><strong>Security Best Practice</strong>: Remove test infrastructure that may have permissive configurations</li>
+<li><strong>Service Limits</strong>: Free up service quotas for production workloads</li>
+<li><strong>Learning Reinforcement</strong>: Understanding deletion dependencies teaches AWS resource relationships</li>
+</ul>
+
+<div
+  class="notices info"
+  
+>
+  <p><strong>Estimated Cleanup Time</strong>: 10-15 minutes if following the recommended order. Deletion dependencies require sequential processing for some resources.</p>
+
+</div>
+
+<hr>
+<h4 id="cleanup-order-and-dependencies">Cleanup Order and Dependencies</h4>
+<p>AWS resources have dependencies that require deletion in a specific order. Follow this sequence to avoid errors:</p>
+<p><strong>Deletion Order:</strong></p>
+<pre tabindex="0"><code>1. Route 53 DNS Records (depend on Hosted Zone)
+2. Route 53 Resolver Rules (depend on Resolver Endpoints)
+3. Route 53 Hosted Zones (depend on VPCs)
+4. VPC Endpoints (depend on VPCs and Security Groups)
+5. S3 Bucket Objects (must be empty before bucket deletion)
+6. S3 Buckets (depend on being empty)
+7. CloudFormation Stacks (delete VPC infrastructure last)
+</code></pre><hr>
+<h4 id="step-by-step-cleanup-process">Step-by-Step Cleanup Process</h4>
+<p><strong>Step 1: Delete Route 53 Private Hosted Zone DNS Records</strong></p>
+<p>Before deleting the hosted zone, remove the custom DNS records you created.</p>
+<ol>
+<li>
+<p><strong>Navigate to Route 53</strong>:</p>
+<ul>
+<li>Open the <a href="https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1">Route 53 Console</a></li>
+<li>Click <strong>Hosted Zones</strong> in the left sidebar</li>
+</ul>
+</li>
+<li>
+<p><strong>Access the Private Hosted Zone</strong>:</p>
+<ul>
+<li>Click on the hosted zone named <code>s3.us-east-1.amazonaws.com</code></li>
+<li>You&rsquo;ll see the DNS records including the Alias records you created</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete Custom DNS Records</strong>:</p>
+<ul>
+<li>Select the <strong>Alias A records</strong> you created (apex and wildcard records pointing to the Interface Endpoint)</li>
+<li>Do NOT select the default NS and SOA records (required for hosted zone)</li>
+<li>Click <strong>Delete records</strong></li>
+<li>Confirm deletion</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete the Hosted Zone</strong>:</p>
+<ul>
+<li>Go back to Hosted Zones list</li>
+<li>Select the <code>s3.us-east-1.amazonaws.com</code> zone</li>
+<li>Click <strong>Delete hosted zone</strong></li>
+<li>Type <code>delete</code> in the confirmation box to confirm</li>
+<li>Click <strong>Delete</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.6-Cleanup/delete-zone.png" alt="Delete Route 53 Hosted Zone"></p>
+
+<div
+  class="notices warning"
+  
+>
+  <p><strong>Hosted Zone Deletion</strong>: You cannot delete a hosted zone that still has DNS records (except the mandatory NS and SOA records). Ensure you&rsquo;ve removed all custom records first.</p>
+
+</div>
+
+<hr>
+<p><strong>Step 2: Remove Route 53 Resolver Forwarding Rule</strong></p>
+<p>The resolver rule must be disassociated from VPCs before deletion.</p>
+<ol>
+<li>
+<p><strong>Navigate to Resolver Rules</strong>:</p>
+<ul>
+<li>In Route 53 console, click <strong>Resolver</strong> &gt; <strong>Rules</strong> in the left sidebar</li>
+</ul>
+</li>
+<li>
+<p><strong>Locate Your Forwarding Rule</strong>:</p>
+<ul>
+<li>Find the rule you created (e.g., <code>S3-PrivateEndpoint-ForwardingRule</code>)</li>
+<li>The rule forwards <code>s3.us-east-1.amazonaws.com</code> queries</li>
+</ul>
+</li>
+<li>
+<p><strong>Disassociate from VPC</strong>:</p>
+<ul>
+<li>Select the rule</li>
+<li>Click <strong>View details</strong></li>
+<li>Click the <strong>VPC associations</strong> tab</li>
+<li>Select the associated <strong>VPC On-prem</strong></li>
+<li>Click <strong>Disassociate</strong></li>
+<li>Confirm the disassociation</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete the Rule</strong>:</p>
+<ul>
+<li>Once disassociated, go back to the Rules list</li>
+<li>Select the rule</li>
+<li>Click <strong>Delete</strong></li>
+<li>Confirm deletion</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.6-Cleanup/vpc.png" alt="Disassociate and Delete Resolver Rule"></p>
+
+<div
+  class="notices note"
+  
+>
+  <p><strong>Rule Dependencies</strong>: Resolver rules must be disassociated from all VPCs before deletion. Attempting to delete an associated rule will result in an error.</p>
+
+</div>
+
+<hr>
+<p><strong>Step 3: Delete VPC Endpoints</strong></p>
+<p>Remove both the Gateway and Interface endpoints you created.</p>
+<ol>
+<li>
+<p><strong>Navigate to VPC Endpoints</strong>:</p>
+<ul>
+<li>Open the <a href="https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:">VPC Console</a></li>
+<li>Click <strong>Endpoints</strong> in the left sidebar</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete Interface Endpoint</strong>:</p>
+<ul>
+<li>Select the <strong>Interface Endpoint</strong> for S3 (the one in VPC Cloud)</li>
+<li>Endpoint type should show &ldquo;Interface&rdquo;</li>
+<li>Click <strong>Actions</strong> &gt; <strong>Delete VPC endpoints</strong></li>
+<li>Type <code>delete</code> to confirm</li>
+<li>Click <strong>Delete</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Delete Gateway Endpoint</strong>:</p>
+<ul>
+<li>Select the <strong>Gateway Endpoint</strong> for S3 (also in VPC Cloud)</li>
+<li>Endpoint type should show &ldquo;Gateway&rdquo;</li>
+<li>Click <strong>Actions</strong> &gt; <strong>Delete VPC endpoints</strong></li>
+<li>Type <code>delete</code> to confirm</li>
+<li>Click <strong>Delete</strong></li>
+</ul>
+</li>
+</ol>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Immediate Deletion</strong>: VPC endpoints delete quickly (usually within 1-2 minutes). You can proceed to the next step while they&rsquo;re being removed.</p>
+
+</div>
+
+<hr>
+<p><strong>Step 4: Empty and Delete S3 Buckets</strong></p>
+<p>S3 buckets must be completely empty before they can be deleted.</p>
+<ol>
+<li>
+<p><strong>Navigate to S3 Console</strong>:</p>
+<ul>
+<li>Open the <a href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">S3 Console</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Empty the First Bucket</strong>:</p>
+<ul>
+<li>Select your original test bucket (e.g., <code>my-endpoint-test-bucket-123456</code>)</li>
+<li>Click <strong>Empty</strong></li>
+<li>Type <code>permanently delete</code> in the confirmation box</li>
+<li>Click <strong>Empty</strong></li>
+<li>Wait for the empty operation to complete</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete the First Bucket</strong>:</p>
+<ul>
+<li>With the bucket still selected, click <strong>Delete</strong></li>
+<li>Type the exact bucket name to confirm</li>
+<li>Click <strong>Delete bucket</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Repeat for Second Bucket</strong>:</p>
+<ul>
+<li>Select your restricted bucket (e.g., <code>my-endpoint-test-bucket-123456-restricted</code>)</li>
+<li>Click <strong>Empty</strong>, confirm with <code>permanently delete</code></li>
+<li>Click <strong>Delete</strong>, type the bucket name, confirm deletion</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.6-Cleanup/delete-s3.png" alt="Delete S3 Buckets"></p>
+
+<div
+  class="notices warning"
+  
+>
+  <p><strong>Data Loss Warning</strong>: Emptying and deleting S3 buckets permanently removes all objects. Ensure you don&rsquo;t need any test data before proceeding. There is no recovery after deletion.</p>
+
+</div>
+
+<hr>
+<p><strong>Step 5: Delete CloudFormation Stacks</strong></p>
+<p>CloudFormation stacks will automatically delete all resources they created (VPCs, subnets, EC2 instances, Route 53 Resolver endpoints, etc.).</p>
+<ol>
+<li>
+<p><strong>Navigate to CloudFormation</strong>:</p>
+<ul>
+<li>Open the <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1">CloudFormation Console</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Delete PLOnpremSetup Stack</strong>:</p>
+<ul>
+<li>Select the <strong>PLOnpremSetup</strong> stack</li>
+<li>This stack contains the DNS infrastructure (Resolver endpoints, Private Hosted Zone association)</li>
+<li>Click <strong>Delete</strong></li>
+<li>Confirm deletion</li>
+<li>Deletion takes 3-5 minutes</li>
+</ul>
+</li>
+<li>
+<p><strong>Wait for First Stack Deletion</strong>:</p>
+<ul>
+<li>Monitor the stack status - it will show &ldquo;DELETE_IN_PROGRESS&rdquo;</li>
+<li>Wait until it reaches &ldquo;DELETE_COMPLETE&rdquo; or disappears from the list</li>
+<li>You can view deletion events in the <strong>Events</strong> tab</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete PLCloudSetup Stack</strong>:</p>
+<ul>
+<li>Select the <strong>PLCloudSetup</strong> stack</li>
+<li>This stack contains the VPC infrastructure (VPCs, subnets, EC2 instances, VPN gateway, etc.)</li>
+<li>Click <strong>Delete</strong></li>
+<li>Confirm deletion</li>
+<li>Deletion takes 5-10 minutes due to the number of resources</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.6-Cleanup/delete-stack.png" alt="Delete CloudFormation Stacks"></p>
+
+<div
+  class="notices info"
+  
+>
+  <p><strong>Stack Deletion Process</strong>: CloudFormation automatically handles resource dependencies within the stack, deleting resources in the correct order. You&rsquo;ll see individual resources being deleted in the Events tab.</p>
+
+</div>
+
+<p><strong>What Gets Deleted by CloudFormation Stacks:</strong></p>
+<p><strong>PLOnpremSetup Stack Removes:</strong></p>
+<ul>
+<li>Route 53 Inbound Resolver Endpoint (in VPC Cloud)</li>
+<li>Route 53 Outbound Resolver Endpoint (in VPC On-prem)</li>
+<li>Associated elastic network interfaces</li>
+<li>IAM roles and policies for Resolver</li>
+</ul>
+<p><strong>PLCloudSetup Stack Removes:</strong></p>
+<ul>
+<li>VPC Cloud and VPC On-prem</li>
+<li>Public and private subnets in multiple AZs</li>
+<li>Internet Gateways and NAT Gateways</li>
+<li>Route tables and route table associations</li>
+<li>Security groups</li>
+<li>EC2 instances (Test-Gateway-Endpoint, Test-Interface-Endpoint, VPN Gateway)</li>
+<li>Transit Gateway and attachments</li>
+<li>VPN connections</li>
+<li>Elastic IPs</li>
+</ul>
+<hr>
+<h4 id="verification-of-complete-cleanup">Verification of Complete Cleanup</h4>
+<p>After completing all deletion steps, verify that resources are fully removed:</p>
+<p><strong>Checklist:</strong></p>
+<ol>
+<li>
+<p><strong>Route 53</strong>:</p>
+<ul>
+<li>No private hosted zone for <code>s3.us-east-1.amazonaws.com</code></li>
+<li>No resolver rules for S3 domain</li>
+<li>Inbound and Outbound Resolver endpoints gone</li>
+</ul>
+</li>
+<li>
+<p><strong>VPC</strong>:</p>
+<ul>
+<li>No endpoints in the Endpoints list</li>
+<li>VPC Cloud and VPC On-prem removed (after CloudFormation deletion)</li>
+<li>No custom security groups related to the workshop</li>
+</ul>
+</li>
+<li>
+<p><strong>S3</strong>:</p>
+<ul>
+<li>Both test buckets deleted</li>
+<li>No objects remaining from the workshop</li>
+</ul>
+</li>
+<li>
+<p><strong>CloudFormation</strong>:</p>
+<ul>
+<li>Both stacks show &ldquo;DELETE_COMPLETE&rdquo; or are no longer listed</li>
+<li>No failed deletion states</li>
+</ul>
+</li>
+<li>
+<p><strong>EC2</strong>:</p>
+<ul>
+<li>No instances named Test-Gateway-Endpoint or Test-Interface-Endpoint</li>
+<li>No VPN Gateway EC2 instance</li>
+</ul>
+</li>
+</ol>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Cleanup Complete!</strong> If all items in the checklist are verified, you&rsquo;ve successfully removed all workshop resources. Your AWS account is now clean and you won&rsquo;t incur ongoing charges for this workshop.</p>
+
+</div>
+
+<hr>
+<h4 id="troubleshooting-cleanup-issues">Troubleshooting Cleanup Issues</h4>
+<p><strong>Common Deletion Problems:</strong></p>
+<p><strong>Issue: Hosted Zone Won&rsquo;t Delete</strong></p>
+<ul>
+<li><strong>Cause</strong>: Custom DNS records still present</li>
+<li><strong>Solution</strong>: Delete all A records except NS and SOA records, then retry</li>
+</ul>
+<p><strong>Issue: Resolver Rule Won&rsquo;t Delete</strong></p>
+<ul>
+<li><strong>Cause</strong>: Still associated with VPC</li>
+<li><strong>Solution</strong>: Disassociate from all VPCs first, then delete</li>
+</ul>
+<p><strong>Issue: VPC Endpoint Stuck Deleting</strong></p>
+<ul>
+<li><strong>Cause</strong>: Active connections or route table associations</li>
+<li><strong>Solution</strong>: Wait 5 minutes and check again; should auto-resolve</li>
+</ul>
+<p><strong>Issue: S3 Bucket Won&rsquo;t Delete</strong></p>
+<ul>
+<li><strong>Cause</strong>: Objects still in bucket or versioning enabled</li>
+<li><strong>Solution</strong>: Empty bucket completely, disable versioning if enabled</li>
+</ul>
+<p><strong>Issue: CloudFormation Stack Deletion Failed</strong></p>
+<ul>
+<li><strong>Cause</strong>: Manual resource deletion or dependencies outside stack</li>
+<li><strong>Solution</strong>: Check Events tab for specific resource errors; may need to manually delete blocking resources</li>
+</ul>
+<hr>
+<h4 id="cost-optimization-lessons">Cost Optimization Lessons</h4>
+<p><strong>Workshop Resource Costs (if left running):</strong></p>
+<p>Approximate hourly costs for reference:</p>
+<ul>
+<li>Interface VPC Endpoint: ~$0.01/hour + $0.01/GB data processed</li>
+<li>Route 53 Resolver Endpoints: ~$0.125/hour per endpoint (2 endpoints = $0.25/hour)</li>
+<li>NAT Gateway: ~$0.045/hour + $0.045/GB data processed</li>
+<li>EC2 instances (t3.micro): ~$0.0104/hour each (3 instances = $0.03/hour)</li>
+</ul>
+<p><strong>Monthly cost if not deleted</strong>: ~$200-250</p>
+<p><strong>Key Takeaway</strong>: Always delete test resources promptly to avoid unnecessary charges!</p>
+<hr>
+<h4 id="what-youve-learned">What You&rsquo;ve Learned</h4>
+<p><strong>Technical Skills:</strong></p>
+<ul>
+<li>VPC Endpoint architecture patterns (Gateway vs Interface)</li>
+<li>Hybrid DNS configuration with Route 53 Resolver</li>
+<li>VPN-based hybrid connectivity</li>
+<li>Multi-AZ high availability patterns</li>
+<li>Security policy implementation and testing</li>
+<li>CloudFormation infrastructure as code</li>
+</ul>
+<p><strong>AWS Services Mastered:</strong></p>
+<ul>
+<li>Amazon VPC (Endpoints, Subnets, Route Tables, Security Groups)</li>
+<li>Amazon S3 (Bucket policies, private access)</li>
+<li>Route 53 (Private Hosted Zones, Resolver endpoints, Forwarding rules)</li>
+<li>AWS PrivateLink (Interface Endpoints)</li>
+<li>CloudFormation (Stack management)</li>
+<li>Systems Manager (Session Manager)</li>
+<li>IAM (Policies, roles, endpoint policies)</li>
+</ul>
+<p><strong>Enterprise Architecture Patterns:</strong></p>
+<ul>
+<li>Defense in depth security</li>
+<li>Least privilege access control</li>
+<li>Network segmentation</li>
+<li>Private connectivity without internet exposure</li>
+<li>Hybrid cloud integration</li>
+<li>High availability design</li>
+</ul>
+<hr>
+<h4 id="next-steps-for-continued-learning">Next Steps for Continued Learning</h4>
+<p><strong>Advanced Topics to Explore:</strong></p>
+<ol>
+<li><strong>AWS Direct Connect</strong>: Replace VPN with dedicated network connection</li>
+<li><strong>AWS Transit Gateway</strong>: Centralized hub for multi-VPC connectivity</li>
+<li><strong>VPC Peering</strong>: Alternative connectivity pattern between VPCs</li>
+<li><strong>PrivateLink for Custom Services</strong>: Expose your own services via PrivateLink</li>
+<li><strong>Multi-Region Endpoints</strong>: Disaster recovery with cross-region endpoints</li>
+<li><strong>AWS Network Firewall</strong>: Advanced traffic inspection and filtering</li>
+<li><strong>VPC Flow Logs</strong>: Network traffic analysis and security monitoring</li>
+</ol>
+<p><strong>Recommended AWS Documentation:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html">VPC Endpoints</a></li>
+<li><a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html">Route 53 Resolver</a></li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html">AWS PrivateLink</a></li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html">VPC Endpoint Policies</a></li>
+</ul>
+<p><strong>Practice Exercises:</strong></p>
+<ul>
+<li>Implement similar patterns for other AWS services (RDS, DynamoDB, EC2 API)</li>
+<li>Design multi-region endpoint architectures</li>
+<li>Integrate with AWS Transit Gateway for enterprise hub-and-spoke</li>
+<li>Implement comprehensive logging and monitoring</li>
+</ul>
+<hr>
+<p>Thank you for completing this workshop! You now have practical experience with AWS private connectivity patterns essential for enterprise cloud architectures. Apply these skills to build secure, scalable, and cost-effective solutions in your real-world projects!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../5-workshop/5.5-policy/" title="Implementing Fine-Grained Access Control with VPC Endpoint Policies"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../6-self-evaluation/" title="Self-Assessment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../js/clipboard.min.js?1765118996"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765118996"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765118996"></script>
+    <script src="../../js/jquery.sticky.js?1765118996"></script>
+    <script src="../../js/featherlight.min.js?1765118996"></script>
+    <script src="../../js/highlight.pack.js?1765118996"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765118996"></script>
+    <script src="../../js/learn.js?1765118996"></script>
+    <script src="../../js/hugo-learn.js?1765118996"></script>
+
+    <link href="../../mermaid/mermaid.css?1765118996" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765118996"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

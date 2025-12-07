@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../../../images/favicon.png" type="image/png">
+
+    <title>Cấu Hình Hybrid DNS cho Private Endpoint Resolution :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../../css/nucleus.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/fontawesome-all.min.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/hybrid.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/featherlight.min.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/perfect-scrollbar.min.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/auto-complete.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/atom-one-dark-reasonable.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/theme.css?1765118997" rel="stylesheet">
+    <link href="../../../../css/hugo-theme.css?1765118997" rel="stylesheet">
+    
+    <link href="../../../../css/theme-workshop.css?1765118997" rel="stylesheet">
+    
+    
+
+    <script src="../../../../js/jquery-3.3.1.min.js?1765118997"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../../js/lunr.min.js?1765118997"></script>
+<script type="text/javascript" src="../../../../js/auto-complete.js?1765118997"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../../js/search.js?1765118997"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Worklog  5 – AWS Security"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.5-week5/">
+     <b> 1.x. </b> Worklog  5 – AWS Security 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.10-week10/">
+     <b> 1.x. </b> Worklog Tuần 10 – Serverless Web App Workshop &amp; Elastic Beanstalk &amp; WordPress on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11– Container Services on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.11-week11/">
+     <b> 1.x. </b> Worklog Tuần 11– Container Services on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Worklog Tuần 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Worklog Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Worklog Tuần 3 – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.3-week3/">
+     <b> 1.x. </b> Worklog Tuần 3 – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Worklog Tuần 4 – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.4-week4/">
+     <b> 1.x. </b> Worklog Tuần 4 – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Worklog Tuần 6– AWS Reliability"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.6-week6/">
+     <b> 1.x. </b> Worklog Tuần 6– AWS Reliability 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Worklog Tuần 7 – AWS Performance"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.7-week7/">
+     <b> 1.x. </b> Worklog Tuần 7 – AWS Performance 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Worklog Tuần 8– AWS Cost Optimization"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.8-week8/">
+     <b> 1.x. </b> Worklog Tuần 8– AWS Cost Optimization 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9 – Application Modernization on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.9-week9/">
+     <b> 1.x. </b> Worklog Tuần 9 – Application Modernization on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12 </b> Worklog Tuần 12 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Worklog Tuần 1 "
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1 - 1.2. </b> Worklog Tuần 1  
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Bản đề xuất"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/2-proposal/">
+     <b> 2. </b> Bản đề xuất 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Các bài blogs đã dịch"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/">
+     <b> 3. </b> Các bài blogs đã dịch 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Bảo mật Amazon EVS với AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Bảo mật Amazon EVS với AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Tìm hiểu về Machine Learning trên AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Tìm hiểu về Machine Learning trên AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.1-workshop-overview/"
+  title="Tổng quan Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Tổng quan Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.2-prerequiste/"
+  title="Các bước chuẩn bị"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Các bước chuẩn bị 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/"
+  title="Truy cập S3 từ VPC"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Truy cập S3 từ VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Tạo Gateway Endpoint cho S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Tạo Gateway Endpoint cho S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Kiểm Tra Kết Nối Gateway Endpoint"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Kiểm Tra Kết Nối Gateway Endpoint 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/"
+  title="Truy cập S3 từ môi trường truyền thống"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Truy cập S3 từ môi trường truyền thống 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Chuẩn Bị Môi Trường cho Kết Nối Hybrid"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Chuẩn Bị Môi Trường cho Kết Nối Hybrid 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Tạo Interface VPC Endpoint cho Truy Cập S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Tạo Interface VPC Endpoint cho Truy Cập S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Kiểm Tra Kết Nối Interface Endpoint từ On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Kiểm Tra Kết Nối Interface Endpoint từ On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Cấu Hình Hybrid DNS cho Private Endpoint Resolution"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Cấu Hình Hybrid DNS cho Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.5-policy/"
+  title="Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.5-policy/">
+     <b> 5.5. </b> Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.6-cleanup/"
+  title="Dọn Dẹp Resources và Hoàn Thành Workshop"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Dọn Dẹp Resources và Hoàn Thành Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../../vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../../vi/'>Báo cáo thực tập</a> > <a href='../../../../vi/5-workshop/'>Workshop</a> > <a href='../../../../vi/5-workshop/5.4-s3-onprem/'>Truy cập S3 từ môi trường truyền thống</a> > Cấu Hình Hybrid DNS cho Private Endpoint Resolution
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Cấu Hình Hybrid DNS cho Private Endpoint Resolution
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
+
+</div>
+
+<p>Trong phần này, bạn sẽ cấu hình cơ sở hạ tầng DNS để cho phép phân giải tên liền mạch cho các S3 API calls từ môi trường on-premises của bạn. Điều này mô phỏng cách các mạng doanh nghiệp sử dụng conditional DNS forwarding để phân giải các AWS service endpoints thành địa chỉ IP riêng tư.</p>
+<p><strong>Tại Sao Cấu Hình DNS Rất Quan Trọng:</strong></p>
+<p>AWS PrivateLink endpoints sử dụng elastic network interfaces (ENIs) với địa chỉ IP riêng tư cố định trong mỗi Availability Zone. Mặc dù các IP này vẫn ổn định trong suốt vòng đời của endpoint, AWS rất khuyến khích sử dụng DNS resolution thay vì hardcoding IPs vì:</p>
+<ul>
+<li><strong>Dynamic AZ Management</strong>: ENIs có thể được thêm vào các AZ mới hoặc bị xóa theo thời gian</li>
+<li><strong>Automatic Failover</strong>: DNS cho phép chuyển đổi tự động giữa các IP đặc thù của AZ trong các sự cố</li>
+<li><strong>Service Updates</strong>: AWS có thể cập nhật cơ sở hạ tầng endpoint yêu cầu IP mới</li>
+<li><strong>Best Practice</strong>: DNS cung cấp tính trừu tượng và linh hoạt cho các kiến trúc doanh nghiệp</li>
+</ul>
+<p><strong>Những Gì Bạn Sẽ Cấu Hình:</strong></p>
+<ol>
+<li><strong>DNS Alias Records</strong>: Ánh xạ S3 service domains đến Interface Endpoint IPs trong Route 53 Private Hosted Zone</li>
+<li><strong>Resolver Forwarding Rule</strong>: Hướng các DNS queries on-premises cho S3 đến cloud VPC</li>
+<li><strong>End-to-End Testing</strong>: Xác thực DNS resolution và S3 access sử dụng môi trường on-premises mô phỏng</li>
+</ol>
+<p>Cấu hình này bắt chước các kiến trúc DNS hybrid thực tế nơi các on-premises DNS servers chuyển tiếp các domains cụ thể một cách có điều kiện đến AWS để phân giải riêng tư.</p>
+<hr>
+<h4 id="phần-1-tạo-dns-alias-records-cho-interface-endpoint">Phần 1: Tạo DNS Alias Records cho Interface Endpoint</h4>
+<p>Bây giờ bạn sẽ tạo DNS records trong Route 53 Private Hosted Zone để ánh xạ tên dịch vụ S3 đến địa chỉ IP riêng tư của Interface Endpoint.</p>
+<p><strong>Hiểu Về Private Hosted Zone:</strong></p>
+<p>CloudFormation stack bạn đã triển khai trước đó đã tạo một Private Hosted Zone cho <code>s3.us-east-1.amazonaws.com</code>. Zone này:</p>
+<ul>
+<li>Chỉ được liên kết với VPCs của bạn (không public)</li>
+<li>Ghi đè DNS resolution công cộng cho S3 trong VPCs của bạn</li>
+<li>Cho phép bạn trả về IP riêng tư thay vì IP công cộng cho S3 domains</li>
+<li>Tích hợp với Route 53 Resolver cho hybrid DNS</li>
+</ul>
+<p><strong>Bước 1: Truy Cập Route 53 Hosted Zones</strong></p>
+<ol>
+<li>Mở <a href="https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1">Route 53 Management Console</a> (phần Hosted Zones)</li>
+<li>Bạn sẽ thấy Private Hosted Zone có tên <code>s3.us-east-1.amazonaws.com</code></li>
+<li>Click vào <strong>tên hosted zone</strong> để xem các DNS records của nó</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/hosted-zone.png" alt="Route 53 Private Hosted Zone"></p>
+
+<div
+  class="notices info"
+  
+>
+  <p><strong>Chỉ Báo Private Hosted Zone</strong>: Bạn sẽ thấy &ldquo;Private&rdquo; được liệt kê dưới cột Type, và Associated VPCs sẽ hiển thị VPCs nào sử dụng zone này cho DNS resolution. Điều này đảm bảo chỉ các resources trong VPCs của bạn nhận được endpoint IPs riêng tư.</p>
+
+</div>
+
+<p><strong>Bước 2: Tạo Primary Alias Record</strong></p>
+<p>Bạn sẽ tạo một Alias record trỏ base S3 domain đến Interface Endpoint của bạn.</p>
+<ol>
+<li>
+<p><strong>Khởi tạo việc tạo record</strong>:</p>
+<ul>
+<li>Click nút <strong>Create record</strong> ở trên cùng</li>
+</ul>
+</li>
+<li>
+<p><strong>Cấu hình record đầu tiên</strong>:</p>
+<ul>
+<li>
+<p><strong>Record name</strong>: Để trống (điều này tạo record cho zone apex: <code>s3.us-east-1.amazonaws.com</code>)</p>
+</li>
+<li>
+<p><strong>Record type</strong>: Chọn <strong>A – IPv4 address</strong> (mặc định)</p>
+</li>
+<li>
+<p><strong>Cấu hình Alias</strong>:</p>
+<ul>
+<li>Bật công tắc <strong>Alias</strong> lên <strong>ON</strong> (kích hoạt)</li>
+<li>Điều này cho Route 53 biết để alias đến AWS resource khác</li>
+</ul>
+</li>
+<li>
+<p><strong>Route traffic to</strong>:</p>
+<ul>
+<li>Chọn <strong>Alias to VPC endpoint</strong> từ dropdown</li>
+</ul>
+</li>
+<li>
+<p><strong>Region</strong>:</p>
+<ul>
+<li>Chọn <strong>US East (N. Virginia) [us-east-1]</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Choose endpoint</strong>:</p>
+<ul>
+<li>Dán <strong>Regional VPC Endpoint DNS name</strong> từ text editor của bạn</li>
+<li>Đây là DNS name bạn đã lưu trong phần 5.4.3</li>
+<li>Định dạng: <code>vpce-xxxxxxxxx.s3.us-east-1.vpce.amazonaws.com</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/create-record1.png" alt="Create Primary DNS Record"></p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/record1.png" alt="Primary Record Configuration"></p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Alias vs CNAME</strong>: Sử dụng Alias records (thay vì CNAME) cung cấp các lợi ích:</p>
+<ul>
+<li>Hoạt động tại zone apex (bare domain không có subdomain)</li>
+<li>Không tính phí cho Alias queries đến AWS resources</li>
+<li>Hiệu suất tốt hơn với tích hợp dịch vụ AWS</li>
+<li>Hỗ trợ health checking và failover tự động</li>
+</ul>
+
+</div>
+
+<p><strong>Bước 3: Tạo Wildcard Alias Record</strong></p>
+<p>Bây giờ tạo record thứ hai để xử lý tất cả các subdomain của dịch vụ S3 (ví dụ: <code>bucket.s3.us-east-1.amazonaws.com</code>).</p>
+<ol>
+<li>
+<p><strong>Thêm record khác</strong>:</p>
+<ul>
+<li>Click nút <strong>Add another record</strong> (chưa click Create)</li>
+</ul>
+</li>
+<li>
+<p><strong>Cấu hình wildcard record</strong>:</p>
+<ul>
+<li>
+<p><strong>Record name</strong>: Nhập <code>*</code> (dấu sao - điều này tạo wildcard)</p>
+</li>
+<li>
+<p><strong>Record type</strong>: Giữ <strong>A – IPv4 address</strong></p>
+</li>
+<li>
+<p><strong>Cấu hình Alias</strong>:</p>
+<ul>
+<li>Bật <strong>Alias</strong> lên <strong>ON</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Route traffic to</strong>:</p>
+<ul>
+<li>Chọn <strong>Alias to VPC endpoint</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Region</strong>:</p>
+<ul>
+<li>Chọn <strong>US East (N. Virginia) [us-east-1]</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Choose endpoint</strong>:</p>
+<ul>
+<li>Dán cùng <strong>Regional VPC Endpoint DNS name</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Tạo cả hai records</strong>:</p>
+<ul>
+<li>Click nút <strong>Create records</strong></li>
+<li>Cả hai records sẽ được tạo đồng thời</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/record2.png" alt="Wildcard DNS Record Configuration"></p>
+<p><strong>Tại Sao Cần Hai Records?</strong></p>
+<p>Hai DNS records phục vụ các mục đích khác nhau:</p>
+<ol>
+<li>
+<p><strong>Apex Record</strong> (<code>s3.us-east-1.amazonaws.com</code>):</p>
+<ul>
+<li>Xử lý queries đến base S3 regional endpoint</li>
+<li>Được sử dụng bởi các lệnh như: <code>aws s3 ls --endpoint-url https://s3.us-east-1.amazonaws.com</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Wildcard Record</strong> (<code>*.s3.us-east-1.amazonaws.com</code>):</p>
+<ul>
+<li>Xử lý queries với tên bucket trong subdomain</li>
+<li>Khớp với: <code>bucket.s3.us-east-1.amazonaws.com</code>, <code>my-bucket.s3.us-east-1.amazonaws.com</code>, v.v.</li>
+<li>Được sử dụng bởi các S3 URLs kiểu path-style</li>
+</ul>
+</li>
+</ol>
+<p><strong>Bước 4: Xác Minh Việc Tạo Record</strong></p>
+<p>Sau khi tạo, bạn sẽ thấy cả hai records trong hosted zone:</p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/result.png" alt="DNS Records Created Successfully"></p>
+<p>Xác minh:</p>
+<ul>
+<li>Hai A records mới (apex và wildcard)</li>
+<li>Cả hai hiển thị Type: <strong>A - Alias</strong></li>
+<li>Value trỏ đến VPC endpoint của bạn</li>
+</ul>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>DNS Records Đã Được Cấu Hình!</strong> Những records này đảm bảo rằng khi các hệ thống query cho S3 domain names, chúng nhận được địa chỉ IP riêng tư của Interface Endpoint ENIs của bạn thay vì S3 IPs công cộng.</p>
+
+</div>
+
+<hr>
+<h4 id="phần-2-tạo-route-53-resolver-forwarding-rule">Phần 2: Tạo Route 53 Resolver Forwarding Rule</h4>
+<p>Bây giờ bạn sẽ cấu hình conditional DNS forwarding từ on-premises VPC đến cloud VPC. Điều này mô phỏng cách các on-premises DNS servers chuyển tiếp các domains cụ thể đến AWS để phân giải.</p>
+<p><strong>Hiểu Về Resolver Forwarding Rules:</strong></p>
+<p>Route 53 Resolver Forwarding Rules cho phép:</p>
+<ul>
+<li><strong>Conditional forwarding</strong>: Chỉ các domains cụ thể được chuyển tiếp (ví dụ: <code>s3.us-east-1.amazonaws.com</code>)</li>
+<li><strong>Hybrid DNS</strong>: Các hệ thống on-premises query DNS cục bộ của họ, sau đó chuyển tiếp đến AWS</li>
+<li><strong>Centralized management</strong>: Rules xác định domains nào phân giải qua AWS</li>
+<li><strong>Bidirectional resolution</strong>: Có thể chuyển tiếp cả từ AWS đến on-prem và ngược lại</li>
+</ul>
+<p>Trong workshop này:</p>
+<ul>
+<li>EC2 on-prem query <strong>Outbound Resolver</strong> trong VPC On-prem</li>
+<li>Outbound Resolver chuyển tiếp S3 queries qua VPN đến <strong>Inbound Resolver</strong> trong VPC Cloud</li>
+<li>Inbound Resolver query Private Hosted Zone</li>
+<li>Response với IP riêng tư quay trở lại on-prem</li>
+</ul>
+<p><strong>Bước 1: Lấy Địa Chỉ IP của Inbound Resolver</strong></p>
+<p>Trước tiên, bạn cần các địa chỉ IP nơi Inbound Resolver đang lắng nghe trong VPC Cloud.</p>
+<ol>
+<li>
+<p><strong>Điều hướng đến Inbound Endpoints</strong>:</p>
+<ul>
+<li>Từ Route 53 console, click <strong>Resolver</strong> trong thanh bên trái</li>
+<li>Click <strong>Inbound endpoints</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Truy cập chi tiết endpoint</strong>:</p>
+<ul>
+<li>Click vào <strong>Endpoint ID</strong> của inbound endpoint</li>
+<li>CloudFormation đã tạo điều này với tên như <code>VPCCloudInboundEndpoint</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-1.png" alt="Route 53 Inbound Endpoint"></p>
+<ol start="3">
+<li><strong>Sao chép địa chỉ IP</strong>:
+<ul>
+<li>Trong chi tiết endpoint, cuộn đến phần <strong>IP addresses</strong></li>
+<li>Bạn sẽ thấy <strong>2 địa chỉ IP</strong> (một cho mỗi AZ)</li>
+<li><strong>Sao chép cả hai IPs</strong> vào text editor của bạn</li>
+<li>Định dạng: <code>10.0.x.x</code> (trong VPC Cloud CIDR)</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-2.png" alt="Inbound Resolver IP Addresses"></p>
+
+<div
+  class="notices note"
+  
+>
+  <p><strong>Multi-AZ Resolver</strong>: Inbound Resolver có IPs trong nhiều AZ để có tính sẵn sàng cao. Forwarding rule sẽ sử dụng cả hai, tự động failover nếu một AZ không khả dụng.</p>
+
+</div>
+
+<p><strong>Bước 2: Tạo Forwarding Rule</strong></p>
+<ol>
+<li><strong>Điều hướng đến Rules</strong>:
+<ul>
+<li>Trong Route 53 console, click <strong>Resolver</strong> &gt; <strong>Rules</strong> trong thanh bên trái</li>
+<li>Click nút <strong>Create rule</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-3.png" alt="Create Resolver Rule"></p>
+<ol start="2">
+<li>
+<p><strong>Cấu hình rule cơ bản</strong>:</p>
+<ul>
+<li><strong>Name</strong>: Nhập <code>S3-PrivateEndpoint-ForwardingRule</code></li>
+<li><strong>Description</strong> (tùy chọn): &ldquo;Forward S3 DNS queries to VPC Cloud for private endpoint resolution&rdquo;</li>
+<li><strong>Rule type</strong>: Chọn <strong>Forward</strong> (không phải System)</li>
+<li><strong>Domain name</strong>: Nhập <code>s3.us-east-1.amazonaws.com</code></li>
+</ul>
+</li>
+</ol>
+<p>Domain name này cho rule biết: &ldquo;Chuyển tiếp bất kỳ DNS queries nào cho domain này và các subdomain của nó.&rdquo;</p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-4.png" alt="Forwarding Rule Basic Configuration"></p>
+<p><strong>Bước 3: Liên Kết VPC và Outbound Endpoint</strong></p>
+<ol start="3">
+<li>
+<p><strong>Cấu hình VPC</strong>:</p>
+<ul>
+<li>
+<p><strong>VPCs to associate this rule with</strong>:</p>
+<ul>
+<li>Chọn <strong>VPC On-prem</strong> từ dropdown</li>
+<li>Điều này áp dụng rule cho các DNS queries bắt nguồn từ on-premises VPC</li>
+</ul>
+</li>
+<li>
+<p><strong>Outbound endpoint</strong>:</p>
+<ul>
+<li>Chọn <strong>VPCOnpremOutboundEndpoint</strong></li>
+<li>Đây là resolver endpoint chuyển tiếp queries từ VPC On-prem</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-5.png" alt="VPC and Outbound Endpoint Association"></p>
+
+<div
+  class="notices info"
+  
+>
+  <p><strong>Vai Trò Outbound Endpoint</strong>: Outbound Resolver trong VPC On-prem nhận DNS queries từ các EC2 instances và chuyển tiếp chúng qua VPN tunnel đến các địa chỉ IP đích (Inbound Resolver trong VPC Cloud).</p>
+
+</div>
+
+<p><strong>Bước 4: Chỉ Định Target IP Addresses</strong></p>
+<ol start="4">
+<li>
+<p><strong>Thêm target IPs</strong>:</p>
+<ul>
+<li><strong>Target IP addresses</strong>: Đây là nơi các queries được chuyển tiếp sẽ được gửi đến</li>
+<li>Click <strong>Add target IP address</strong></li>
+<li><strong>IP address</strong>: Dán <strong>Inbound Resolver IP đầu tiên</strong> từ text editor của bạn</li>
+<li>Click <strong>Add target IP address</strong> lần nữa</li>
+<li><strong>IP address</strong>: Dán <strong>Inbound Resolver IP thứ hai</strong></li>
+<li>Cả hai IPs bây giờ nên được liệt kê</li>
+</ul>
+</li>
+<li>
+<p><strong>Tạo rule</strong>:</p>
+<ul>
+<li>Click nút <strong>Submit</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-6.png" alt="Target IP Configuration"></p>
+<p><strong>Hiểu Target IPs:</strong></p>
+<p>Đây là Inbound Resolver IPs trong VPC Cloud:</p>
+<ul>
+<li>Chúng lắng nghe cho các DNS queries đến qua VPN</li>
+<li>Chúng query Private Hosted Zone để tìm câu trả lời</li>
+<li>Chúng trả kết quả về qua VPN cho Outbound Resolver</li>
+</ul>
+<p><strong>Bước 5: Xác Minh Việc Tạo Rule</strong></p>
+<p>Sau khi tạo, bạn sẽ thấy forwarding rule mới của bạn:</p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/route53-7.png" alt="Forwarding Rule Created Successfully"></p>
+<p>Kiểm tra rằng:</p>
+<ul>
+<li><strong>Status</strong> hiển thị <strong>Active</strong></li>
+<li><strong>Type</strong> hiển thị <strong>Forward</strong></li>
+<li><strong>Domain name</strong> là <code>s3.us-east-1.amazonaws.com</code></li>
+<li><strong>VPC</strong> hiển thị VPC On-prem</li>
+</ul>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>DNS Forwarding Đã Được Cấu Hình!</strong> Các queries từ VPC On-prem cho <code>s3.us-east-1.amazonaws.com</code> bây giờ chuyển tiếp qua Outbound Resolver, qua VPN tunnel, đến Inbound Resolver, và cuối cùng phân giải qua Private Hosted Zone.</p>
+
+</div>
+
+<hr>
+<h4 id="phần-3-kiểm-tra-on-premises-dns-resolution">Phần 3: Kiểm Tra On-Premises DNS Resolution</h4>
+<p>Bây giờ xác thực rằng toàn bộ chuỗi DNS resolution đang hoạt động chính xác.</p>
+<p><strong>Bước 1: Kết Nối đến On-Premises Instance</strong></p>
+<ol>
+<li>Mở <strong>AWS Systems Manager</strong> &gt; <strong>Session Manager</strong></li>
+<li>Click <strong>Start session</strong></li>
+<li>Chọn EC2 instance <strong>Test-Interface-Endpoint</strong> (trong VPC On-prem)</li>
+<li>Click <strong>Start session</strong></li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/test1.png" alt="Connect to Test Instance"></p>
+<p><strong>Bước 2: Kiểm Tra DNS Resolution với Lệnh Dig</strong></p>
+<p>Trong Session Manager terminal, chạy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dig +short s3.us-east-1.amazonaws.com
+</span></span></code></pre></div><p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Bạn sẽ thấy <strong>2 địa chỉ IP</strong> được trả về:</p>
+<pre tabindex="0"><code>10.0.1.100
+10.0.2.100
+</code></pre><p>(Các IP thực tế của bạn sẽ khác nhưng nên nằm trong VPC Cloud CIDR range)</p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/dig.png" alt="DNS Resolution Test with Dig"></p>
+
+<div
+  class="notices note"
+  
+>
+  <p><strong>Sự Phân Biệt Quan Trọng</strong>: Các địa chỉ IP được trả về là <strong>VPC Interface Endpoint ENI IPs</strong>, KHÔNG phải Inbound Resolver IPs bạn đã cấu hình. Cả hai bộ IPs đều nằm trong VPC Cloud CIDR block, nhưng chúng phục vụ các mục đích khác nhau:</p>
+<ul>
+<li><strong>Inbound Resolver IPs</strong>: Xử lý DNS queries (không được trả về trong kết quả dig)</li>
+<li><strong>Interface Endpoint IPs</strong>: Nơi S3 API traffic được gửi đến (được trả về bởi DNS queries)</li>
+</ul>
+
+</div>
+
+<p><strong>Điều Gì Vừa Xảy Ra:</strong></p>
+<p>Lệnh <code>dig</code> đã kích hoạt luồng DNS resolution này:</p>
+<pre tabindex="0"><code>EC2 On-prem → Outbound Resolver (VPC On-prem) 
+→ VPN Tunnel → Inbound Resolver (VPC Cloud) 
+→ Private Hosted Zone → Alias Record 
+→ Interface Endpoint IPs → Response quay lại EC2
+</code></pre><p><strong>Bước 3: Xác Minh IPs Khớp Với Interface Endpoint</strong></p>
+<p>Kiểm tra chéo các IPs được trả về bởi dig với Interface Endpoint thực tế:</p>
+<ol>
+<li>
+<p><strong>Mở VPC Console</strong>:</p>
+<ul>
+<li>Điều hướng đến <strong>VPC</strong> &gt; <strong>Endpoints</strong></li>
+<li>Click vào <strong>S3 Interface Endpoint</strong> của bạn</li>
+</ul>
+</li>
+<li>
+<p><strong>Kiểm tra tab Subnets</strong>:</p>
+<ul>
+<li>Click vào tab <strong>Subnets</strong></li>
+<li>Bạn sẽ thấy ENI IDs và các IP riêng tư liên kết của chúng</li>
+<li><strong>Xác minh</strong> các IPs này khớp với những IPs được trả về bởi lệnh dig</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/subnet.png" alt="Verify Endpoint IPs in VPC Console"></p>
+<p>Các IPs nên khớp hoàn hảo, xác nhận DNS resolution đang hoạt động chính xác.</p>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>DNS Resolution Đã Được Xác Thực!</strong> Môi trường on-premises của bạn đang phân giải thành công S3 domain names thành Interface Endpoint IPs riêng tư thông qua kiến trúc DNS hybrid.</p>
+
+</div>
+
+<p><strong>Bước 4: Kiểm Tra S3 API Access qua DNS</strong></p>
+<p>Bây giờ kiểm tra rằng các ứng dụng có thể sử dụng S3 endpoint URL tiêu chuẩn và tự động kết nối qua private endpoint.</p>
+<p>Trong Session Manager terminal, chạy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 ls --endpoint-url https://s3.us-east-1.amazonaws.com
+</span></span></code></pre></div><p><strong>Kết Quả Mong Đợi:</strong></p>
+<p>Bạn sẽ thấy danh sách các S3 buckets của bạn, bao gồm test bucket được tạo trước đó.</p>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/endpoint.png" alt="S3 Access via Standard Endpoint URL"></p>
+<p><strong>Quan Sát Chính:</strong></p>
+<p>Lưu ý bạn đang sử dụng <strong>S3 endpoint URL tiêu chuẩn</strong> (<code>https://s3.us-east-1.amazonaws.com</code>), không phải URL đặc thù của VPC endpoint mà bạn đã sử dụng trong phần 5.4.3. Điều này khả thi vì:</p>
+<ol>
+<li>DNS phân giải <code>s3.us-east-1.amazonaws.com</code> thành Interface Endpoint private IPs</li>
+<li>HTTPS traffic định tuyến qua VPN đến Interface Endpoint</li>
+<li>Ứng dụng không cần biết về cấu hình private endpoint</li>
+<li>AWS SDKs và CLI tiêu chuẩn hoạt động mà không cần sửa đổi</li>
+</ol>
+<p>Điều này minh họa sức mạnh của DNS-based private endpoint resolution!</p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Lợi Ích Production</strong>: Trong môi trường doanh nghiệp, các ứng dụng có thể sử dụng AWS service endpoints tiêu chuẩn trong code của chúng. Cơ sở hạ tầng DNS tự động hướng lưu lượng qua private endpoints khi chạy on-premises hoặc trong VPCs, và qua internet khi chạy ở nơi khác (với routing phù hợp).</p>
+
+</div>
+
+<p><strong>Bước 5: Dọn Dẹp Session</strong></p>
+<ol>
+<li>
+<p>Kết thúc Session Manager session của bạn bằng cách gõ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exit
+</span></span></code></pre></div></li>
+<li>
+<p>Hoặc đóng tab trình duyệt</p>
+</li>
+</ol>
+<p><img src="../../../../images/5-Workshop/5.4-S3-onprem/terminal.png" alt="Terminate Session"></p>
+<hr>
+<h4 id="hiểu-kiến-trúc-hybrid-dns-của-bạn">Hiểu Kiến Trúc Hybrid DNS của Bạn</h4>
+<p><strong>Luồng Lưu Lượng Hoàn Chỉnh:</strong></p>
+<p>Khi một ứng dụng on-premises truy cập S3, đây là luồng hoàn chỉnh:</p>
+<p><strong>Đường Dẫn DNS Resolution:</strong></p>
+<pre tabindex="0"><code>┌──────────────────────┐
+│ On-Prem Application  │
+│ Queries: s3.us-...   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ EC2 Instance         │
+│ DNS Resolver Config  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Outbound Resolver    │
+│ (VPC On-prem)        │
+│ Forwarding Rule:     │
+│ s3.us-east-1.*       │
+└──────────┬───────────┘
+           │
+           │ VPN Tunnel
+           ▼
+┌──────────────────────┐
+│ Inbound Resolver     │
+│ (VPC Cloud)          │
+│ IPs: 10.0.x.x        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Private Hosted Zone  │
+│ s3.us-east-1.*.com   │
+│ Alias Records        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Returns: 10.0.1.100  │
+│          10.0.2.100  │
+│ (Endpoint ENI IPs)   │
+└──────────────────────┘
+</code></pre><p><strong>Đường Dẫn Dữ Liệu (Sau DNS Resolution):</strong></p>
+<pre tabindex="0"><code>On-Prem Application → Interface Endpoint Private IP 
+→ VPN Tunnel → VPC Cloud → Interface Endpoint ENI 
+→ AWS PrivateLink → S3 Service
+</code></pre><hr>
+<h4 id="những-thành-tựu-chính">Những Thành Tựu Chính</h4>
+<p><strong>Những Gì Bạn Đã Xây Dựng:</strong></p>
+<p>✅ <strong>DNS Alias Records</strong>: Ánh xạ S3 domains đến Interface Endpoint private IPs<br>
+✅ <strong>Conditional Forwarding</strong>: Cấu hình forwarding rule cho S3 domain từ on-prem đến cloud<br>
+✅ <strong>Hybrid DNS Resolution</strong>: Cho phép DNS resolution liền mạch qua VPN<br>
+✅ <strong>Transparent S3 Access</strong>: Ứng dụng sử dụng S3 endpoints tiêu chuẩn với routing riêng tư<br>
+✅ <strong>High Availability</strong>: Cấu hình DNS và endpoint multi-AZ để chịu lỗi</p>
+<p><strong>Các Mẫu Kiến Trúc Doanh Nghiệp:</strong></p>
+<ol>
+<li><strong>Conditional DNS Forwarding</strong>: Split-brain DNS với domain-specific forwarding</li>
+<li><strong>Private Hosted Zones</strong>: Ghi đè public DNS cho AWS services với IP riêng tư</li>
+<li><strong>Alias Records</strong>: Định tuyến DNS hiệu quả đến AWS resources</li>
+<li><strong>Resolver Endpoints</strong>: Cầu nối DNS hybrid giữa on-prem và cloud</li>
+<li><strong>Multi-AZ Resilience</strong>: Failover tự động cho DNS và endpoints</li>
+</ol>
+<p><strong>Cải Tiến Production:</strong></p>
+<p>Đối với các triển khai thực tế, cân nhắc:</p>
+<ul>
+<li><strong>DNS caching strategies</strong> để giảm tải resolver query</li>
+<li><strong>Monitoring CloudWatch metrics</strong> cho số lượng Resolver query và độ trễ</li>
+<li><strong>Multiple forwarding rules</strong> cho các dịch vụ AWS khác nhau (EC2, RDS, v.v.)</li>
+<li><strong>DNS failback to public resolution</strong> nếu private endpoints không khả dụng</li>
+<li><strong>Integration với on-premises DNS servers</strong> (BIND, Active Directory, v.v.)</li>
+<li><strong>DNS query logging</strong> cho kiểm tra bảo mật và khắc phục sự cố</li>
+<li><strong>Route 53 Resolver Query Logging</strong> được bật để tuân thủ</li>
+</ul>
+<p>Kiến trúc DNS hybrid này cung cấp kết nối riêng tư cấp doanh nghiệp đến các dịch vụ AWS trong khi duy trì code ứng dụng tiêu chuẩn và việc sử dụng AWS SDK!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../../vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/" title="Kiểm Tra Kết Nối Interface Endpoint từ On-Premises"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../../vi/5-workshop/5.5-policy/" title="Triển Khai Kiểm Soát Truy Cập Chi Tiết với VPC Endpoint Policies" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../../js/clipboard.min.js?1765118997"></script>
+    <script src="../../../../js/perfect-scrollbar.min.js?1765118997"></script>
+    <script src="../../../../js/perfect-scrollbar.jquery.min.js?1765118997"></script>
+    <script src="../../../../js/jquery.sticky.js?1765118997"></script>
+    <script src="../../../../js/featherlight.min.js?1765118997"></script>
+    <script src="../../../../js/highlight.pack.js?1765118997"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../../js/modernizr.custom-3.6.0.js?1765118997"></script>
+    <script src="../../../../js/learn.js?1765118997"></script>
+    <script src="../../../../js/hugo-learn.js?1765118997"></script>
+
+    <link href="../../../../mermaid/mermaid.css?1765118997" rel="stylesheet" />
+    <script src="../../../../mermaid/mermaid.js?1765118997"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>

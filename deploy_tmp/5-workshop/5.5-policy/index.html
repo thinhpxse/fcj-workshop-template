@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../images/favicon.png" type="image/png">
+
+    <title>Implementing Fine-Grained Access Control with VPC Endpoint Policies :: Internship Report</title>
+
+    
+    <link href="../../css/nucleus.css?1765118996" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765118996" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765118996" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765118996" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765118996" rel="stylesheet">
+    <link href="../../css/theme.css?1765118996" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765118996" rel="stylesheet">
+    
+    <link href="../../css/theme-workshop.css?1765118996" rel="stylesheet">
+    
+    
+
+    <script src="../../js/jquery-3.3.1.min.js?1765118996"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../5-workshop/5.5-policy/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../js/lunr.min.js?1765118996"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765118996"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/thinhpxse.github.io\/fcj-workshop-template\/";
+    
+</script>
+<script type="text/javascript" src="../../js/search.js?1765118996"></script> 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/1-worklog/"
+  title="Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/">
+     <b> 1. </b> Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/1-worklog/1.2-week2/"
+  title="Week 2 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.2-week2/">
+     <b> 1.2. </b> Week 2 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.3-week3/"
+  title="Week 3 Worklog – Migrate to AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.3-week3/">
+     <b> 1.x. </b> Week 3 Worklog – Migrate to AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.4-week4/"
+  title="Week 4 Worklog – Optimizing the System on AWS (Operations)"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.4-week4/">
+     <b> 1.x. </b> Week 4 Worklog – Optimizing the System on AWS (Operations) 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.5-week5/"
+  title="Week 5 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.5-week5/">
+     <b> 1.5. </b> Week 5 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.6-week6/"
+  title="Week 6 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.6-week6/">
+     <b> 1.6. </b> Week 6 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.7-week7/"
+  title="Week 7 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.7-week7/">
+     <b> 1.7. </b> Week 7 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.8-week8/"
+  title="Week 8 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.8-week8/">
+     <b> 1.8. </b> Week 8 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.9-week9/"
+  title="Week 9 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.9-week9/">
+     <b> 1.9. </b> Week 9 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.10-week10/"
+  title="Week 10 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.10-week10/">
+     <b> 1.10. </b> Week 10 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.11-week11/"
+  title="Week 11 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.11-week11/">
+     <b> 1.11. </b> Week 11 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.12-week12/"
+  title="Week 12 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.12-week12/">
+     <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/2-proposal/"
+  title="Proposal"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../2-proposal/">
+     <b> 2. </b> Proposal 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/3-blogstranslated/"
+  title="Translated AWS Blogs"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/">
+     <b> 3. </b> Translated AWS Blogs 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/3-blogstranslated/3.6-blog6/"
+  title="Build Priority-Based Message Processing with Amazon MQ and AWS App Runner"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Build Priority-Based Message Processing with Amazon MQ and AWS App Runner 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.5-blog5/"
+  title="Building an AI Gateway to Amazon Bedrock with Amazon API Gateway"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.5-blog5/">
+     <b> 3.5. </b> Building an AI Gateway to Amazon Bedrock with Amazon API Gateway 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.3-blog3/"
+  title="Electronic Arts tối ưu hóa quy trình cập nhật game với AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Electronic Arts tối ưu hóa quy trình cập nhật game với AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.1-blog1/"
+  title="Learn About Machine Learning on AWS"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Learn About Machine Learning on AWS 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.2-blog2/"
+  title="Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/3-blogstranslated/3.4-blog4/"
+  title="Secure Amazon EVS with AWS Network Firewall"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Secure Amazon EVS with AWS Network Firewall 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/4-eventparticipated/"
+  title="Events Participated"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/">
+     <b> 4. </b> Events Participated 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.1-workshop-overview/"
+  title="Workshop Overview"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Workshop Overview 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.2-prerequiste/"
+  title="Prerequisites"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Prerequisites 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/"
+  title="Access S3 from VPC"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Access S3 from VPC 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title="Creating Gateway Endpoint for S3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1 </b> Creating Gateway Endpoint for S3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title="Testing Gateway Endpoint Connectivity"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2 </b> Testing Gateway Endpoint Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/"
+  title="Access S3 from on-premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Access S3 from on-premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title="Environment Preparation for Hybrid Connectivity"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1 </b> Environment Preparation for Hybrid Connectivity 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title="Creating Interface VPC Endpoint for S3 Access"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2 </b> Creating Interface VPC Endpoint for S3 Access 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title="Testing Interface Endpoint Connectivity from On-Premises"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3 </b> Testing Interface Endpoint Connectivity from On-Premises 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title="Configuring Hybrid DNS for Private Endpoint Resolution"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4 </b> Configuring Hybrid DNS for Private Endpoint Resolution 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.5-policy/"
+  title="Implementing Fine-Grained Access Control with VPC Endpoint Policies"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../5-workshop/5.5-policy/">
+     <b> 5.5. </b> Implementing Fine-Grained Access Control with VPC Endpoint Policies 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.6-cleanup/"
+  title="Resource Cleanup and Workshop Completion"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Resource Cleanup and Workshop Completion 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/6-self-evaluation/"
+  title="Self-Assessment"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../6-self-evaluation/">
+     <b> 6. </b> Self-Assessment 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/7-feedback/"
+  title="Sharing and Feedback"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../7-feedback/">
+     <b> 7. </b> Sharing and Feedback 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/5-workshop/5.5-policy/"
+                  selected
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="https://thinhpxse.github.io/fcj-workshop-template/vi/5-workshop/5.5-policy/"
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../'>Internship Report</a> > <a href='../../5-workshop/'>Workshop</a> > Implementing Fine-Grained Access Control with VPC Endpoint Policies
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Implementing Fine-Grained Access Control with VPC Endpoint Policies
+            </h1>
+          
+
+        
+
+
+
+	
+<div
+  class="notices warning"
+  
+>
+  <p>⚠️ <strong>Important:</strong> The information provided here is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report including this warning message.</p>
+
+</div>
+
+<p>In this section, you will implement security best practices by applying restrictive VPC endpoint policies to control which S3 buckets can be accessed through your Gateway VPC Endpoint. This demonstrates the principle of least privilege in cloud architecture.</p>
+<p><strong>Understanding VPC Endpoint Policies:</strong></p>
+<p>VPC endpoint policies are IAM resource policies that provide granular access control for traffic flowing through VPC endpoints. They work as an additional security layer:</p>
+<ul>
+<li><strong>Default Behavior</strong>: When you create an endpoint without a custom policy, AWS applies a permissive default policy allowing full access to all resources of the target service</li>
+<li><strong>Policy Type</strong>: JSON-based IAM resource policies attached directly to the endpoint</li>
+<li><strong>Enforcement Point</strong>: Evaluated when traffic passes through the endpoint (not on the AWS service side)</li>
+<li><strong>Combined Evaluation</strong>: Works in conjunction with IAM user/role policies and S3 bucket policies (all must allow an action)</li>
+<li><strong>Scope</strong>: Can restrict access by resource (specific buckets), principal (specific IAM identities), or action (specific S3 operations)</li>
+</ul>
+<p><strong>Why Use Endpoint Policies?</strong></p>
+<p>Endpoint policies are critical for enterprise security architectures:</p>
+<ol>
+<li><strong>Defense in Depth</strong>: Additional security layer beyond IAM and resource policies</li>
+<li><strong>Network-Level Control</strong>: Restrict what can be accessed through specific network paths</li>
+<li><strong>Compliance Requirements</strong>: Meet regulatory requirements for data access controls</li>
+<li><strong>Prevent Data Exfiltration</strong>: Limit which buckets can be accessed from VPC resources</li>
+<li><strong>Cost Optimization</strong>: Restrict access to authorized resources only, preventing misuse</li>
+</ol>
+<p><strong>Workshop Scenario:</strong></p>
+<p>You&rsquo;ll create a restrictive endpoint policy that:</p>
+<ul>
+<li>Allows access to a specific S3 bucket only</li>
+<li>Blocks access to all other S3 buckets</li>
+<li>Demonstrates how endpoint policies enforce access controls</li>
+</ul>
+<p><img src="../../images/5-Workshop/5.5-Policy/s3-bucket-policy.png" alt="Endpoint Policy Architecture"></p>
+<hr>
+<h4 id="part-1-establish-baseline-connectivity">Part 1: Establish Baseline Connectivity</h4>
+<p>Before applying a restrictive policy, verify current access to demonstrate the before/after comparison.</p>
+<p><strong>Step 1: Connect to Test Instance</strong></p>
+<ol>
+<li>Open <strong>AWS Systems Manager</strong> &gt; <strong>Session Manager</strong></li>
+<li>Click <strong>Start session</strong></li>
+<li>Select the EC2 instance named <strong>Test-Gateway-Endpoint</strong>
+<ul>
+<li>This instance is in the VPC with the Gateway Endpoint</li>
+<li>It routes S3 traffic through the Gateway Endpoint via route table configuration</li>
+</ul>
+</li>
+<li>Click <strong>Start session</strong></li>
+</ol>
+<p><strong>Step 2: Verify Access to Original S3 Bucket</strong></p>
+<p>In the Session Manager terminal, list the contents of the bucket you created in section 5.3:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 ls s3://&lt;your-bucket-name&gt;
+</span></span></code></pre></div><p>Replace <code>&lt;your-bucket-name&gt;</code> with your actual bucket name (e.g., <code>my-endpoint-test-bucket-123456</code>).</p>
+<p><img src="../../images/5-Workshop/5.5-Policy/test1.png" alt="Verify Original Bucket Access"></p>
+<p><strong>Expected Output:</strong></p>
+<p>You should see the two 1GB test files uploaded in earlier sections:</p>
+<pre tabindex="0"><code>2024-12-07 10:30:15 1073741824 testfile.txt
+2024-12-07 11:45:22 1073741824 onprem-data.dat
+</code></pre>
+<div
+  class="notices info"
+  
+>
+  <p><strong>Current Access</strong>: This works because the Gateway Endpoint currently has the default policy allowing full access (<code>&quot;*&quot;</code>) to all S3 resources. You&rsquo;re about to change this to demonstrate policy-based restrictions.</p>
+
+</div>
+
+<hr>
+<h4 id="part-2-create-second-s3-bucket-for-policy-testing">Part 2: Create Second S3 Bucket for Policy Testing</h4>
+<p>You&rsquo;ll create a second bucket to demonstrate selective access control.</p>
+<p><strong>Step 1: Navigate to S3 Console</strong></p>
+<ol>
+<li>Open the <a href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">Amazon S3 Console</a></li>
+<li>Click <strong>Create bucket</strong></li>
+</ol>
+<p><strong>Step 2: Configure New Bucket</strong></p>
+<ol>
+<li>
+<p><strong>Bucket name</strong>:</p>
+<ul>
+<li>Follow your existing naming pattern, but append <code>-restricted</code></li>
+<li>Example: If your first bucket is <code>my-endpoint-test-bucket-123456</code>, name this one <code>my-endpoint-test-bucket-123456-restricted</code></li>
+<li>Must be globally unique across all AWS accounts</li>
+</ul>
+</li>
+<li>
+<p><strong>Region</strong>:</p>
+<ul>
+<li>Ensure it&rsquo;s <strong>US East (N. Virginia) us-east-1</strong> (same as your VPC and first bucket)</li>
+</ul>
+</li>
+<li>
+<p><strong>Other settings</strong>:</p>
+<ul>
+<li>Leave all other settings at default values</li>
+<li>Default encryption: Enabled (SSE-S3)</li>
+<li>Block Public Access: Enabled (recommended)</li>
+<li>Versioning: Disabled (for workshop simplicity)</li>
+</ul>
+</li>
+<li>
+<p><strong>Create bucket</strong>:</p>
+<ul>
+<li>Scroll to bottom and click <strong>Create bucket</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.5-Policy/create-bucket.png" alt="Create Second S3 Bucket"></p>
+<p><strong>Step 3: Verify Bucket Creation</strong></p>
+<p>You should see a success message and the new bucket listed in the S3 console.</p>
+<p><img src="../../images/5-Workshop/5.5-Policy/create-bucket-success.png" alt="Bucket Created Successfully"></p>
+
+<div
+  class="notices tip"
+  
+>
+  <p><strong>Naming Strategy</strong>: Using a consistent naming pattern (original name + suffix) makes it easy to identify related resources and simplifies policy ARN construction. In production, use naming conventions that reflect environment, application, and purpose.</p>
+
+</div>
+
+<hr>
+<h4 id="part-3-apply-restrictive-endpoint-policy">Part 3: Apply Restrictive Endpoint Policy</h4>
+<p>Now you&rsquo;ll modify the Gateway Endpoint policy to allow access only to the new bucket.</p>
+<p><strong>Step 1: Navigate to VPC Endpoints</strong></p>
+<ol>
+<li>Open the <a href="https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:">VPC Console</a></li>
+<li>Click <strong>Endpoints</strong> in the left sidebar</li>
+<li>Locate and select the <strong>Gateway Endpoint</strong> you created in section 5.3
+<ul>
+<li>Type should show &ldquo;Gateway&rdquo;</li>
+<li>Service name should be <code>com.amazonaws.us-east-1.s3</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Step 2: Access Endpoint Policy Editor</strong></p>
+<ol>
+<li>With the endpoint selected, click the <strong>Policy</strong> tab in the bottom details pane</li>
+<li>You&rsquo;ll see the current policy (default allows all)</li>
+<li>Click <strong>Edit policy</strong> button</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.5-Policy/policy1.png" alt="Edit Endpoint Policy"></p>
+<p><strong>Current Default Policy:</strong></p>
+<p>The existing policy looks like this (allowing unrestricted access):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Step 3: Apply Restrictive Policy</strong></p>
+<ol>
+<li>
+<p><strong>Clear the existing policy</strong> in the policy editor</p>
+</li>
+<li>
+<p><strong>Copy and paste</strong> the following restrictive policy:</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;RestrictToSpecificBucketPolicy&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;AllowAccessToRestrictedBucketOnly&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;arn:aws:s3:::YOUR-RESTRICTED-BUCKET-NAME&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;arn:aws:s3:::YOUR-RESTRICTED-BUCKET-NAME/*&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="3">
+<li>
+<p><strong>Replace the ARN placeholders</strong>:</p>
+<ul>
+<li>Find <code>YOUR-RESTRICTED-BUCKET-NAME</code> (appears twice)</li>
+<li>Replace with your actual second bucket name (the one ending in <code>-restricted</code>)</li>
+<li>Example result:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Resource&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;arn:aws:s3:::my-endpoint-test-bucket-123456-restricted&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;arn:aws:s3:::my-endpoint-test-bucket-123456-restricted/*&#34;</span>
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Save the policy</strong>:</p>
+<ul>
+<li>Click <strong>Save</strong> button</li>
+</ul>
+</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.5-Policy/policy2.png" alt="Apply Custom Endpoint Policy"></p>
+<p><strong>Understanding the Policy:</strong></p>
+<p>Let&rsquo;s break down each component:</p>
+<ul>
+<li><strong><code>Version</code></strong>: IAM policy language version (always use &ldquo;2012-10-17&rdquo;)</li>
+<li><strong><code>Id</code></strong>: Optional identifier for the policy</li>
+<li><strong><code>Statement</code></strong>: Array of policy statements (can have multiple)
+<ul>
+<li><strong><code>Sid</code></strong>: Statement ID (descriptive label)</li>
+<li><strong><code>Effect</code></strong>: <code>Allow</code> (grants permissions) or <code>Deny</code> (explicitly denies)</li>
+<li><strong><code>Principal</code></strong>: <code>&quot;*&quot;</code> means any IAM identity (still subject to IAM policies)</li>
+<li><strong><code>Action</code></strong>: <code>s3:*</code> allows all S3 operations (GetObject, PutObject, ListBucket, etc.)</li>
+<li><strong><code>Resource</code></strong>: Two ARNs:
+<ul>
+<li>First ARN: The bucket itself (for operations like ListBucket)</li>
+<li>Second ARN with <code>/*</code>: All objects within the bucket (for GetObject, PutObject, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Policy Applied!</strong> The Gateway Endpoint now enforces that only the restricted bucket can be accessed through it. All attempts to access other buckets (including your original bucket) will be denied.</p>
+
+</div>
+
+<p><strong>Policy Evaluation Logic:</strong></p>
+<p>When an EC2 instance tries to access S3 through the endpoint:</p>
+<pre tabindex="0"><code>1. IAM policy on EC2 instance role: Must Allow
+2. VPC Endpoint policy: Must Allow ← We just restricted this
+3. S3 bucket policy: Must Allow (or not explicitly Deny)
+4. S3 ACLs: Must Allow (or not explicitly Deny)
+
+Only if ALL checks pass → Access granted
+</code></pre><hr>
+<h4 id="part-4-test-policy-enforcement">Part 4: Test Policy Enforcement</h4>
+<p>Now validate that the endpoint policy is enforcing access restrictions.</p>
+<p><strong>Step 1: Test Access to Original Bucket (Should Fail)</strong></p>
+<p>In your still-open Session Manager terminal on Test-Gateway-Endpoint, try to list the original bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 ls s3://&lt;your-original-bucket-name&gt;
+</span></span></code></pre></div><p><img src="../../images/5-Workshop/5.5-Policy/error.png" alt="Access Denied to Original Bucket"></p>
+<p><strong>Expected Output:</strong></p>
+<p>You should receive an <strong>Access Denied</strong> error:</p>
+<pre tabindex="0"><code>An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Access Denied
+</code></pre>
+<div
+  class="notices note"
+  
+>
+  <p><strong>Why Access Denied?</strong> The VPC endpoint policy no longer includes the original bucket in its allowed resources. Even though your EC2 instance IAM role has S3 permissions, the network path (through the endpoint) blocks access.</p>
+
+</div>
+
+<p><strong>Step 2: Prepare Test Data</strong></p>
+<p>Create a test file to upload to the restricted bucket:</p>
+<ol>
+<li>
+<p><strong>Navigate to home directory</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Create a 1GB test file</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fallocate -l 1G policy-test-file.dat
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>Step 3: Test Access to Restricted Bucket (Should Succeed)</strong></p>
+<p>Upload the file to the restricted bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 cp policy-test-file.dat s3://&lt;your-restricted-bucket-name&gt;
+</span></span></code></pre></div><p>Replace <code>&lt;your-restricted-bucket-name&gt;</code> with your second bucket name.</p>
+<p><img src="../../images/5-Workshop/5.5-Policy/test2.png" alt="Successful Upload to Restricted Bucket"></p>
+<p><strong>Expected Output:</strong></p>
+<p>The upload should succeed:</p>
+<pre tabindex="0"><code>upload: ./policy-test-file.dat to s3://my-bucket-restricted/policy-test-file.dat
+Completed 1.0 GiB/1.0 GiB
+</code></pre><p><strong>Step 4: Verify File Upload in S3 Console</strong></p>
+<ol>
+<li>Go back to the <strong>S3 Console</strong></li>
+<li>Click on your <strong>restricted bucket</strong></li>
+<li>You should see the <code>policy-test-file.dat</code> object</li>
+</ol>
+<p><img src="../../images/5-Workshop/5.5-Policy/test2-success.png" alt="File Successfully Uploaded"></p>
+
+<div
+  class="notices success"
+  
+>
+  <p><strong>Policy Enforcement Confirmed!</strong> The endpoint policy successfully:</p>
+<ul>
+<li>✅ Allowed access to the restricted bucket</li>
+<li>❌ Blocked access to the original bucket</li>
+</ul>
+<p>This demonstrates fine-grained network-level access control.</p>
+
+</div>
+
+<p><strong>Step 5: Confirm Original Bucket Is Still Blocked</strong></p>
+<p>As a final test, try to upload to the original bucket (should fail):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 cp policy-test-file.dat s3://&lt;your-original-bucket-name&gt;
+</span></span></code></pre></div><p><img src="../../images/5-Workshop/5.5-Policy/test2-fail.png" alt="Access Denied to Original Bucket"></p>
+<p><strong>Expected Output:</strong></p>
+<p>Access denied error:</p>
+<pre tabindex="0"><code>upload failed: ./policy-test-file.dat to s3://my-original-bucket/policy-test-file.dat
+An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+</code></pre><p>This confirms the endpoint policy is consistently enforcing restrictions.</p>
+<hr>
+<h4 id="understanding-policy-behavior">Understanding Policy Behavior</h4>
+<p><strong>Access Patterns Summary:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Target</th>
+          <th>Result</th>
+          <th>Reason</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>List objects</td>
+          <td>Original bucket</td>
+          <td>❌ Denied</td>
+          <td>Not in endpoint policy Resource list</td>
+      </tr>
+      <tr>
+          <td>Upload file</td>
+          <td>Original bucket</td>
+          <td>❌ Denied</td>
+          <td>Not in endpoint policy Resource list</td>
+      </tr>
+      <tr>
+          <td>List objects</td>
+          <td>Restricted bucket</td>
+          <td>✅ Allowed</td>
+          <td>Explicitly allowed in endpoint policy</td>
+      </tr>
+      <tr>
+          <td>Upload file</td>
+          <td>Restricted bucket</td>
+          <td>✅ Allowed</td>
+          <td>Explicitly allowed in endpoint policy</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>How Traffic Flows:</strong></p>
+<p>When EC2 accesses S3 through the Gateway Endpoint with a restrictive policy:</p>
+<pre tabindex="0"><code>┌─────────────────────┐
+│  EC2 Instance       │
+│  Test-Gateway-EP    │
+└──────────┬──────────┘
+           │
+           │ S3 API Request
+           ▼
+┌─────────────────────┐
+│  Route Table        │
+│  Directs S3 traffic │
+│  to Gateway Endpoint│
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────────────────┐
+│  Gateway VPC Endpoint           │
+│  Evaluates Endpoint Policy      │
+│                                 │
+│  IF bucket IN allowed list:     │
+│    → Forward to S3              │
+│  ELSE:                          │
+│    → Return Access Denied       │
+└─────────────────────────────────┘
+           │
+           │ (If allowed)
+           ▼
+┌─────────────────────┐
+│  Amazon S3 Service  │
+│  (Backend)          │
+└─────────────────────┘
+</code></pre><p><strong>Key Observations:</strong></p>
+<ol>
+<li><strong>Network-Level Enforcement</strong>: The endpoint policy blocks traffic before it even reaches S3</li>
+<li><strong>Independent of IAM</strong>: Even if IAM policies allow access, endpoint policy can block it</li>
+<li><strong>All-or-Nothing per Bucket</strong>: You cannot selectively allow only certain operations (e.g., read-only); the policy applies to all allowed actions</li>
+<li><strong>Principal Agnostic</strong>: With <code>&quot;Principal&quot;: &quot;*&quot;</code>, the restriction applies to all identities using the endpoint</li>
+</ol>
+<hr>
+<h4 id="production-use-cases-for-endpoint-policies">Production Use Cases for Endpoint Policies</h4>
+<p><strong>Enterprise Scenarios:</strong></p>
+<ol>
+<li>
+<p><strong>Data Residency Compliance</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::eu-compliant-data-bucket/*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;s3:ExistingObjectTag/DataClassification&#34;</span>: <span style="color:#e6db74">&#34;EUPersonalData&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Prevent Data Exfiltration</strong>:</p>
+<ul>
+<li>Whitelist only approved corporate buckets</li>
+<li>Block access to personal or external buckets</li>
+<li>Audit endpoint policy changes with CloudTrail</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-Tenant Environments</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::tenant-a-data/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::shared-resources/*&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Development vs Production Isolation</strong>:</p>
+<ul>
+<li>Dev VPC endpoint: Access only to dev/test buckets</li>
+<li>Prod VPC endpoint: Access only to production buckets</li>
+<li>Prevents accidental cross-environment access</li>
+</ul>
+</li>
+</ol>
+<p><strong>Advanced Policy Patterns:</strong></p>
+<p><strong>Condition-Based Access:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: [<span style="color:#e6db74">&#34;s3:GetObject&#34;</span>, <span style="color:#e6db74">&#34;s3:PutObject&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::sensitive-bucket/*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;aws:SourceVpce&#34;</span>: <span style="color:#e6db74">&#34;vpce-xxxxxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Read-Only Access:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;s3:ListBucket&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::readonly-bucket&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;arn:aws:s3:::readonly-bucket/*&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h4 id="key-takeaways">Key Takeaways</h4>
+<p><strong>What You Accomplished:</strong></p>
+<p>✅ <strong>Baseline Testing</strong>: Verified unrestricted access with default endpoint policy<br>
+✅ <strong>Bucket Creation</strong>: Created second S3 bucket for policy testing<br>
+✅ <strong>Policy Application</strong>: Applied restrictive endpoint policy limiting access to specific bucket<br>
+✅ <strong>Enforcement Validation</strong>: Confirmed policy blocks unauthorized buckets and allows authorized bucket<br>
+✅ <strong>Security Best Practice</strong>: Demonstrated principle of least privilege at network level</p>
+<p><strong>Security Principles Demonstrated:</strong></p>
+<ol>
+<li><strong>Defense in Depth</strong>: Endpoint policies add network-level control layer</li>
+<li><strong>Least Privilege</strong>: Grant only necessary access, not broad permissions</li>
+<li><strong>Explicit Allow</strong>: Whitelist approach (specify what&rsquo;s allowed, block everything else)</li>
+<li><strong>Network Segmentation</strong>: Control data flow at VPC endpoint level</li>
+<li><strong>Auditability</strong>: Policy changes logged in CloudTrail for compliance</li>
+</ol>
+<p><strong>Production Recommendations:</strong></p>
+<ul>
+<li><strong>Version Control</strong>: Store endpoint policies in Git with code review process</li>
+<li><strong>Policy Testing</strong>: Test policies in dev/staging before production deployment</li>
+<li><strong>Monitoring</strong>: Set up CloudWatch alarms for AccessDenied errors indicating policy violations</li>
+<li><strong>Documentation</strong>: Maintain clear documentation of which buckets are accessible through which endpoints</li>
+<li><strong>Regular Review</strong>: Audit endpoint policies quarterly to remove unnecessary access</li>
+<li><strong>Condition Keys</strong>: Use advanced IAM condition keys for time-based, IP-based, or tag-based restrictions</li>
+<li><strong>Deny Statements</strong>: Consider explicit Deny statements for high-security requirements</li>
+</ul>
+<p>This section demonstrated how VPC endpoint policies provide critical access control for enterprise cloud architectures, enabling you to enforce organizational security policies at the network infrastructure level!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/" title="Configuring Hybrid DNS for Private Endpoint Resolution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../5-workshop/5.6-cleanup/" title="Resource Cleanup and Workshop Completion" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../js/clipboard.min.js?1765118996"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765118996"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765118996"></script>
+    <script src="../../js/jquery.sticky.js?1765118996"></script>
+    <script src="../../js/featherlight.min.js?1765118996"></script>
+    <script src="../../js/highlight.pack.js?1765118996"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765118996"></script>
+    <script src="../../js/learn.js?1765118996"></script>
+    <script src="../../js/hugo-learn.js?1765118996"></script>
+
+    <link href="../../mermaid/mermaid.css?1765118996" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765118996"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>
