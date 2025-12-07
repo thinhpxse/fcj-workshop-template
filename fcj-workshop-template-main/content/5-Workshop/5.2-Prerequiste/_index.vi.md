@@ -1,13 +1,25 @@
 ---
 title : "Các bước chuẩn bị"
-
+date :  2025-12-06
 weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
+{{% notice warning %}}
+⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+{{% /notice %}}
+
+#### Quyền IAM Bắt Buộc
+
+Trước khi bắt đầu workshop này, bạn phải đảm bảo AWS IAM user hoặc role của bạn có đủ quyền để tạo và quản lý các tài nguyên cần thiết. Gắn IAM policy tùy chỉnh sau vào tài khoản người dùng của bạn hoặc assume một role với các quyền này.
+
+**Lưu Ý Bảo Mật Quan Trọng:**
+- Xem xét tất cả các quyền trước khi áp dụng để hiểu rõ tài nguyên nào sẽ được tạo
+- Các quyền này cần thiết cho việc triển khai và dọn dẹp workshop
+- Sau khi hoàn thành workshop, hãy cân nhắc xóa các quyền này nếu không còn cần thiết nữa
+- Đối với môi trường production, luôn tuân theo nguyên tắc cấp quyền tối thiểu (principle of least privilege)
+
 ```
 {
     "Version": "2012-10-17",
@@ -213,30 +225,93 @@ Gắn IAM permission policy sau vào tài khoản aws user của bạn để tri
         }
     ]
 }
-
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+**Phạm Vi Policy:**
+IAM policy này cấp quyền trên nhiều dịch vụ AWS cần thiết cho workshop:
+- **EC2 & VPC Networking**: Tạo và quản lý VPCs, subnets, route tables, security groups, Transit Gateway, VPN connections, và VPC endpoints
+- **CloudFormation**: Triển khai và quản lý các stack infrastructure as code
+- **IAM**: Tạo roles và instance profiles cho EC2 instances
+- **S3**: Tạo buckets và quản lý objects cho tài nguyên workshop
+- **Lambda & CloudWatch**: Triển khai serverless functions và giám sát tài nguyên
+- **Route53**: Cấu hình DNS và resolver endpoints
+- **SSM (Systems Manager)**: Cho phép truy cập instance an toàn qua Session Manager
+- **Secrets Manager**: Lưu trữ và truy xuất dữ liệu cấu hình nhạy cảm
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+#### Thiết Lập Môi Trường Sử Dụng Infrastructure as Code
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
+**Region Workshop:** Lab này được thiết kế cho region **US East (N. Virginia)** (`us-east-1`). Đảm bảo bạn chọn region này trước khi tiếp tục.
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+**Tổng Quan Triển Khai Tự Động:**
+Thay vì tạo từng tài nguyên thủ công, chúng ta sẽ sử dụng AWS CloudFormation để tự động hóa toàn bộ quá trình thiết lập cơ sở hạ tầng. Cách tiếp cận Infrastructure as Code (IaC) này cung cấp:
+- **Tính nhất quán**: Tất cả người tham gia làm việc với cấu hình giống hệt nhau
+- **Tốc độ**: Triển khai môi trường phức tạp với nhiều tài nguyên trong vài phút
+- **Khả năng lặp lại**: Dễ dàng tạo lại hoặc dọn dẹp môi trường
+- **Best Practices**: Được cấu hình sẵn với các thiết lập được AWS khuyến nghị
 
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
+**Các Bước Triển Khai:**
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+1. **Khởi Chạy CloudFormation Stack:**
+   - Click vào link này để mở CloudFormation quick-create console: [Triển Khai Cơ Sở Hạ Tầng Workshop](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup)
+   - Template URL đã được điền sẵn với cấu hình workshop
+   - Tên stack tự động được đặt là `PLCloudSetup`
 
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
+2. **Xem Lại Các Tham Số Stack:**
+   Xem lại các tham số đã được cấu hình sẵn (tất cả các giá trị mặc định đều được tối ưu cho workshop này):
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+![Cấu Hình CloudFormation Stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
 
-+ 2 VPCs đã được tạo
+3. **Xác Nhận Tạo Tài Nguyên IAM:**
+   - Cuộn xuống cuối trang
+   - Đánh dấu vào cả hai ô xác nhận:
+     - ✓ "I acknowledge that AWS CloudFormation might create IAM resources."
+     - ✓ "I acknowledge that AWS CloudFormation might create IAM resources with custom names."
+   - Click **Create stack**
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+![Xác Nhận và Tạo Stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
 
-+ 3 EC2s đã được tạo
+4. **Theo Dõi Tiến Trình Triển Khai:**
+   - CloudFormation sẽ bắt đầu cung cấp tài nguyên
+   - Thời gian triển khai dự kiến: **khoảng 15-20 phút**
+   - Bạn có thể theo dõi tiến trình trong CloudFormation console dưới tab "Events"
+   - Stack sử dụng nested stacks để tổ chức việc tạo tài nguyên một cách logic
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+**Những Gì Được Tạo:**
+CloudFormation template tự động cung cấp:
+- **2 Virtual Private Clouds (VPCs)**: Một mô phỏng môi trường cloud, một mô phỏng on-premises
+- **Nhiều Subnets**: Public và private subnets trên các availability zones
+- **AWS Transit Gateway**: Hub trung tâm cho kết nối VPC
+- **Site-to-Site VPN**: Kết nối VPN được cấu hình sẵn giữa các VPCs
+- **3 EC2 Instances**: Test instances trong các phân đoạn mạng khác nhau
+- **Security Groups**: Được cấu hình sẵn cho lưu lượng workshop
+- **IAM Roles**: Instance profiles cho EC2 instances
+- **Route Tables**: Routing được cấu hình đúng giữa các môi trường
+
+![Triển Khai Hoàn Tất](/images/5-Workshop/5.2-Prerequisite/complete.png)
+
+**Xác Minh Triển Khai:**
+
+Khi trạng thái stack hiển thị `CREATE_COMPLETE`, hãy xác minh các tài nguyên:
+
+1. **Kiểm Tra VPCs Đã Tạo:**
+   Di chuyển đến VPC Dashboard và xác nhận hai VPCs đã được tạo:
+   - Cloud VPC (cho tài nguyên AWS cloud)
+   - On-Premises VPC (mô phỏng datacenter)
+
+![VPCs Đã Tạo](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+
+2. **Kiểm Tra EC2 Instances:**
+   Di chuyển đến EC2 Dashboard và xác minh ba instances đang chạy:
+   - Cloud Test Instance (trong Cloud VPC)
+   - On-Prem Test Instance (trong On-Prem VPC)
+   - VPN Gateway Instance (cho Site-to-Site connectivity)
+
+![EC2 Instances Đã Tạo](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+
+**Khắc Phục Sự Cố:**
+- Nếu việc tạo stack thất bại, kiểm tra tab "Events" để xem thông báo lỗi
+- Đảm bảo IAM user của bạn có tất cả các quyền cần thiết từ policy ở trên
+- Xác minh bạn đang ở region us-east-1
+- Kiểm tra AWS service quotas cho EC2, VPC, và CloudFormation nếu bạn gặp giới hạn
+
+Bạn đã sẵn sàng để tiếp tục với các bài tập workshop!

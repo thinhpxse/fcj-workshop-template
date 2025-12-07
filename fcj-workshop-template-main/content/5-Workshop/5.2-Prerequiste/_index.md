@@ -1,13 +1,24 @@
 ---
-title : "Prerequiste"
-
+title : "Prerequisites"
+date :  2025-12-06
 weight : 2 
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Add the following IAM permission policy to your user account to deploy and cleanup this workshop.
+{{% notice warning %}}
+⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
+{{% /notice %}}
+
+#### Required IAM Permissions
+
+Before starting this workshop, you must ensure your AWS IAM user or role has sufficient permissions to create and manage the necessary resources. Attach the following custom IAM policy to your user account or assume a role with these permissions.
+
+**Important Security Notes:**
+- Review all permissions before applying to understand what resources will be created
+- These permissions are required for workshop deployment and cleanup operations
+- After completing the workshop, consider removing these permissions if they're no longer needed
+- For production environments, always follow the principle of least privilege
 ```
 {
     "Version": "2012-10-17",
@@ -216,27 +227,91 @@ Add the following IAM permission policy to your user account to deploy and clean
 
 ```
 
-#### Provision resources using CloudFormation
+**Policy Coverage:**
+This IAM policy grants permissions across multiple AWS services essential for the workshop:
+- **EC2 & VPC Networking**: Create and manage VPCs, subnets, route tables, security groups, Transit Gateway, VPN connections, and VPC endpoints
+- **CloudFormation**: Deploy and manage infrastructure as code stacks
+- **IAM**: Create roles and instance profiles for EC2 instances
+- **S3**: Create buckets and manage objects for workshop resources
+- **Lambda & CloudWatch**: Deploy serverless functions and monitor resources
+- **Route53**: Configure DNS and resolver endpoints
+- **SSM (Systems Manager)**: Enable secure instance access via Session Manager
+- **Secrets Manager**: Store and retrieve sensitive configuration data
 
-In this lab, we will use **N.Virginia region (us-east-1)**.
+#### Environment Setup Using Infrastructure as Code
 
-To prepare the workshop environment, deploy this **CloudFormation Template** (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Accept all of the defaults when deploying the template. 
+**Workshop Region:** This lab is designed for the **US East (N. Virginia)** region (`us-east-1`). Ensure you select this region before proceeding.
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+**Automated Deployment Overview:**
+Instead of manually creating each resource, we'll use AWS CloudFormation to automate the entire infrastructure setup. This Infrastructure as Code (IaC) approach provides:
+- **Consistency**: All participants work with identical configurations
+- **Speed**: Deploy complex multi-resource environments in minutes
+- **Repeatability**: Easy to recreate or clean up the environment
+- **Best Practices**: Pre-configured with AWS recommended settings
 
-+ Tick 2 acknowledgement boxes
-+ Choose **Create stack**
+**Deployment Steps:**
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+1. **Launch the CloudFormation Stack:**
+   - Click this link to open the CloudFormation quick-create console: [Deploy Workshop Infrastructure](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup)
+   - The template URL is pre-populated with the workshop configuration
+   - Stack name is automatically set to `PLCloudSetup`
 
-The **ClouddFormation** deployment requires about 15 minutes to complete.
+2. **Review Stack Parameters:**
+   Review the pre-configured parameters (all defaults are optimized for this workshop):
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+![CloudFormation Stack Configuration](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
 
-+ **2 VPCs** have been created
+3. **Acknowledge IAM Resource Creation:**
+   - Scroll to the bottom of the page
+   - Check both acknowledgment boxes:
+     - ✓ "I acknowledge that AWS CloudFormation might create IAM resources."
+     - ✓ "I acknowledge that AWS CloudFormation might create IAM resources with custom names."
+   - Click **Create stack**
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+![Acknowledge and Create Stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
 
-+ **3 EC2s** have been created
+4. **Monitor Deployment Progress:**
+   - CloudFormation will begin provisioning resources
+   - Expected deployment time: **approximately 15-20 minutes**
+   - You can monitor progress in the CloudFormation console under the "Events" tab
+   - The stack uses nested stacks to organize resource creation logically
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+**What Gets Created:**
+The CloudFormation template automatically provisions:
+- **2 Virtual Private Clouds (VPCs)**: One simulating cloud environment, one simulating on-premises
+- **Multiple Subnets**: Public and private subnets across availability zones
+- **AWS Transit Gateway**: Central hub for VPC connectivity
+- **Site-to-Site VPN**: Pre-configured VPN connection between VPCs
+- **3 EC2 Instances**: Test instances in different network segments
+- **Security Groups**: Pre-configured for workshop traffic
+- **IAM Roles**: Instance profiles for EC2 instances
+- **Route Tables**: Properly configured routing between environments
+
+![Deployment Complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+
+**Verify Deployment:**
+
+Once the stack status shows `CREATE_COMPLETE`, verify the resources:
+
+1. **Check VPCs Created:**
+   Navigate to VPC Dashboard and confirm two VPCs are present:
+   - Cloud VPC (for AWS cloud resources)
+   - On-Premises VPC (simulating datacenter)
+
+![VPCs Created](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+
+2. **Check EC2 Instances:**
+   Navigate to EC2 Dashboard and verify three instances are running:
+   - Cloud Test Instance (in Cloud VPC)
+   - On-Prem Test Instance (in On-Prem VPC)
+   - VPN Gateway Instance (for Site-to-Site connectivity)
+
+![EC2 Instances Created](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+
+**Troubleshooting:**
+- If stack creation fails, check the "Events" tab for error messages
+- Ensure your IAM user has all required permissions from the policy above
+- Verify you're in the us-east-1 region
+- Check AWS service quotas for EC2, VPC, and CloudFormation if you encounter limits
+
+You're now ready to proceed with the workshop exercises!
