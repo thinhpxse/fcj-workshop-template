@@ -1,56 +1,88 @@
 ---
-title: "Week 10 Worklog"
-weight: 2
+title: "Worklog Week 10 – Serverless Web App Workshop & Elastic Beanstalk & WordPress on AWS"
+weight: 1
 chapter: false
-pre: " <b> 1.10. </b> "
+pre: " <b> 1.x. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% notice warning %}}
+⚠️ Note: This is a reference template only — do not copy verbatim for official submission.
 {{% /notice %}}
 
+### Objectives of This Week:
 
-### Week 10 Objectives:
+* Understand how to build serverless web applications and integrate APIs.
+* Deploy Node.js applications using Elastic Beanstalk and automate CI/CD with AWS CDK.
+* Learn WordPress architecture on AWS and run WordPress on Amazon EC2.
+* Compare Serverless Web Apps, Elastic Beanstalk, and EC2-hosted WordPress.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+---
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Perform This Week:
+| Day | Tasks | Start Date | End Date | Reference |
+| --- | ----- | ---------- | -------- | --------- |
+| 2 | - Overview of **Serverless Web App Workshop** <br> - Build Serverless APIs (Lambda + API Gateway) | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Build **Serverless Chat Application** <br> - WebSocket API + DynamoDB Streams | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - **Elastic Beanstalk Workshop** <br> - Deploy Node.js application on Elastic Beanstalk | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - CI/CD with Elastic Beanstalk + **CDK Pipelines** <br> - Automated deployment from source → production | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - **WordPress Architecture on AWS** <br> - WordPress Well-Architected design | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 7 | - Run WordPress on EC2: <br> &emsp; + EC2 <br> &emsp; + RDS <br> &emsp; + EFS/FSx <br> &emsp; + ALB | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
 
+---
 
-### Week 10 Achievements:
+### Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+## 🟣 1. Serverless Web App Workshop
 
-* Successfully created and configured an AWS Free Tier account.
+### 🔧 Building Serverless APIs
+- Built APIs using **Amazon API Gateway** and **AWS Lambda**.  
+- Implemented routing, stages, integrations, and security (CORS, Cognito authentication).  
+- Stored data in DynamoDB and designed tables based on access patterns.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+### 💬 Serverless Chat Application
+- Used **API Gateway WebSocket APIs** to build a real-time chat system.  
+- Used DynamoDB Streams to push real-time messages to connected clients.  
+- Lambda functions handled events in a fully event-driven architecture.  
+- The application automatically scaled without server management.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+---
 
-* Used AWS CLI to perform basic operations such as:
+## 🟢 2. Elastic Beanstalk Workshop
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+### 🚀 Deploying Node.js Applications
+- Uploaded source code to Elastic Beanstalk.
+- Elastic Beanstalk automatically provisioned EC2, Auto Scaling Groups, Load Balancers, and Security Groups.
+- Learned deployment policies: Rolling, Rolling with Additional Batch, Immutable, etc.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+### 🔄 CI/CD with Elastic Beanstalk & CDK Pipelines
+- Built automated pipelines for build and deployment.  
+- Used **AWS CDK** to define Elastic Beanstalk environments and pipeline infrastructure.  
+- Reduced deployment errors and delivery time.
+
+---
+
+## 🔵 3. WordPress on AWS
+
+### 🏗 WordPress Architecture on AWS
+- Learned the standard AWS architecture:
+  - EC2 for the PHP application servers  
+  - Amazon RDS (MySQL) for the database  
+  - EFS/FSx for shared `wp-content` storage  
+  - ALB for load balancing  
+  - CloudFront + S3 for optimized media delivery
+- Understood how to scale WordPress across multiple instances.
+
+### 💻 Running WordPress on Amazon EC2
+- Launched EC2 and installed LAMP/LEMP stack.  
+- Connected WordPress to Amazon RDS MySQL.  
+- Mounted shared storage using EFS/FSx.  
+- Configured basic security and backups.  
+- Tuned performance and caching.
+
+---
+
+### Weekly Summary:
+
+* Completed hands-on experience with serverless APIs, real-time WebSocket chat, DynamoDB, and event-driven architectures.  
+* Became proficient in deploying Node.js applications with Elastic Beanstalk and CI/CD using AWS CDK.  
+* Gained solid understanding of optimized WordPress architecture on AWS and practical deployment on EC2.  
+* Ready to combine Serverless, Elastic Beanstalk, and EC2 models for real-world projects.

@@ -1,57 +1,95 @@
 ---
-title: "Week 9 Worklog"
+title: "Worklog Week 9 – Application Modernization on AWS"
 
 weight: 1
 chapter: false
-pre: " <b> 1.9. </b> "
+pre: " <b> 1.x. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% notice warning %}}
+⚠️ Note: This is a reference template — do not copy it verbatim for official submission.
 {{% /notice %}}
 
+### Objectives of This Week:
 
-### Week 9 Objectives:
+* Understand application modernization using Microservices, Serverless, and Event-driven architectures.
+* Learn how to migrate from Monolith → Microservices and set up CI/CD for modern applications.
+* Study and practice Serverless series (DevAx, Book Store, Document Management System).
+* Gain knowledge of API Gateway, SAM, Cognito, AppSync, CloudFront, Amplify, DynamoDB in modern architectures.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+---
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Perform This Week:
+| Day | Tasks | Start Date | End Date | Reference |
+| --- | ----- | ---------- | -------- | --------- |
+| 2 | - Overview **Application Modernization on AWS** <br> - Monolith to Microservices Migration | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - CI/CD for Application Release <br> - Building Microservices <br> - Data Restructuring & Workflow Restructuring | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Event-Driven Architecture <br> - SPA Authentication (Cognito) <br> - AWS AI Services Integration | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Serverless - DevAx Series (Backend & Architecture) | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Serverless Book Store Series: Lambda + S3 + DynamoDB <br> - Frontend for Serverless APIs <br> - Deployment Automation with AWS SAM | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 7 | - Cognito Authentication <br> - Custom Domains + SSL <br> - Event Processing with SQS/SNS <br> - CI/CD for Serverless Applications | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 8 | - Monitoring Serverless Apps <br> - AppSync GraphQL APIs <br> - Serverless Document Management System Series | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 9 | - Document CRUD with Lambda + DynamoDB <br> - Amplify Storage/Auth <br> - API Gateway Frontend Integration | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 10 | - Deployment with AWS SAM <br> - CloudFront setup <br> - Adding Search functionality | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 11 | - DevOps for Document System <br> - Distributed Tracing: X-Ray + CloudWatch | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
 
+---
 
-### Week 9 Achievements:
+### Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 🏗 1. Application Modernization Fundamentals
+- Mastered the Monolith → Microservices model.  
+- Understood how to refactor data, workflows, and architecture when migrating to microservices.  
+- Learned how to build CI/CD pipelines for fast and reliable releases.
 
-* Successfully created and configured an AWS Free Tier account.
+#### ⚡ 2. Event-Driven & Serverless Architecture
+- Applied event-driven patterns using S3, SNS, SQS, Lambda, and EventBridge.  
+- Implemented SPA Authentication with Amazon Cognito (User Pool, Identity Pool).  
+- Integrated AWS AI Services into applications (Rekognition, Comprehend, etc.).
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+---
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+### 🟣 **Serverless – DevAx Series**
+- Serverless backend architecture using Lambda, API Gateway, and DynamoDB.  
+- Built scalable applications without server management.  
+- Optimized performance and error handling using event-driven patterns.
 
-* Used AWS CLI to perform basic operations such as:
+---
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+### 🟢 **Serverless – Book Store Series**
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+#### Backend
+- Used Lambda + S3 + DynamoDB for CRUD operations and business logic.  
+- Routed API requests from API Gateway to Lambda.
+
+#### Frontend
+- Built UI to call serverless APIs.  
+- Optimized state management, fetch, and re-rendering.
+
+#### Deployment
+- Deployed with **AWS SAM**: template.yaml, automated build & deploy.  
+- Built complete CI/CD pipeline for serverless applications.
+
+#### Authentication
+- Used **Amazon Cognito** for sign-in, sign-up, and JWT tokens.
+
+#### Advanced
+- Configured custom domains + SSL using ACM + API Gateway.  
+- Implemented event processing with SNS & SQS.  
+- Monitored using CloudWatch: logs, metrics, and alarms.  
+- Built GraphQL APIs with **AWS AppSync**.
+
+---
+
+### 🔵 **Serverless – Document Management System Series**
+
+#### Backend & CRUD
+- Implemented document CRUD with Lambda + DynamoDB.  
+- Optimized partition keys and GSIs.
+
+#### Storage & Auth
+- Used AWS Amplify for Authentication, Storage, and Hosting.  
+- Secured document upload and download.
+
+#### Integration
+- Connected frontend to backend using API Gateway.  
+- Distributed content quickly and securely with Cloud

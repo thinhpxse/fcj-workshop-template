@@ -1,56 +1,105 @@
 ---
-title: "Week 11 Worklog"
-weight: 2
+title: "Worklog Week 11 – Container Services on AWS"
+weight: 1
 chapter: false
-pre: " <b> 1.11. </b> "
+pre: " <b> 1.x. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% notice warning %}}
+⚠️ Note: This is a reference template — do not copy verbatim for official submission.
 {{% /notice %}}
 
+### Objectives of This Week:
 
-### Week 11 Objectives:
+* Understand the entire AWS Container Services ecosystem.
+* Practice deploying containers using Amazon Lightsail, ECS Fargate, and Amazon EKS.
+* Apply Infrastructure as Code (IaC) for ECS and EKS using AWS CDK and EKS Blueprints.
+* Build CI/CD pipelines for containerized applications.
+* Learn about ROSA – Red Hat OpenShift Service on AWS.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+---
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Perform This Week:
+| Day | Tasks | Start Date | End Date | Reference |
+| --- | ----- | ---------- | -------- | --------- |
+| 2 | - Overview of **Container Services on AWS** <br> - Lightsail Containers Architecture | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Getting Started with **Amazon Lightsail Containers** | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Amazon ECS Workshop: <br> &emsp; + Containerization with ECS & Fargate <br> &emsp; + ECS Cluster, Task, Service | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - IaC for ECS with **AWS CDK** <br> - CI/CD Pipeline for ECS Applications | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Amazon EKS Workshop: Getting Started with EKS <br> - EKS Node Groups, VPC, RBAC | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 7 | - IaC with **EKS Blueprints for CDK** <br> - CI/CD for EKS Applications | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 8 | - Deploying First Application to Amazon EKS <br> - Terraform with EKS (Coming Soon) | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
+| 9 | - Red Hat OpenShift Service on AWS (**ROSA**) | dd/mm/2025 | dd/mm/2025 | https://cloudjourney.awsstudygroup.com/ |
 
+---
 
-### Week 11 Achievements:
+### Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+---
 
-* Successfully created and configured an AWS Free Tier account.
+## 🟣 1. Amazon Lightsail Containers
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+- Understood how Lightsail simplifies container deployment with minimal configuration.  
+- Pushed Docker images to Lightsail Container Service.  
+- Scaled containers and quickly created staging/production environments.  
+- Used the built-in Lightsail Load Balancer.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+---
 
-* Used AWS CLI to perform basic operations such as:
+## 🟢 2. Amazon ECS Workshop (ECS & Fargate)
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+### Containerization with ECS & Fargate
+- Created ECS Clusters (Fargate mode without managing servers).  
+- Built Task Definitions: container image, CPU, memory, and port mappings.  
+- Created ECS Services with Auto Scaling.  
+- Deployed fully containerized applications.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+### Infrastructure as Code with AWS CDK
+- Used CDK to create ECS Clusters, Task Definitions, Services, and Application Load Balancers.  
+- IaC enabled reusable and automated infrastructure deployment.
+
+### CI/CD for ECS Applications
+- Implemented CodePipeline + CodeBuild to build images → push to ECR → deploy to ECS.  
+- Fully automated the CI/CD lifecycle.
+
+---
+
+## 🔵 3. Amazon EKS Workshop (Kubernetes on AWS)
+
+### Getting Started with EKS
+- Learned about the control plane, worker nodes, node groups, and RBAC.  
+- Deployed an EKS cluster and configured `kubectl`.
+
+### IaC with EKS Blueprints (CDK)
+- Created EKS clusters using CDK Blueprints.  
+- Automatically installed add-ons: VPC CNI, CoreDNS, kube-proxy, ALB Controller, etc.  
+- Managed clusters using enterprise-grade best practices.
+
+### CI/CD for EKS Applications
+- Built Docker images and pushed to ECR → automatically deployed Kubernetes manifests (YAML).  
+- Used Blue/Green and Rolling deployments with Kubernetes.
+
+### Deploying First App to EKS
+- Created Kubernetes Deployments and Services (ClusterIP/LoadBalancer).  
+- Exposed the application using ALB Ingress Controller.
+
+### Terraform with EKS (Coming Soon)
+- Note: Not implemented yet, planned for future learning.
+
+---
+
+## 🔴 4. Red Hat OpenShift on AWS (ROSA)
+
+- Understood ROSA as a fully managed OpenShift service on AWS.  
+- Integrated enterprise Kubernetes with strong security and compliance.  
+- Suitable for hybrid cloud and high-compliance workloads.  
+- Supported automated deployment, scaling, and management via OpenShift Console.
+
+---
+
+### Weekly Summary:
+
+* Completed knowledge from simple container platforms (Lightsail) to enterprise orchestration (EKS).  
+* Became proficient in ECS Fargate, CDK-based IaC, and CI/CD for container workloads.  
+* Gained hands-on experience with Kubernetes architecture on Amazon EKS.  
+* Explored ROSA as an enterprise-grade container solution on AWS.  
+* Ready to design and operate modern container infrastructure for real-world projects.

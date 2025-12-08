@@ -1,57 +1,61 @@
+# Worklog 5 – AWS Security
+
+⚠️ Note: This is only a sample template. Do not submit it as your official assignment.
+
+### Weekly Objectives
+
+- Understand AWS security principles: Identity, Access, Data Protection, Threat Detection.
+- Learn the roles of IAM, KMS, VPC, Firewall Manager, GuardDuty, and other security services.
+- Practice access control, data protection, identity management, and threat detection.
+- Build foundational knowledge of AWS Security Best Practices for real-world environments.
+
 ---
-title: "Week 5 Worklog"
 
-weight: 1
-chapter: false
-pre: " <b> 1.5. </b> "
+### Tasks for This Week
+
+| Day | Tasks | Start Date | End Date | References |
+| --- | ----- | ---------- | -------- | ---------- |
+| 2 | - Overview of **AWS Security** <br> - Identify 4 main areas: Identity, Access Control, Data Protection, Threat Detection | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 3 | - Identity Federation using **IAM Identity Center (AWS SSO)** <br> - IAM Permission Boundaries | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 4 | - IAM Policies & Conditions <br> - Security & Compliance with **AWS Security Hub** | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 5 | - Private S3 access via **VPC Endpoints** <br> - Application protection with **AWS WAF** | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 6 | - Encryption using **AWS KMS** <br> - Data protection using **Amazon Macie** <br> - Secrets management with **AWS Secrets Manager** | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 7 | - Centralized policy governance with **Firewall Manager** <br> - Threat detection using **AWS GuardDuty** <br> - Automated OS patching with **EC2 Image Builder** | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 8 | - Cross-domain authentication with **Amazon Cognito** <br> - Summary of S3 Security Best Practices | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Achievements
 
-### Week 5 Objectives:
+#### 🔐 Identity & Access Management
+- **IAM Identity Center (AWS SSO)**: Centralized identity management supporting SAML/OIDC.
+- **Permission Boundaries**: Define the maximum permissions an entity can receive.
+- **IAM Policies & Conditions**: Context-based access control using IP, MFA, time, etc.
+- **Amazon Cognito**: User authentication with OAuth2, IdPs, and social login.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+#### 🔒 Data Protection
+- **AWS KMS**: Data encryption, key management, key rotation.
+- **Amazon Macie**: Detect sensitive data (PII) stored in S3.
+- **S3 Best Practices**: Block Public Access, SSE-KMS, and safe Bucket Policies.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+#### 🛡 Application & Network Security
+- **AWS WAF**: Protects against SQL injection, XSS, bots, and rate-based attacks.
+- **Firewall Manager**: Centralized management of WAF, Shield, and security policies.
+- **VPC Endpoints**: Private S3 access without traversing the Internet.
 
+#### 🕵 Threat Detection & Monitoring
+- **AWS GuardDuty**: Detects anomalies and potential intrusions.
+- **AWS Security Hub**: Compliance checks against CIS, PCI-DSS; unified security insights.
 
-### Week 5 Achievements:
+#### ♻ System Patching
+- **EC2 Image Builder**: Automated AMI patching to reduce vulnerabilities.
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+---
 
-* Successfully created and configured an AWS Free Tier account.
+### Weekly Summary
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Gained a solid understanding of key AWS security services.
+- Learned Identity Federation, Permission Boundaries, and advanced IAM controls.
+- Understood encryption, data monitoring, and application security tools.
+- Can design an AWS environment following security best practices.
+- Ready for more advanced secure-by-design AWS implementations in upcoming weeks.

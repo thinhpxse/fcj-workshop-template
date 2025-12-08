@@ -1,56 +1,71 @@
+# Worklog Week 7 – AWS Performance
+
+⚠️ Note: This is only a sample template. Do not submit it as your official assignment.
+
+### Weekly Objectives
+
+- Understand system performance optimization techniques on AWS.
+- Learn Docker, ECS, CI/CD, and workflow orchestration.
+- Practice DevOps models for automated build, deploy, and scaling.
+- Understand storage performance, hybrid storage, and NoSQL processing with DynamoDB.
+
 ---
-title: "Week 7 Worklog"
-weight: 1
-chapter: false
-pre: " <b> 1.7. </b> "
+
+### Tasks for This Week
+
+| Day | Tasks | Start Date | End Date | References |
+| --- | ----- | ---------- | -------- | ---------- |
+| 2 | - Overview of **AWS Performance Optimization** <br> - The role of containerization & orchestration | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 3 | - Learn **Containerization with Docker** <br> - Build Dockerfile & follow best practices | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 4 | - **Amazon ECS**: cluster, task, service <br> - Compare EC2 mode vs Fargate mode | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 5 | - **Infrastructure as Code for ECS** with AWS CDK <br> - Auto-generate ECS Service, Task, Load Balancer | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 6 | - CI/CD with **AWS CodePipeline** <br> - Automate build → test → deploy <br> - DevOps pipeline with CodePipeline | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 7 | - Hybrid storage using **AWS Storage Gateway** <br> - Windows File Storage using **Amazon FSx** | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+| 8 | - **DynamoDB Advanced Applications** <br> - Workflow orchestration with **AWS Step Functions** <br> - Storage Performance Workshop | dd/mm/2025 | dd/mm/2025 | cloudjourney.awsstudygroup.com |
+
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Achievements
 
-### Week 7 Objectives:
+#### 🐳 Containerization & Orchestration
+- Strong understanding of Docker: image building, layer optimization, registry operations.
+- Mastered Amazon ECS components:
+  - Task Definitions  
+  - Service Auto Scaling  
+  - ECS Cluster (Fargate & EC2 mode)
+- Learned how to deploy high-performance container workloads on AWS.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+#### 🧱 Infrastructure as Code for ECS
+- Used **AWS CDK** to define ECS Services, Load Balancers, and Task Definitions.
+- Improved configuration management through IaC with reproducible deployments.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+#### 🔄 CI/CD & DevOps Automation
+- Automated deployments using **AWS CodePipeline** and CodeBuild.
+- Built a fully automated pipeline:
+  - Source → Build → Test → Deploy
+- Applied DevOps principles for ECS workloads.
 
+#### 💾 Storage Performance
+- **AWS Storage Gateway**: enhanced hybrid storage and caching.
+- **Amazon FSx**: high-performance SMB storage for Windows workloads.
+- Hands-on workshop on throughput, IOPS, and storage scaling.
 
-### Week 7 Achievements:
+#### ⚡ High Performance NoSQL
+- **Amazon DynamoDB**:
+  - High-performance key-value & document store  
+  - Adaptive capacity  
+  - On-demand vs provisioned modes  
+  - Global Tables for global-scale performance
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### 🔁 Workflow Orchestration
+- Built stateful workflows with **AWS Step Functions**.
+- Orchestrated multiple AWS services in a high-performance pipeline.
 
-* Successfully created and configured an AWS Free Tier account.
+---
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+### Weekly Summary
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Gained deep knowledge in performance optimization for containers, CI/CD, storage, and NoSQL.
+- Learned to apply DevOps with Docker + ECS + CDK + CodePipeline.
+- Understood performance scaling strategies in distributed systems.
+- Ready to deploy high-performance, containerized workloads in AWS Production environments.
