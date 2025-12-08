@@ -1,8 +1,8 @@
 ---
-title: "Worklog Tuần 6– AWS Reliability"
+title: "Week 6"
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.6 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây chỉ là bản mẫu tham khảo, không sao chép nguyên văn cho bài nộp chính thức.

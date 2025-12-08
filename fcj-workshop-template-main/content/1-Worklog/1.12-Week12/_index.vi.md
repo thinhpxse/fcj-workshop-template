@@ -1,7 +1,7 @@
 ---
-title: "Worklog Tuần 12"
-
-weight: 2
+title: "Week 12"
+date: 2024-01-01
+weight: 12
 chapter: false
 pre: " <b> 1.12 </b> "
 ---
@@ -11,48 +11,63 @@ pre: " <b> 1.12 </b> "
 
 ### Mục tiêu tuần 12:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Ôn tập tất cả các dịch vụ AWS cốt lõi đã học trong suốt thời gian thực tập.
+* Thiết kế và triển khai dự án cuối kỳ tích hợp nhiều dịch vụ AWS.
+* Chuẩn bị báo cáo cuối kỳ và thuyết trình.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - Ôn tập tất cả các dịch vụ cốt lõi: EC2, S3, RDS, DynamoDB, IAM, VPC, Lambda, CloudWatch, CloudFront, API Gateway <br> - Xác định yêu cầu và kiến trúc cho dự án cuối kỳ                                                                                             | 24/11/2025   | 24/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - Bắt đầu triển khai dự án: <br>&emsp; + Thiết kế VPC, subnet, security group <br>&emsp; + Cấu hình S3, CloudFront, RDS/DynamoDB (tùy theo dự án)                                            | 25/11/2025   | 25/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Tiếp tục triển khai dự án: <br>&emsp; + Xây dựng backend sử dụng Lambda / API Gateway hoặc EC2 (tùy theo kiến trúc) <br>&emsp; + Kết nối database và xử lý dữ liệu <br>&emsp; + Tích hợp CloudWatch để monitoring | 26/11/2025   | 26/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | - Hoàn thiện dự án: <br>&emsp; + Thêm Cognito authentication nếu cần <br>&emsp; + Hoàn thiện CI/CD pipeline (CodePipeline/CodeBuild) <br>&emsp; + Kiểm thử end-to-end hệ thống                  | 27/11/2025   | 27/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - Viết báo cáo cuối kỳ <br> - Chuẩn bị bài thuyết trình (kiến trúc, lý do lựa chọn dịch vụ, chi phí, bảo mật) <br> - Tổng kết toàn bộ hành trình học tập và tự đánh giá năng lực                                                                                         | 28/11/2025   | 28/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 12:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Ôn tập Các dịch vụ AWS cốt lõi:
+  * EC2, S3, RDS, DynamoDB
+  * IAM, VPC, Security Group
+  * Lambda, API Gateway
+  * CloudWatch, CloudFront
+  * Cognito, CodePipeline
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Lập kế hoạch Dự án cuối kỳ:
+  * Xác định yêu cầu dự án
+  * Thiết kế kiến trúc hệ thống
+  * Lựa chọn các dịch vụ AWS phù hợp
+  * Tạo sơ đồ kiến trúc
+  * Lên kế hoạch các bước triển khai
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Triển khai Hạ tầng Dự án:
+  * Thiết kế VPC với public và private subnet
+  * Cấu hình security group và network ACL
+  * Thiết lập S3 bucket để lưu trữ
+  * Cấu hình CloudFront để phân phối nội dung
+  * Tạo RDS database instance
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Xây dựng Backend Ứng dụng:
+  * Triển khai Lambda function cho business logic
+  * Tạo API Gateway REST endpoint
+  * Kết nối Lambda với database
+  * Cấu hình CloudWatch log và monitoring
+  * Thiết lập xử lý lỗi và retry logic
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Hoàn thành Tính năng Dự án:
+  * Tích hợp Cognito để xác thực người dùng
+  * Thiết lập CodePipeline cho CI/CD
+  * Thực hiện kiểm thử end-to-end
+  * Sửa lỗi và tối ưu hóa hiệu suất
+  * Xác minh tất cả tính năng hoạt động đúng
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Chuẩn bị Bàn giao Cuối kỳ:
+  * Viết báo cáo dự án toàn diện
+  * Tạo slide thuyết trình bao gồm:
+    * Tổng quan kiến trúc
+    * Lý do lựa chọn dịch vụ
+    * Triển khai bảo mật
+    * Ước tính chi phí
+  * Tổng kết hành trình học tập 12 tuần
+  * Tự đánh giá năng lực kỹ thuật đã đạt được

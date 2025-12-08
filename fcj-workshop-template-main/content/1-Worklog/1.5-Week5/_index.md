@@ -1,4 +1,9 @@
-# Worklog 5 – AWS Security
+---
+title: "Week 5"
+weight: 1
+chapter: false
+pre: " <b> 1.5 </b> "
+---
 
 ⚠️ Note: This is only a sample template. Do not submit it as your official assignment.
 

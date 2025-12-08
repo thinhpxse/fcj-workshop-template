@@ -1,8 +1,8 @@
 ---
-title: "Tìm hiểu về Machine Learning trên AWS"
+title: "Blog 1"
 weight: 1
 chapter: false
-pre: " <b> 3.1. </b> "
+pre: " <b> 3.1 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho báo cáo của bạn, bao gồm cả lưu ý này.

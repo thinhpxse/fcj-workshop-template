@@ -1,9 +1,9 @@
 ---
-title: "Worklog Week 8 – AWS Cost Optimization"
+title: "Week 8"
 
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.8 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Note: This is a reference template only — do not copy verbatim for official submission.

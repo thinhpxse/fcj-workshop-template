@@ -1,8 +1,8 @@
 ---
-title: "Build Priority-Based Message Processing with Amazon MQ and AWS App Runner"
+title: "Blog 6"
 weight: 1
 chapter: false
-pre: " <b> 3.6. </b> "
+pre: " <b> 3.6 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference only. Please **do not copy it verbatim** into official reports, including this notice.

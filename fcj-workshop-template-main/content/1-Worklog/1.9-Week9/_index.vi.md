@@ -1,9 +1,9 @@
 ---
-title: "Worklog Tuần 9 – Application Modernization on AWS"
+title: "Week 9"
 
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.9 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây là bản mẫu tham khảo — không sao chép nguyên văn cho bài nộp chính thức.

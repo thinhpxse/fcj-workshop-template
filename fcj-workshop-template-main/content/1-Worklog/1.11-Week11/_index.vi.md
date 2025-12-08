@@ -1,8 +1,8 @@
 ---
-title: "Worklog Tuần 11– Container Services on AWS"
-weight: 1
+title: "Week 11"
+weight: 11
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.11 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây là bản mẫu tham khảo — không được sao chép nguyên văn cho bài nộp chính thức.

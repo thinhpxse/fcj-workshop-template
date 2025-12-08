@@ -1,3 +1,9 @@
+---
+title: "Week 7"
+weight: 1
+chapter: false
+pre: " <b> 1.7 </b> "
+---
 # Worklog Week 7 – AWS Performance
 
 ⚠️ Note: This is only a sample template. Do not submit it as your official assignment.

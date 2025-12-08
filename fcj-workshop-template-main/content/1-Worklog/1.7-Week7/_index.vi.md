@@ -1,8 +1,8 @@
 ---
-title: "Worklog Tuần 7 – AWS Performance"
+title: "Week 7"
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.7 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây chỉ là bản mẫu tham khảo, không sao chép nguyên văn cho bài nộp chính thức.

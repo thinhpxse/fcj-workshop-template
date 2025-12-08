@@ -1,8 +1,8 @@
 ---
-title: "Worklog Week 11 – Container Services on AWS"
-weight: 1
+title: "Week 11"
+weight: 11
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.11 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Note: This is a reference template — do not copy verbatim for official submission.

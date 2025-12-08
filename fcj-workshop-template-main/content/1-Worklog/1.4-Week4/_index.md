@@ -1,9 +1,9 @@
 ---
-title: "Week 4 Worklog – Optimizing the System on AWS (Operations)"
+title: "Week 4 "
 
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.4 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Note: This is only a reference template. Do not copy it verbatim for your official submission.

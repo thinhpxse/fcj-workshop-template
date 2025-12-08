@@ -1,8 +1,8 @@
 ---
-title: "Xây dựng xử lý thông điệp theo độ ưu tiên với Amazon MQ và AWS App Runner"
+title: "Blog 6"
 weight: 1
 chapter: false
-pre: " <b> 3.6. </b> "
+pre: " <b> 3.6 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Thông tin dưới đây chỉ để tham khảo. Vui lòng **không sao chép nguyên văn** vào báo cáo của bạn, bao gồm cả phần này.

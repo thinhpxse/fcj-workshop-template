@@ -1,8 +1,8 @@
 ---
-title: "Revolutionizing Telecom Revenue Assurance with AWS AI-Driven Framework"
+title: "Blog 2"
 weight: 1
 chapter: false
-pre: " <b> 3.2. </b> "
+pre: " <b> 3.2 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for official reports, including this notice.

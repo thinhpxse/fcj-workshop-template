@@ -1,8 +1,8 @@
 ---
-title: "Building an AI Gateway to Amazon Bedrock with Amazon API Gateway"
+title: "Blog 5"
 weight: 1
 chapter: false
-pre: " <b> 3.5. </b> "
+pre: " <b> 3.5 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference only. Please **do not copy verbatim** into official reports, including this notice.

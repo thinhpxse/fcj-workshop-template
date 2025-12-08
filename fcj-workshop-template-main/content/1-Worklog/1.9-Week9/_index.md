@@ -1,9 +1,9 @@
 ---
-title: "Worklog Week 9 – Application Modernization on AWS"
+title: "Week 9"
 
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.9 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Note: This is a reference template — do not copy it verbatim for official submission.

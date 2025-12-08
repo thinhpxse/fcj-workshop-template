@@ -1,8 +1,8 @@
 ---
-title: "Secure Amazon EVS with AWS Network Firewall"
+title: "Blog 4"
 weight: 1
 chapter: false
-pre: " <b> 3.4. </b> "
+pre: " <b> 3.4 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference only. Please **do not copy verbatim** into official reports, including this notice.

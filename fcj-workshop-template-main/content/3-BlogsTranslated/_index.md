@@ -1,5 +1,5 @@
 ---
-title: "Translated AWS Blogs"
+title: "Translated AWS Blog"
 date: 2025-12-06
 weight: 3
 chapter: false

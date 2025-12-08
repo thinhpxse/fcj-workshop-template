@@ -1,8 +1,8 @@
 ---
-title: "Cách mạng hoá bảo đảm doanh thu viễn thông: Khung AI-driven của AWS cho giải pháp thế hệ mới"
+title: "Blog 2"
 weight: 1
 chapter: false
-pre: " <b> 3.2. </b> "
+pre: " <b> 3.2 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Thông tin bên dưới chỉ để tham khảo. Vui lòng **không sao chép nguyên văn** vào báo cáo của bạn, bao gồm cả phần này.

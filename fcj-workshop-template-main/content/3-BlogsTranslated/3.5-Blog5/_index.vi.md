@@ -1,8 +1,8 @@
 ---
-title: "Xây dựng AI Gateway cho Amazon Bedrock với Amazon API Gateway"
+title: "Blog 5"
 weight: 1
 chapter: false
-pre: " <b> 3.5. </b> "
+pre: " <b> 3.5 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Thông tin dưới đây chỉ nhằm mục đích tham khảo. Vui lòng **không sao chép nguyên văn** vào báo cáo của bạn, bao gồm cả phần này.

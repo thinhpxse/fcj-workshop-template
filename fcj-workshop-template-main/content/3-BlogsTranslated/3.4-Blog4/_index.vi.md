@@ -2,7 +2,7 @@
 title: "Bảo mật Amazon EVS với AWS Network Firewall"
 weight: 1
 chapter: false
-pre: " <b> 3.4. </b> "
+pre: " <b> 3.4 </b> "
 ---
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Thông tin dưới đây chỉ để tham khảo. Vui lòng **không sao chép nguyên văn** cho báo cáo của bạn, bao gồm cả phần này.

@@ -35,13 +35,24 @@ The company provides an internship allowance and offers flexible working hours w
 ---
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
 
----
+- What were you most satisfied with during your internship?
+  During my internship at AWS, I was most satisfied with the professional and friendly working environment. My mentors were always willing to support me and helped me gain a lot of practical knowledge about cloud computing, especially AWS services. In addition, I felt very fortunate to be exposed to structured working processes and modern technologies.
+
+- What do you think the company should improve for future interns?
+  In my opinion, the company could improve by creating more dedicated guidance materials for interns, as well as organizing more in-depth hands-on training sessions to help new interns quickly become familiar with the system and their tasks.
+
+- If you were to recommend this place to your friends, would you encourage them to intern here? Why?
+  I would definitely recommend my friends to intern at AWS because it is an excellent environment for learning and professional development. The company has a highly professional culture, offers opportunities to work with new technologies, and helps students build a strong foundation for their future careers.
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+
+- Do you have any suggestions to improve the internship experience?
+  I hope the company can organize more workshops where senior engineers share their real-world experience, as well as create more bonding activities among interns to enhance communication and mutual learning.
+
+- Would you like to continue this program in the future?
+  Yes, I would very much like to continue participating in this program in the future if given the opportunity, as I feel this is an ideal environment for personal growth and improving my professional skills.
+
+- Other feedback (free sharing):
+  I would like to sincerely thank AWS and the mentors who have always supported and guided me throughout my internship. This has been a very valuable and meaningful period of my life.
+

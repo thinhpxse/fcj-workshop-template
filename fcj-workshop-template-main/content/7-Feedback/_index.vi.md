@@ -34,11 +34,18 @@ Công ty có hỗ trợ phụ cấp thực tập và tạo điều kiện về t
 
 ### Một số câu hỏi khác
 - Điều bạn **hài lòng nhất** trong thời gian thực tập?  
+  Trong thời gian thực tập tại AWS, em hài lòng nhất với môi trường làm việc chuyên nghiệp và thân thiện. Các anh/chị hướng dẫn luôn sẵn sàng hỗ trợ, giúp em học hỏi được nhiều kiến thức thực tế về Cloud, đặc biệt là các dịch vụ AWS. Ngoài ra, em cảm thấy rất may mắn khi được tiếp xúc với quy trình làm việc bài bản và công nghệ hiện đại.
+
 - Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
+  Theo em, công ty có thể cải thiện bằng cách xây dựng thêm các tài liệu hướng dẫn dành riêng cho thực tập sinh, cũng như tổ chức thêm các buổi training thực hành chuyên sâu để giúp các bạn mới nhanh chóng làm quen với hệ thống và công việc.
 - Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
+  Em chắc chắn sẽ giới thiệu cho bạn bè thực tập tại AWS vì đây là môi trường rất tốt để học hỏi và phát triển. Công ty có văn hoá chuyên nghiệp, cơ hội tiếp cận công nghệ mới và giúp sinh viên xây dựng nền tảng vững chắc cho sự nghiệp sau này.
 
 
 ### Đề xuất & mong muốn
 - Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
+  Em mong công ty có thể tổ chức thêm các buổi workshop chia sẻ kinh nghiệm thực tế từ các anh/chị senior, cũng như tạo thêm hoạt động gắn kết giữa các thực tập sinh để tăng cường giao lưu và học hỏi lẫn nhau.
 - Bạn có muốn tiếp tục chương trình này trong tương lai?
+  Dạ, em rất mong muốn được tiếp tục tham gia chương trình này trong tương lai nếu có cơ hội, vì em cảm thấy đây là môi trường rất phù hợp để phát triển bản thân và nâng cao kỹ năng chuyên môn.
 - Góp ý khác (tự do chia sẻ):
+  Em xin gửi lời cảm ơn đến công ty AWS và các anh/chị đã luôn hỗ trợ, hướng dẫn em tận tình trong suốt thời gian thực tập. Đây là khoảng thời gian rất quý báu và ý nghĩa đối với em.

@@ -1,9 +1,9 @@
 ---
-title: "Worklog Tuần 3 – Migrate to AWS"
+title: "Week 3"
 
 weight: 1
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.3 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây là bản mẫu tham khảo, không sao chép nguyên văn cho báo cáo nộp chính thức.

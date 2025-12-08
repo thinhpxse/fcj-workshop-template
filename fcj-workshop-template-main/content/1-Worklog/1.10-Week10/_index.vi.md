@@ -1,8 +1,8 @@
 ---
-title: "Worklog Tuần 10 – Serverless Web App Workshop & Elastic Beanstalk & WordPress on AWS"
-weight: 1
+title: "Week 10"
+weight: 10
 chapter: false
-pre: " <b> 1.x. </b> "
+pre: " <b> 1.10 </b> "
 ---
 {{% notice warning %}}
 ⚠️ Lưu ý: Đây chỉ là bản mẫu tham khảo — không sao chép nguyên văn cho bài nộp chính thức.

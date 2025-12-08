@@ -1,4 +1,9 @@
-# Worklog Week 6 – AWS Reliability
+---
+title: "Week 6"
+weight: 1
+chapter: false
+pre: " <b> 1.6 </b> "
+---
 
 ⚠️ Note: This is only a sample template. Do not submit it as your official assignment.
 
